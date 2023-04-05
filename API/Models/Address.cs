@@ -9,10 +9,12 @@ namespace HomefinderAPI.Models
         [Required]
         public string? City { get; set; }
         [Required]
+        [Display(Name = "Postal Code")]
         public string? PostalCode { get; set; }
         [Required]
-        public string? StreetName { get; set; }
-        [Required]
-        public string? StreetNumber { get; set; }
+        [Display(Name = "Street Address")]
+        public string? StreetAddress { get; set; }
+        
+        public ICollection<PropertyObject> PropertyObjects { get; set; }
     }
 }

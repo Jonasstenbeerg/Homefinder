@@ -16,7 +16,7 @@ namespace HomefinderAPI.Data
         public DbSet<Address> Addresses => Set<Address>();
         public DbSet<Advertisement> Advertisements => Set<Advertisement>();
         public DbSet<LeaseType> LeaseTypes => Set<LeaseType>();
-        public DbSet<Property> Properties => Set<Property>();
+        public DbSet<PropertyObject> PropertyObjects => Set<PropertyObject>();
         public DbSet<PropertyType> PropertyTypes => Set<PropertyType>();    
     }
 }

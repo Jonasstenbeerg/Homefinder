@@ -3,7 +3,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace HomefinderAPI.Models
 {
-    public class Property
+    public class PropertyObject
     {
         [Key]
         public int Id { get; set; }

@@ -1,12 +1,8 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using API.Interfaces;
-using API.ViewModels;
+using HomefinderAPI.Interfaces;
+using HomefinderAPI.ViewModels;
 using Microsoft.AspNetCore.Mvc;
 
-namespace API.Controllers
+namespace HomefinderAPI.Controllers
 {
     [ApiController]
     [Route("api/advertisements")]

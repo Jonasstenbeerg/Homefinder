@@ -10,7 +10,7 @@ namespace HomefinderAPI.Helpers
         {
             //Från --> Till
             CreateMap<Advertisement,AdvertisementViewModel>()
-            .ForMember(dest => dest.SearchNumber, options => options.MapFrom(src => src.Id))
+            .ForMember(dest => dest.Id, options => options.MapFrom(src => src.Id))
             .ForMember(dest => dest.ListPrice, options => options.MapFrom(src => src.Price))
             .ForMember(dest => dest.Area, options => options.MapFrom(src => src.Property.Area))
             .ForMember(dest => dest.LeaseType, options => options.MapFrom(src => src.Property.LeaseType!.Name))

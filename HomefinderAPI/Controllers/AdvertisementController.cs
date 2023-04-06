@@ -32,5 +32,21 @@ namespace HomefinderAPI.Controllers
                 return StatusCode(500,ex.Message);
             }
         }
+
+        [HttpGet("byid/{id}")]
+        public async Task<ActionResult<AdvertisementViewModel>> GetAdvertisementByIdAsync(int id)
+        {
+            try
+            {
+               var respons = await _advertisementRepository.GetAdvertisementByIdAsync(id);
+
+               return Ok(respons);
+            }
+            catch (System.Exception ex)
+            {
+                
+                return StatusCode(500,ex.Message);
+            }
+        }
     }
 }

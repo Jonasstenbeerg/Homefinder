@@ -19,9 +19,28 @@ namespace HomefinderAPI.Repositories
             
         }
 
-        public Task<List<AdvertisementViewModel>> ListAllAdvertisementsAsync()
+        public async Task<AdvertisementViewModel> GetAdvertisementByIdAsync(int id)
         {
-            return _context.Advertisements
+            var advertisement = await _context.Advertisements
+            .Include(advertisement => advertisement.Property)
+            .Include(advertisement => advertisement.Property.Address)
+            .Include(advertisement => advertisement.Property.LeaseType)
+            .Include(advertisement => advertisement.Property.PropertyType)
+            .FirstOrDefaultAsync(advertisement => advertisement.Id == id);
+
+            if(advertisement is null)
+            {
+                throw new Exception($"Vi kunde inte hitta någon annons med id {id}");
+            }
+
+            var advertisementToReturn = _mapper.Map<AdvertisementViewModel>(advertisement);
+
+            return advertisementToReturn;
+        }
+
+        public async Task<List<AdvertisementViewModel>> ListAllAdvertisementsAsync()
+        {
+            return await _context.Advertisements
             .Include(advertisement => advertisement.Property)
             .ThenInclude(property => property.Address)
             .Include(advertisement => advertisement.Property.LeaseType)

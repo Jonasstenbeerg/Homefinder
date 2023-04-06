@@ -2,7 +2,7 @@ namespace HomefinderAPI.ViewModels
 {
     public class AdvertisementViewModel
     {   
-        public int SearchNumber { get; set; }
+        public int Id { get; set; }
         public int ListPrice { get; set; }
         public string? LeaseType { get; set; }
         public string? PropertyType { get; set; }

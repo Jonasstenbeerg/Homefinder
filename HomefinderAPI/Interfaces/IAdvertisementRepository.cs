@@ -1,9 +1,9 @@
-using HomefinderAPI.Models;
+using HomefinderAPI.ViewModels;
 
-namespace API.Interfaces
+namespace HomefinderAPI.Interfaces
 {
     public interface IAdvertisementRepository
     {
-        public Task<List<Advertisement>> ListAllAdvertisementsAsync();
+        public Task<List<AdvertisementViewModel>> ListAllAdvertisementsAsync();
     }
 }

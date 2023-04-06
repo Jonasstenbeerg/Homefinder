@@ -1,4 +1,4 @@
-namespace HomefinderAPI.ViewModels
+namespace HomefinderAPI.ViewModels.Advertisement
 {
     public class AdvertisementViewModel
     {   

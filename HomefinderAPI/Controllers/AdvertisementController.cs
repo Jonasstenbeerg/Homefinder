@@ -1,5 +1,5 @@
 using HomefinderAPI.Interfaces;
-using HomefinderAPI.ViewModels;
+using HomefinderAPI.ViewModels.Advertisement;
 using Microsoft.AspNetCore.Mvc;
 
 namespace HomefinderAPI.Controllers
@@ -46,6 +46,27 @@ namespace HomefinderAPI.Controllers
             {
                 
                 return StatusCode(500,ex.Message);
+            }
+        }
+
+        [HttpPost]
+        public async Task<ActionResult> AddAdvertisementAsync(PostAdvertisementViewModel model)
+        {
+            try
+            {
+                await _advertisementRepository.AddAdvertisementAsync(model);
+
+                if(await _advertisementRepository.SaveAllAsync())
+                {
+                    return StatusCode(201);
+                }
+
+                return StatusCode(500,"Ett fel inträffade skapande av annons");
+            }
+            catch (System.Exception ex)
+            {
+                
+                return StatusCode(500, ex.Message);
             }
         }
     }

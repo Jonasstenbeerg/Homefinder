@@ -2,8 +2,7 @@ using AutoMapper;
 using AutoMapper.QueryableExtensions;
 using HomefinderAPI.Data;
 using HomefinderAPI.Interfaces;
-
-using HomefinderAPI.ViewModels;
+using HomefinderAPI.ViewModels.Advertisement;
 using Microsoft.EntityFrameworkCore;
 
 namespace HomefinderAPI.Repositories
@@ -17,6 +16,11 @@ namespace HomefinderAPI.Repositories
             _mapper = mapper;
             _context = context;
             
+        }
+
+        public Task AddAdvertisementAsync(PostAdvertisementViewModel model)
+        {
+            throw new NotImplementedException();
         }
 
         public async Task<AdvertisementViewModel> GetAdvertisementByIdAsync(int id)
@@ -49,6 +53,11 @@ namespace HomefinderAPI.Repositories
             .ToListAsync();
             
             
+        }
+
+        public Task<bool> SaveAllAsync()
+        {
+            throw new NotImplementedException();
         }
     }
 }

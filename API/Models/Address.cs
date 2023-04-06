@@ -15,6 +15,6 @@ namespace HomefinderAPI.Models
         [Display(Name = "Street Address")]
         public string? StreetAddress { get; set; }
         
-        public ICollection<PropertyObject> PropertyObjects { get; set; }
+        public ICollection<PropertyObject>? PropertyObjects { get; set; }
     }
 }

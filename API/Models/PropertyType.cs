@@ -11,6 +11,6 @@ namespace HomefinderAPI.Models
         [Required]
         public string? Description { get; set; }
         
-        public ICollection<PropertyObject> PropertyObjects { get; set; }
+        public ICollection<PropertyObject>? PropertyObjects { get; set; }
     }
 }

@@ -3,7 +3,9 @@ using HomefinderAPI.ViewModels.Advertisement;
 using Microsoft.AspNetCore.Mvc;
 
 namespace HomefinderAPI.Controllers
-{
+{  
+     //Endpointens namn ska vara ett substantiv i plural
+    //i detta fall advertisements
     [ApiController]
     [Route("api/advertisements")]
     public class AdvertisementController : ControllerBase
@@ -17,36 +19,29 @@ namespace HomefinderAPI.Controllers
             
         }
 
+        //url: api/advertisements/list
         [HttpGet("list")]
         public async Task<ActionResult<List<AdvertisementViewModel>>> ListAllAdvertisementsAsync()
         {
-            try
-            {
-                var respons = await _advertisementRepository.ListAllAdvertisementsAsync();
+            var respons = await _advertisementRepository.ListAllAdvertisementsAsync();
 
-                return Ok(respons);
-            }
-            catch (System.Exception ex)
-            {
-                
-                return StatusCode(500,ex.Message);
-            }
+            return Ok(respons);
+            
         }
 
-        [HttpGet("byid/{id}")]
+        [HttpGet("{id}")]
         public async Task<ActionResult<AdvertisementViewModel>> GetAdvertisementByIdAsync(int id)
         {
-            try
-            {
-               var respons = await _advertisementRepository.GetAdvertisementByIdAsync(id);
+           
+            var respons = await _advertisementRepository.GetAdvertisementByIdAsync(id);
 
-               return Ok(respons);
-            }
-            catch (System.Exception ex)
+            if (respons is null)
             {
-                
-                return StatusCode(500,ex.Message);
+                return NotFound($"Vi kunde inte hitta någon annons med id {id}");
             }
+
+            return Ok(respons);
+           
         }
 
         [HttpPost]
@@ -61,7 +56,7 @@ namespace HomefinderAPI.Controllers
                     return StatusCode(201);
                 }
 
-                return StatusCode(500,"Ett fel inträffade skapande av annons");
+                return StatusCode(500,"Ett fel inträffade vid skapande av annons");
             }
             catch (System.Exception ex)
             {

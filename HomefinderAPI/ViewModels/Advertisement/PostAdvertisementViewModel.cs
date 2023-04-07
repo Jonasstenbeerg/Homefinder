@@ -8,6 +8,7 @@ namespace HomefinderAPI.ViewModels.Advertisement
         public int Area { get; set; }
         public string? City { get; set; }
         public int PostalCode { get; set; }
-        public string? StreetAddress { get; set; }
+        public string? StreetName { get; set; }
+        public int StreetNumber { get; set; }
     }
 }

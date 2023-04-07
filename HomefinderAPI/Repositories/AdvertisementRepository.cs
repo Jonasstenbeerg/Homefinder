@@ -23,7 +23,7 @@ namespace HomefinderAPI.Repositories
 
         public async Task AddAdvertisementAsync(PostAdvertisementViewModel model)
         {
-            //TODO: Refaktorera kod koddupliceringar ner till rad 42
+            //TODO: Refaktorisera koddupliceringar ner till rad 42
             var leaseType = await _context.LeaseTypes
             .Where(l => l.Name!.ToLower() == model.LeaseType!.ToLower())
             .SingleOrDefaultAsync();
@@ -41,8 +41,17 @@ namespace HomefinderAPI.Repositories
                 throw new Exception($"Tyvärr vi har inte objektstypen {model.PropertyType}");
             }
            
+           
 
             var advertisementToAdd = _mapper.Map<Advertisement>(model);
+
+            var address = await SearchAddressAsync(advertisementToAdd.Property.Address!);
+            
+            if(address != null)
+            {
+                advertisementToAdd.Property.AddressId = address.Id;
+            }
+
             advertisementToAdd.Property.LeaseType = leaseType;
             advertisementToAdd.Property.PropertyType = propertyType;
 
@@ -77,6 +86,15 @@ namespace HomefinderAPI.Repositories
             return await _context.SaveChangesAsync() > 0;
         }
 
+        private async Task<Address?> SearchAddressAsync(Address address)
+        {
+            return await _context.Addresses
+            .Where(a => 
+            a.StreetName!.ToLower()==address.StreetName!.ToLower() && 
+            a.StreetNumber==address.StreetNumber && 
+            a.PostalCode==address.PostalCode)
+            .FirstOrDefaultAsync();
+        }
 
     };
 }

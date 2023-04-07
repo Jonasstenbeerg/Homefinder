@@ -11,8 +11,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace HomefinderAPI.Data.Migrations
 {
     [DbContext(typeof(HomefinderContext))]
-    [Migration("20230405190706_AdvertisementsRequirements")]
-    partial class AdvertisementsRequirements
+    [Migration("20230407135519_AdvertisementRequirements")]
+    partial class AdvertisementRequirements
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -34,7 +34,11 @@ namespace HomefinderAPI.Data.Migrations
                         .IsRequired()
                         .HasColumnType("TEXT");
 
-                    b.Property<string>("StreetAddress")
+                    b.Property<string>("StreetName")
+                        .IsRequired()
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("StreetNumber")
                         .IsRequired()
                         .HasColumnType("TEXT");
 

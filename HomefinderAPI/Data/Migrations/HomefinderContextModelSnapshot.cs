@@ -31,7 +31,11 @@ namespace HomefinderAPI.Data.Migrations
                         .IsRequired()
                         .HasColumnType("TEXT");
 
-                    b.Property<string>("StreetAddress")
+                    b.Property<string>("StreetName")
+                        .IsRequired()
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("StreetNumber")
                         .IsRequired()
                         .HasColumnType("TEXT");
 

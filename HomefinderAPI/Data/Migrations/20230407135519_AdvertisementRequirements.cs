@@ -5,7 +5,7 @@
 namespace HomefinderAPI.Data.Migrations
 {
     /// <inheritdoc />
-    public partial class AdvertisementsRequirements : Migration
+    public partial class AdvertisementRequirements : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -18,7 +18,8 @@ namespace HomefinderAPI.Data.Migrations
                         .Annotation("Sqlite:Autoincrement", true),
                     City = table.Column<string>(type: "TEXT", nullable: false),
                     PostalCode = table.Column<string>(type: "TEXT", nullable: false),
-                    StreetAddress = table.Column<string>(type: "TEXT", nullable: false)
+                    StreetName = table.Column<string>(type: "TEXT", nullable: false),
+                    StreetNumber = table.Column<string>(type: "TEXT", nullable: false)
                 },
                 constraints: table =>
                 {

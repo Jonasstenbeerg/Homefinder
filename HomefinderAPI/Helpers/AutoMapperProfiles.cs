@@ -16,11 +16,13 @@ namespace HomefinderAPI.Helpers
             .ForMember(dest => dest.LeaseType, options => options.MapFrom(src => src.Property.LeaseType!.Name))
             .ForMember(dest => dest.PropertyType, options => options.MapFrom(src => src.Property.PropertyType!.Name))
             .ForMember(dest => dest.City, options => options.MapFrom(src => src.Property.Address!.City))
-            .ForMember(dest => dest.StreetAddress, options => options.MapFrom(src => src.Property.Address!.StreetAddress));
+            .ForMember(dest => dest.StreetName, options => options.MapFrom(src => src.Property.Address!.StreetName))
+            .ForMember(dest => dest.StreetNumber, options => options.MapFrom(src => src.Property.Address!.StreetNumber));
             CreateMap<PostAdvertisementViewModel, Advertisement>()
             .ForPath(dest => dest.Property.Address!.City, options => options.MapFrom(src => src.City))
             .ForPath(dest => dest.Property.Address!.PostalCode, options => options.MapFrom(src => src.PostalCode))
-            .ForPath(dest => dest.Property.Address!.StreetAddress, options => options.MapFrom(src => src.StreetAddress))
+            .ForPath(dest => dest.Property.Address!.StreetName, options => options.MapFrom(src => src.StreetName))
+             .ForPath(dest => dest.Property.Address!.StreetNumber, options => options.MapFrom(src => src.StreetNumber))
             .ForPath(dest => dest.Property.Area, options => options.MapFrom(src => src.Area))
             .ForPath(dest => dest.Price, options => options.MapFrom(src => src.ListPrice));
            

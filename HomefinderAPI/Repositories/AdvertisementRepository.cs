@@ -2,8 +2,11 @@ using AutoMapper;
 using AutoMapper.QueryableExtensions;
 using HomefinderAPI.Data;
 using HomefinderAPI.Interfaces;
+using HomefinderAPI.Models;
 using HomefinderAPI.ViewModels.Advertisement;
 using Microsoft.EntityFrameworkCore;
+using System.Collections;
+using System.Reflection;
 
 namespace HomefinderAPI.Repositories
 {
@@ -18,41 +21,62 @@ namespace HomefinderAPI.Repositories
             
         }
 
-        public Task AddAdvertisementAsync(PostAdvertisementViewModel model)
+        public async Task AddAdvertisementAsync(PostAdvertisementViewModel model)
         {
-            throw new NotImplementedException();
-        }
-
-        public async Task<AdvertisementViewModel?> GetAdvertisementByIdAsync(int id)
-        {
-            return await _context.Advertisements
-            .Include(advertisement => advertisement.Property)
-            .Include(advertisement => advertisement.Property.Address)
-            .Include(advertisement => advertisement.Property.LeaseType)
-            .Include(advertisement => advertisement.Property.PropertyType)
-            .Where(advertisement => advertisement.Id == id)
-            .ProjectTo<AdvertisementViewModel>(_mapper.ConfigurationProvider)
+            //TODO: Refaktorera kod koddupliceringar ner till rad 42
+            var leaseType = await _context.LeaseTypes
+            .Where(l => l.Name!.ToLower() == model.LeaseType!.ToLower())
             .SingleOrDefaultAsync();
-            
-            
+
+            var propertyType = await _context.PropertyTypes
+            .Where(p => p.Name!.ToLower() == model.PropertyType!.ToLower())
+            .SingleOrDefaultAsync();
+
+            if (leaseType is null)
+            {
+                throw new Exception($"Tyvärr vi har inte arrendetypen {model.LeaseType}");
+            }
+            else if (propertyType is null)
+            {
+                throw new Exception($"Tyvärr vi har inte objektstypen {model.PropertyType}");
+            }
+           
+
+            var advertisementToAdd = _mapper.Map<Advertisement>(model);
+            advertisementToAdd.Property.LeaseType = leaseType;
+            advertisementToAdd.Property.PropertyType = propertyType;
+
+            await _context.Advertisements.AddAsync(advertisementToAdd);
         }
 
-        public async Task<List<AdvertisementViewModel>> ListAllAdvertisementsAsync()
+       public async Task<AdvertisementViewModel?> GetAdvertisementByIdAsync(int id)
         {
             return await _context.Advertisements
-            .Include(advertisement => advertisement.Property)
-            .ThenInclude(property => property.Address)
-            .Include(advertisement => advertisement.Property.LeaseType)
-            .Include(advertisement => advertisement.Property.PropertyType)
-            .ProjectTo<AdvertisementViewModel>(_mapper.ConfigurationProvider)
-            .ToListAsync();
-            
-            
+                .Include(a => a.Property.Address)
+                .Include(a => a.Property.LeaseType)
+                .Include(a => a.Property.PropertyType)
+                .Where(a => a.Id == id)
+                .ProjectTo<AdvertisementViewModel>(_mapper.ConfigurationProvider)
+                .SingleOrDefaultAsync();
         }
 
-        public Task<bool> SaveAllAsync()
+
+       public async Task<List<AdvertisementViewModel>> ListAllAdvertisementsAsync()
         {
-            throw new NotImplementedException();
+            return await _context.Advertisements
+                .Include(a => a.Property.Address)
+                .Include(a => a.Property.LeaseType)
+                .Include(a => a.Property.PropertyType)
+                .ProjectTo<AdvertisementViewModel>(_mapper.ConfigurationProvider)
+                .ToListAsync();
         }
-    }
+
+
+        public async Task<bool> SaveAllAsync()
+        {
+            return await _context.SaveChangesAsync() > 0;
+        }
+
+
+    };
 }

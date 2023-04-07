@@ -22,9 +22,8 @@ namespace HomefinderAPI.Helpers
             .ForPath(dest => dest.Property.Address!.PostalCode, options => options.MapFrom(src => src.PostalCode))
             .ForPath(dest => dest.Property.Address!.StreetAddress, options => options.MapFrom(src => src.StreetAddress))
             .ForPath(dest => dest.Property.Area, options => options.MapFrom(src => src.Area))
-            .ForPath(dest => dest.Price, options => options.MapFrom(src => src.ListPrice))
-            .ForPath(dest => dest.Property.PropertyTypeId, options => options.MapFrom(src => src.PropertyTypeId))
-            .ForPath(dest => dest.Property.LeaseTypeId, options => options.MapFrom(src => src.LeaseTypeId));
+            .ForPath(dest => dest.Price, options => options.MapFrom(src => src.ListPrice));
+           
 
         }
     }

@@ -19,7 +19,8 @@ namespace HomefinderAPI.Data.Migrations
                     City = table.Column<string>(type: "TEXT", nullable: false),
                     PostalCode = table.Column<string>(type: "TEXT", nullable: false),
                     StreetName = table.Column<string>(type: "TEXT", nullable: false),
-                    StreetNumber = table.Column<string>(type: "TEXT", nullable: false)
+                    StreetNumber = table.Column<int>(type: "INTEGER", nullable: false),
+                    Deleted = table.Column<bool>(type: "INTEGER", nullable: false)
                 },
                 constraints: table =>
                 {

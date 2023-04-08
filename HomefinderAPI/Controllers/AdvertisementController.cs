@@ -57,5 +57,25 @@ namespace HomefinderAPI.Controllers
         return StatusCode(500, ex.Message);
       }
     }
+
+    [HttpPut("{id}")]
+    public async Task<IActionResult> UpdateAdvertisementAsync(int id, PostAdvertisementViewModel model)
+    {
+      try
+      {
+        await _advertisementRepository.UpdateAdvertisementAsync(id, model);
+
+        if(await _advertisementRepository.SaveAllAsync())
+        {
+          return NoContent();
+        }
+
+        return StatusCode(500, "Ett fel inträffade vid uppdatering av annons");
+      }
+      catch (System.Exception ex)
+      {
+        return StatusCode(500, ex.Message);
+      }
+    }
   }
 }

@@ -14,7 +14,8 @@ namespace HomefinderAPI.Models
     [Required]
     public string? StreetName { get; set; }
     [Required]
-    public string? StreetNumber { get; set; }
+    public int? StreetNumber { get; set; }
+    public bool Deleted { get; set; } = false;
     
     public ICollection<PropertyObject>? PropertyObjects { get; set; }
   }

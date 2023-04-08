@@ -77,6 +77,24 @@ namespace HomefinderAPI.Repositories
         .ToListAsync();
     }
 
+    public async Task UpdateAdvertisementAsync(int id, PostAdvertisementViewModel model)
+    {
+      var advertisement = await _context.Advertisements
+      .Include(a => a.Property.Address)
+      .Include(a => a.Property.LeaseType)
+      .Include(a => a.Property.PropertyType)
+      .SingleOrDefaultAsync(a => a.Id == id);
+
+      if (advertisement is null)
+      {
+        throw new Exception($"Vi kunde inte hitta någon annons med id {id}");
+      }
+
+      _mapper.Map<PostAdvertisementViewModel, Advertisement>(model, advertisement);
+
+      _context.Advertisements.Update(advertisement);
+    }
+
     public async Task<bool> SaveAllAsync()
     {
       return await _context.SaveChangesAsync() > 0;
@@ -91,5 +109,5 @@ namespace HomefinderAPI.Repositories
         a.PostalCode==address.PostalCode)
         .FirstOrDefaultAsync();
     }
-  };
+  }
 }

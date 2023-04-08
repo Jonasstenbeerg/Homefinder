@@ -1,4 +1,5 @@
 {
     "csharpextensions.useThisForCtorAssignments": false,
-    "csharpextensions.privateMemberPrefix": "_"
+    "csharpextensions.privateMemberPrefix": "_",
+    "editor.tabSize": 2
 }

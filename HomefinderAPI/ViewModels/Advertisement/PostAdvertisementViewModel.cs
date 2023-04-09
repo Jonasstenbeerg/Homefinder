@@ -14,6 +14,7 @@ namespace HomefinderAPI.ViewModels.Advertisement
 		public int Area { get; set; }
 		[Required(ErrorMessage = "Stad är obligatoriskt")]
 		public string? City { get; set; }
+		[Required(ErrorMessage = "Postnummer är obligatoriskt")]
 		public int PostalCode { get; set; }
 		[Required(ErrorMessage = "Gatunamn är obligatoriskt")]
 		public string? StreetName { get; set; }

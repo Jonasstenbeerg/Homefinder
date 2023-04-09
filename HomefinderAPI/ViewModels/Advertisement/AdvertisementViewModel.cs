@@ -10,5 +10,6 @@ namespace HomefinderAPI.ViewModels.Advertisement
     public string? City { get; set; }
     public string? StreetName { get; set; }
     public int StreetNumber { get; set; }
+    public bool Deleted { get; set; }
   }
 }

@@ -27,9 +27,6 @@ namespace HomefinderAPI.Data.Migrations
                         .IsRequired()
                         .HasColumnType("TEXT");
 
-                    b.Property<bool>("Deleted")
-                        .HasColumnType("INTEGER");
-
                     b.Property<string>("PostalCode")
                         .IsRequired()
                         .HasColumnType("TEXT");
@@ -51,6 +48,9 @@ namespace HomefinderAPI.Data.Migrations
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
+                        .HasColumnType("INTEGER");
+
+                    b.Property<bool>("Deleted")
                         .HasColumnType("INTEGER");
 
                     b.Property<int>("Price")

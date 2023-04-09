@@ -109,5 +109,19 @@ namespace HomefinderAPI.Repositories
         a.PostalCode==address.PostalCode)
         .FirstOrDefaultAsync();
     }
+
+    public async Task DeleteAdvertisementAsync(int id)
+    {
+      var advertisement = await _context.Advertisements.FindAsync(id);
+
+      if (advertisement is null)
+      {
+        throw new Exception($"Vi kunde inte hitta någon annons med id {id}");
+      }
+
+      advertisement.Deleted = true;
+
+      _context.Advertisements.Update(advertisement);
+    }
   }
 }

@@ -5,7 +5,7 @@
 namespace HomefinderAPI.Data.Migrations
 {
     /// <inheritdoc />
-    public partial class AdvertisementRequirements : Migration
+    public partial class AdvertisementsRequirements : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -19,8 +19,7 @@ namespace HomefinderAPI.Data.Migrations
                     City = table.Column<string>(type: "TEXT", nullable: false),
                     PostalCode = table.Column<string>(type: "TEXT", nullable: false),
                     StreetName = table.Column<string>(type: "TEXT", nullable: false),
-                    StreetNumber = table.Column<int>(type: "INTEGER", nullable: false),
-                    Deleted = table.Column<bool>(type: "INTEGER", nullable: false)
+                    StreetNumber = table.Column<int>(type: "INTEGER", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -96,6 +95,7 @@ namespace HomefinderAPI.Data.Migrations
                     Id = table.Column<int>(type: "INTEGER", nullable: false)
                         .Annotation("Sqlite:Autoincrement", true),
                     Price = table.Column<int>(type: "INTEGER", nullable: false),
+                    Deleted = table.Column<bool>(type: "INTEGER", nullable: false),
                     PropertyId = table.Column<int>(type: "INTEGER", nullable: false)
                 },
                 constraints: table =>

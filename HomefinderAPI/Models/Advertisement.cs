@@ -10,6 +10,8 @@ namespace HomefinderAPI.Models
     [Required]
     public int Price { get; set; }
     [Required]
+    public bool Deleted { get; set; } = false;
+    [Required]
     public int? PropertyId { get; set; }
     [ForeignKey("PropertyId")]
     public PropertyObject Property { get; set; } = new PropertyObject();

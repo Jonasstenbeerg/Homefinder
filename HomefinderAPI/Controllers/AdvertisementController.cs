@@ -77,5 +77,25 @@ namespace HomefinderAPI.Controllers
         return StatusCode(500, ex.Message);
       }
     }
+
+    [HttpDelete("{id}")]
+    public async Task<IActionResult> DeleteAdvertisementAsync(int id)
+    {
+      try
+      {
+        await _advertisementRepository.DeleteAdvertisementAsync(id);
+
+        if (await _advertisementRepository.SaveAllAsync())
+        {
+          return NoContent();
+        }
+
+        return StatusCode(500, "Ett fel inträffade vid borttagning av annons");        
+      }
+      catch (System.Exception ex)
+      {
+        return StatusCode(500,ex.Message);
+      }
+    }
   }
 }

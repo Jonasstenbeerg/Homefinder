@@ -57,13 +57,15 @@ namespace HomefinderAPI.Repositories
 
     public async Task<AdvertisementViewModel?> GetAdvertisementByIdAsync(int id)
     {
-        return await _context.Advertisements
-          .Include(a => a.Property.Address)
-          .Include(a => a.Property.LeaseType)
-          .Include(a => a.Property.PropertyType)
-          .Where(a => a.Id == id)
-          .ProjectTo<AdvertisementViewModel>(_mapper.ConfigurationProvider)
-          .SingleOrDefaultAsync();
+      //TODO: uppdatering av adress ska skapa ett nytt objekt i databasen 
+      //om fler bostäder finns på samma adress
+      return await _context.Advertisements
+        .Include(a => a.Property.Address)
+        .Include(a => a.Property.LeaseType)
+        .Include(a => a.Property.PropertyType)
+        .Where(a => a.Id == id)
+        .ProjectTo<AdvertisementViewModel>(_mapper.ConfigurationProvider)
+        .SingleOrDefaultAsync();
     }
 
 

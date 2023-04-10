@@ -1,9 +1,10 @@
 using HomefinderAPI.Models;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 
 namespace HomefinderAPI.Data
 {
-  public class HomefinderContext: DbContext
+  public class HomefinderContext: IdentityDbContext
   {
     public HomefinderContext(DbContextOptions options) : base(options)
     {

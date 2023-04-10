@@ -17,7 +17,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\HomefinderAPI\HomefinderAPI.csproj" />
+    <ProjectReference Include="..\..\HomefinderAPI\HomefinderAPI.csproj" />
   </ItemGroup>
 
 </Project>

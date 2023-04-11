@@ -16,11 +16,12 @@ namespace HomefinderAPI.Tests.Controllers
 		public void TestInitialize()
 		{
 			var mockedRepository = new Mock<IAdvertisementRepository>();
-			var id = 1;
+			var id = 1; //TODO: Do we need this?
 			_mockedAdvertisement = new AdvertisementViewModel { Id = id };
 			mockedRepository.Setup(repo => repo.GetAdvertisementByIdAsync(id)).ReturnsAsync( _mockedAdvertisement);
 			_controller = new AdvertisementController(mockedRepository.Object);
 		}
+		//TODO: The test does not check for statuscode... change name!
 		[TestMethod]
 		public async Task GetAdvertisementByIdAsync_Should_Return_Statuscode_200_ON_Success()
 		{

@@ -1,6 +1,7 @@
 using AutoMapper;
 using HomefinderAPI.Models;
 using HomefinderAPI.ViewModels.Advertisement;
+using HomefinderAPI.ViewModels.LeaseType;
 
 namespace HomefinderAPI.Helpers
 {
@@ -8,7 +9,7 @@ namespace HomefinderAPI.Helpers
   {
     public AutoMapperProfiles()
     {
-      //Från --> Till
+      //From --> To
       CreateMap<Advertisement,AdvertisementViewModel>()
       .ForMember(dest => dest.Id, options => options.MapFrom(src => src.Id))
       .ForMember(dest => dest.ListPrice, options => options.MapFrom(src => src.Price))
@@ -25,6 +26,7 @@ namespace HomefinderAPI.Helpers
       .ForPath(dest => dest.Property.Address!.StreetNumber, options => options.MapFrom(src => src.StreetNumber))
       .ForPath(dest => dest.Property.Area, options => options.MapFrom(src => src.Area))
       .ForPath(dest => dest.Price, options => options.MapFrom(src => src.ListPrice));
+      CreateMap<PostLeaseTypeViewModel, LeaseType>();
     }
   }
 }

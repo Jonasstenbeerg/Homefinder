@@ -5,8 +5,6 @@ using HomefinderAPI.Interfaces;
 using HomefinderAPI.Models;
 using HomefinderAPI.ViewModels.Advertisement;
 using Microsoft.EntityFrameworkCore;
-using System.Collections;
-using System.Reflection;
 
 namespace HomefinderAPI.Repositories
 {

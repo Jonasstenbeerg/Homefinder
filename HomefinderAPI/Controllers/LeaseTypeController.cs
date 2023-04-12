@@ -23,6 +23,19 @@ namespace HomefinderAPI.Controllers
 			return Ok(respons);
 		}
 
+		[HttpGet("{id}")]
+    public async Task<ActionResult<LeaseTypeViewModel>> GetLeaseTypeByIdAsync(int id)
+    {
+      var respons = await _leaseTypeRepository.GetLeaseTypeByIdAsync(id);
+
+      if (respons is null)
+      {
+        return NotFound($"Vi kunde inte hitta någon arrendetyp med id {id}");
+      }
+
+      return Ok(respons);
+    }
+
 		[HttpPost]
 		public async Task<ActionResult> AddLeaseTypeAsync(PostLeaseTypeViewModel model)
 		{

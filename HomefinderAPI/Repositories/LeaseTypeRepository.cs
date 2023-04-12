@@ -34,6 +34,14 @@ namespace HomefinderAPI.Repositories
 			await _context.AddAsync(leaseTypeToAdd);
     }
 
+    public async Task<LeaseTypeViewModel?> GetLeaseTypeByIdAsync(int id)
+    {
+      return await _context.LeaseTypes
+        .Where(a => a.Id == id)
+        .ProjectTo<LeaseTypeViewModel>(_mapper.ConfigurationProvider)
+        .SingleOrDefaultAsync();
+    }
+
     public async Task<List<LeaseTypeViewModel>> ListAllLeaseTypesAsync()
     {
       return await _context.LeaseTypes

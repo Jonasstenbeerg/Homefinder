@@ -9,36 +9,39 @@ namespace HomefinderAPI.Tests.Controllers
   [TestClass]
 	public class AdvertisementControllerTest
 	{
-		private AdvertisementController? _controller;
-		private AdvertisementViewModel? _mockedAdvertisement;
+    private readonly Mock<IAdvertisementRepository>? _mockedRepository;
+    private readonly AdvertisementController? _sut; //System Under Test
 
-		[TestInitialize]
-		public void TestInitialize()
+		public AdvertisementControllerTest()
 		{
-			var mockedRepository = new Mock<IAdvertisementRepository>();
-			var id = 1; //TODO: Do we need this?
-			_mockedAdvertisement = new AdvertisementViewModel { Id = id };
-			mockedRepository.Setup(repo => repo.GetAdvertisementByIdAsync(id)).ReturnsAsync( _mockedAdvertisement);
-			_controller = new AdvertisementController(mockedRepository.Object);
+			_mockedRepository = new Mock<IAdvertisementRepository>();
+			_sut = new AdvertisementController(_mockedRepository.Object); 
 		}
-		//TODO: The test does not check for statuscode... change name!
+		
 		[TestMethod]
-		public async Task GetAdvertisementByIdAsync_Should_Return_Statuscode_200_ON_Success()
+		public async Task GetAdvertisementByIdAsync_Should_Return_OK_Respons_When_Data_Found()
 		{
+			//Arrange
 			var id = 1;
+			var advertisement = new AdvertisementViewModel();
+			_mockedRepository!.Setup(repo => repo.GetAdvertisementByIdAsync(id)).ReturnsAsync(advertisement);
 
-			var respons = await _controller!.GetAdvertisementByIdAsync(id);
+			//Act
+			var respons = await _sut!.GetAdvertisementByIdAsync(id);
 
+			//Assert
+			_mockedRepository.Verify(repo => repo.GetAdvertisementByIdAsync(id), Times.Once);
 			Assert.IsInstanceOfType(respons.Result, typeof(OkObjectResult));
 		}
 
 		[TestMethod]
-		public async Task GetAdvertisementByIdAsync_Should_Return_Statuscode_404_ON_NotFound()
+		public async Task GetAdvertisementByIdAsync_Should_Return_NotFound_Respons_When_Data_Not_Found()
 		{
 			var id = 2;
 
-			var respons = await _controller!.GetAdvertisementByIdAsync(id);
+			var respons = await _sut!.GetAdvertisementByIdAsync(id);
 
+			_mockedRepository!.Verify(repo => repo.GetAdvertisementByIdAsync(id), Times.Once);
 			Assert.IsInstanceOfType(respons.Result, typeof(NotFoundObjectResult));
 		}
 		//TODO: Create test for all controller methods to check if right status code is returned

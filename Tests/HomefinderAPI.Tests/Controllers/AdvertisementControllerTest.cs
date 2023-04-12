@@ -44,6 +44,19 @@ namespace HomefinderAPI.Tests.Controllers
 			_mockedRepository!.Verify(repo => repo.GetAdvertisementByIdAsync(id), Times.Once);
 			Assert.IsInstanceOfType(respons.Result, typeof(NotFoundObjectResult));
 		}
+
+		[TestMethod]
+		public async Task ListAllAdvertisementsAsync_Should_Return_OK_Respons_And_Not_Be_Null()
+		{
+			var advertisements = new List<AdvertisementViewModel>();
+			_mockedRepository!.Setup(repo => repo.ListAllAdvertisementsAsync()).ReturnsAsync(advertisements);
+
+			var respons = await _sut!.ListAllAdvertisementsAsync();
+
+			_mockedRepository!.Verify(repo => repo.ListAllAdvertisementsAsync(), Times.Once);
+			Assert.IsNotNull(respons);
+			Assert.IsInstanceOfType(respons.Result, typeof(OkObjectResult));
+		}
 		//TODO: Create test for all controller methods to check if right status code is returned
 	}
 }

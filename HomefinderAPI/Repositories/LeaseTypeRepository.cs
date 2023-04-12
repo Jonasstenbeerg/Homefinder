@@ -1,4 +1,5 @@
 using AutoMapper;
+using AutoMapper.QueryableExtensions;
 using HomefinderAPI.Data;
 using HomefinderAPI.Interfaces;
 using HomefinderAPI.Models;
@@ -31,6 +32,13 @@ namespace HomefinderAPI.Repositories
       var leaseTypeToAdd = _mapper.Map<LeaseType>(model);
 
 			await _context.AddAsync(leaseTypeToAdd);
+    }
+
+    public async Task<List<LeaseTypeViewModel>> ListAllLeaseTypesAsync()
+    {
+      return await _context.LeaseTypes
+        .ProjectTo<LeaseTypeViewModel>(_mapper.ConfigurationProvider)
+        .ToListAsync();
     }
 
     public async Task<bool> SaveAllAsync()

@@ -27,6 +27,7 @@ namespace HomefinderAPI.Helpers
       .ForPath(dest => dest.Property.Area, options => options.MapFrom(src => src.Area))
       .ForPath(dest => dest.Price, options => options.MapFrom(src => src.ListPrice));
       CreateMap<PostLeaseTypeViewModel, LeaseType>();
+      CreateMap<LeaseType, LeaseTypeViewModel>();
     }
   }
 }

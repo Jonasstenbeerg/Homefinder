@@ -37,5 +37,19 @@ namespace HomefinderAPI.Repositories
     {
       return await _context.SaveChangesAsync() > 0;
     }
+
+    public async Task UpdateLeaseTypeAsync(int id, PostLeaseTypeViewModel model)
+    {
+      var leaseType = await _context.LeaseTypes.FindAsync(id);
+
+      if (leaseType is null)
+      {
+        throw new Exception($"Vi kunde inte hitta någon arrendetyp med id {id}");
+      }
+
+       _mapper.Map<PostLeaseTypeViewModel, LeaseType>(model, leaseType);
+
+      _context.LeaseTypes.Update(leaseType);
+    }
   }
 }

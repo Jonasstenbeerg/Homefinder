@@ -58,7 +58,7 @@ namespace HomefinderAPI.Controllers
 		}
 
 		[HttpPut("{id}")]
-		public async Task<IActionResult> UpdateLeaseTypeAsync(int id, PostLeaseTypeViewModel model)
+		public async Task<ActionResult> UpdateLeaseTypeAsync(int id, PostLeaseTypeViewModel model)
 		{
 			try
 			{

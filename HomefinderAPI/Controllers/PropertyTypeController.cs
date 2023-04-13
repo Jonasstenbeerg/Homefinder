@@ -16,9 +16,22 @@ namespace HomefinderAPI.Controllers
 			}
 
 			[HttpGet("list")]
-			public async Task<ActionResult> ListAllPropertyTypesAsync()
+			public async Task<ActionResult<List<PropertyTypeViewModel>>> ListAllPropertyTypesAsync()
 			{
 				var respons = await _propertObjectRepository.ListAllPropertyTypesAsync();
+
+				return Ok(respons);
+			}
+
+			[HttpGet("{id}")]
+			public async Task<ActionResult<PropertyTypeViewModel>> GetPropertyTypeByIdAsync(int id)
+			{
+				var respons = await _propertObjectRepository.GetPropertyTypeByIdAsync(id);
+
+				if (respons is null)
+				{
+					return NotFound($"Vi kunde inte hitta någon objektstyp med id {id}");
+				}
 
 				return Ok(respons);
 			}

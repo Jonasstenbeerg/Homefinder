@@ -58,5 +58,13 @@ namespace HomefinderAPI.Repositories
     {
       return await _context.SaveChangesAsync() > 0;
     }
+
+    public async Task<PropertyTypeViewModel?> GetPropertyTypeByIdAsync(int id)
+    {
+      return await _context.PropertyTypes
+        .Where(p => p.Id == id)
+        .ProjectTo<PropertyTypeViewModel>(_mapper.ConfigurationProvider)
+        .SingleOrDefaultAsync();
+    }
   }
 }

@@ -4,8 +4,6 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace HomefinderAPI.Controllers
 {  
-  //Endpointens namn ska vara ett substantiv i plural
-  //i detta fall advertisements
   [ApiController]
   [Route("api/advertisements")]
   public class AdvertisementController : ControllerBase
@@ -59,7 +57,7 @@ namespace HomefinderAPI.Controllers
     }
 
     [HttpPut("{id}")]
-    public async Task<IActionResult> UpdateAdvertisementAsync(int id, PostAdvertisementViewModel model)
+    public async Task<ActionResult> UpdateAdvertisementAsync(int id, PostAdvertisementViewModel model)
     {
       try
       {
@@ -79,7 +77,7 @@ namespace HomefinderAPI.Controllers
     }
 
     [HttpDelete("{id}")]
-    public async Task<IActionResult> DeleteAdvertisementAsync(int id)
+    public async Task<ActionResult> DeleteAdvertisementAsync(int id)
     {
       try
       {

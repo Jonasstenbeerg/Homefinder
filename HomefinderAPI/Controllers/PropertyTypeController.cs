@@ -5,14 +5,22 @@ using Microsoft.AspNetCore.Mvc;
 namespace HomefinderAPI.Controllers
 {
 	[ApiController]
-		[Route("api/propertytype")]
+		[Route("api/propertytypes")]
 		public class PropertyTypeController : ControllerBase
 		{
     	private readonly IPropertyTypeRepository _propertObjectRepository;
-			
+
 			public PropertyTypeController(IPropertyTypeRepository propertObjectRepository)
 			{
       	_propertObjectRepository = propertObjectRepository;
+			}
+
+			[HttpGet("list")]
+			public async Task<ActionResult> ListAllPropertyTypesAsync()
+			{
+				var respons = await _propertObjectRepository.ListAllPropertyTypesAsync();
+
+				return Ok(respons);
 			}
 
 			[HttpPost]

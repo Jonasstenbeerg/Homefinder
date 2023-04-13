@@ -5,11 +5,11 @@ using Microsoft.AspNetCore.Mvc;
 namespace HomefinderAPI.Controllers
 {
 	[ApiController]
-	[Route("api/leasetype")]
+	[Route("api/leasetypes")]
 	public class LeaseTypeController : ControllerBase
 	{
 		private readonly ILeaseTypeRepository _leaseTypeRepository;
-		
+
 		public LeaseTypeController(ILeaseTypeRepository leaseTypeRepository)
 		{
 			_leaseTypeRepository = leaseTypeRepository;

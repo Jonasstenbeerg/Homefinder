@@ -30,6 +30,7 @@ namespace HomefinderAPI.Helpers
       CreateMap<PostLeaseTypeViewModel, LeaseType>();
       CreateMap<LeaseType, LeaseTypeViewModel>();
       CreateMap<PostPropertyTypeViewModel, PropertyType>();
+      CreateMap<PropertyType, PropertyTypeViewModel>();
     }
   }
 }

@@ -23,6 +23,26 @@ namespace HomefinderAPI.Controllers
 				return Ok(respons);
 			}
 
+			[HttpPut("id")]
+			public async Task<ActionResult> UpdatePropertTypeAsync(int id, PostPropertyTypeViewModel model)
+			{
+				try
+				{
+					await _propertObjectRepository.UpdatePropertyTypeAsync(id, model);
+
+					if (await _propertObjectRepository.SaveAllAsync())
+					{
+						return StatusCode(201);
+					}
+
+					return StatusCode(500,"Något gick fel vid uppdatering av objektstyp");
+				}
+				catch (System.Exception ex)
+				{
+					return StatusCode(500, ex.Message);
+				}
+			}
+
 			[HttpPost]
 			public async Task<ActionResult> AddPropertyTypeAsync(PostPropertyTypeViewModel model)
 			{

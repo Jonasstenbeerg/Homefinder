@@ -41,6 +41,19 @@ namespace HomefinderAPI.Repositories
         .ToListAsync();
     }
 
+    public async Task UpdatePropertyTypeAsync(int id, PostPropertyTypeViewModel model)
+    {
+      var propertyType = await _context.PropertyTypes.FindAsync(id);
+
+      if (propertyType is null)
+      {
+        throw new Exception($"Vi kunde inte hitta någon objekttyp med id {id}");
+      }
+
+      _mapper.Map<PostPropertyTypeViewModel, PropertyType>(model, propertyType);
+
+      _context.PropertyTypes.Update(propertyType);
+		}
     public async Task<bool> SaveAllAsync()
     {
       return await _context.SaveChangesAsync() > 0;

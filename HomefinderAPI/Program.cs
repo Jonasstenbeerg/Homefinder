@@ -35,6 +35,7 @@ builder.Services.AddIdentity<IdentityUser, IdentityRole>(
 //Repo service for DI
 builder.Services.AddScoped<IAdvertisementRepository, AdvertisementRepository>();
 builder.Services.AddScoped<ILeaseTypeRepository, LeaseTypeRepository>();
+builder.Services.AddScoped<IPropertyTypeRepository, PropertyTypeRepository>();
 
 // AutoMapper
 builder.Services.AddAutoMapper(typeof(AutoMapperProfiles).Assembly);

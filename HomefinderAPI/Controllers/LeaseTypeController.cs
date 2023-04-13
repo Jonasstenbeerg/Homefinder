@@ -9,6 +9,7 @@ namespace HomefinderAPI.Controllers
 	public class LeaseTypeController : ControllerBase
 	{
 		private readonly ILeaseTypeRepository _leaseTypeRepository;
+		
 		public LeaseTypeController(ILeaseTypeRepository leaseTypeRepository)
 		{
 			_leaseTypeRepository = leaseTypeRepository;

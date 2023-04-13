@@ -2,6 +2,7 @@ using AutoMapper;
 using HomefinderAPI.Models;
 using HomefinderAPI.ViewModels.Advertisement;
 using HomefinderAPI.ViewModels.LeaseType;
+using HomefinderAPI.ViewModels.PropertyType;
 
 namespace HomefinderAPI.Helpers
 {
@@ -28,6 +29,7 @@ namespace HomefinderAPI.Helpers
       .ForPath(dest => dest.Price, options => options.MapFrom(src => src.ListPrice));
       CreateMap<PostLeaseTypeViewModel, LeaseType>();
       CreateMap<LeaseType, LeaseTypeViewModel>();
+      CreateMap<PostPropertyTypeViewModel, PropertyType>();
     }
   }
 }

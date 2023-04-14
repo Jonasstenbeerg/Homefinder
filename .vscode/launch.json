@@ -10,9 +10,9 @@
             "request": "launch",
             "preLaunchTask": "build",
             // If you have changed target frameworks, make sure to update the program path.
-            "program": "${workspaceFolder}/HomefinderAPI/bin/Debug/net7.0/HomefinderAPI.dll",
+            "program": "${workspaceFolder}/Clients/AdvertisementMVC/bin/Debug/net7.0/AdvertisementMVC.dll",
             "args": [],
-            "cwd": "${workspaceFolder}/HomefinderAPI",
+            "cwd": "${workspaceFolder}/Clients/AdvertisementMVC",
             "stopAtEntry": false,
             // Enable launching a web browser when ASP.NET Core starts. For more information: https://aka.ms/VSCode-CS-LaunchJson-WebBrowser
             "serverReadyAction": {

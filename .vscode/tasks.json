@@ -7,7 +7,7 @@
             "type": "process",
             "args": [
                 "build",
-                "${workspaceFolder}/HomefinderAPI/HomefinderAPI.csproj",
+                "${workspaceFolder}/Clients/AdvertisementMVC/AdvertisementMVC.csproj",
                 "/property:GenerateFullPaths=true",
                 "/consoleloggerparameters:NoSummary"
             ],
@@ -19,7 +19,7 @@
             "type": "process",
             "args": [
                 "publish",
-                "${workspaceFolder}/HomefinderAPI/HomefinderAPI.csproj",
+                "${workspaceFolder}/Clients/AdvertisementMVC/AdvertisementMVC.csproj",
                 "/property:GenerateFullPaths=true",
                 "/consoleloggerparameters:NoSummary"
             ],
@@ -33,7 +33,7 @@
                 "watch",
                 "run",
                 "--project",
-                "${workspaceFolder}/HomefinderAPI/HomefinderAPI.csproj"
+                "${workspaceFolder}/Clients/AdvertisementMVC/AdvertisementMVC.csproj"
             ],
             "problemMatcher": "$msCompile"
         }

@@ -4,3 +4,26 @@
   padding: 0;
   box-sizing: border-box;
 }
+
+body {
+  background-image: url("../images/city.png");
+}
+
+#navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 4.5rem;
+  background: var(--primary-color);
+  opacity: 0.85;
+}
+
+#navbar h1.logo-area{
+  margin-left: 10px;
+  color: var(--text-color);
+  font-family: 'Hubballi';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 48px;
+  line-height: 46px;
+}

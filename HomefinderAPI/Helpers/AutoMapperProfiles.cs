@@ -1,8 +1,10 @@
 using AutoMapper;
+using HomefinderAPI.Filters;
 using HomefinderAPI.Models;
 using HomefinderAPI.ViewModels.Advertisement;
 using HomefinderAPI.ViewModels.LeaseType;
 using HomefinderAPI.ViewModels.PropertyType;
+using HomefinderAPI.ViewModels.Queries;
 
 namespace HomefinderAPI.Helpers
 {
@@ -31,6 +33,7 @@ namespace HomefinderAPI.Helpers
       CreateMap<LeaseType, LeaseTypeViewModel>();
       CreateMap<PostPropertyTypeViewModel, PropertyType>();
       CreateMap<PropertyType, PropertyTypeViewModel>();
+      CreateMap<AdvertisementQuery, AdvertisementSearchFilter>();
     }
   }
 }

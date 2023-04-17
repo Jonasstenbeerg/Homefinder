@@ -1,9 +1,11 @@
 using AutoMapper;
 using AutoMapper.QueryableExtensions;
 using HomefinderAPI.Data;
+using HomefinderAPI.Filters;
 using HomefinderAPI.Interfaces;
 using HomefinderAPI.Models;
 using HomefinderAPI.ViewModels.Advertisement;
+using HomefinderAPI.ViewModels.Queries;
 using Microsoft.EntityFrameworkCore;
 
 namespace HomefinderAPI.Repositories
@@ -67,14 +69,19 @@ namespace HomefinderAPI.Repositories
     }
 
 
-    public async Task<List<AdvertisementViewModel>> ListAllAdvertisementsAsync()
+    public async Task<List<AdvertisementViewModel>> ListAllAdvertisementsAsync(AdvertisementQuery? query = null)
     {
-      return await _context.Advertisements
+      var advertisements = await _context.Advertisements
         .Include(a => a.Property.Address)
         .Include(a => a.Property.LeaseType)
         .Include(a => a.Property.PropertyType)
-        .ProjectTo<AdvertisementViewModel>(_mapper.ConfigurationProvider)
         .ToListAsync();
+
+      var addFilter = _mapper.Map<AdvertisementSearchFilter>(query);
+
+      advertisements = FilterAdvertisements(addFilter, advertisements);
+      
+      return _mapper.Map<List<AdvertisementViewModel>>(advertisements);
     }
 
     public async Task UpdateAdvertisementAsync(int id, PostAdvertisementViewModel model)
@@ -123,5 +130,26 @@ namespace HomefinderAPI.Repositories
 
       _context.Advertisements.Update(advertisement);
     }
+
+    private List<Advertisement> FilterAdvertisements(AdvertisementSearchFilter filter, IEnumerable<Advertisement> advertisements)
+    {
+      if (!string.IsNullOrEmpty(filter.Address))
+      {
+        advertisements = advertisements.Where(add => add.Property.Address!.ToString()!.Contains(filter.Address));
+      }
+
+      if (filter.MinPrice > filter.MaxPrice)
+      {
+        throw new Exception("Minimumpris kan inte vara större än maximumpris");
+      }
+
+      if (filter.MaxPrice > 0 )
+      {
+        advertisements = advertisements.Where(add => add.Price >= filter.MinPrice && add.Price <= filter.MaxPrice);
+      }
+
+      return advertisements.ToList();
+    }
   }
 }
+   

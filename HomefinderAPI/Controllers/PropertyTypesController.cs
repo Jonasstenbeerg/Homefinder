@@ -6,17 +6,17 @@ namespace HomefinderAPI.Controllers
 {
 	[ApiController]
 		[Route("api/propertytypes")]
-		public class PropertyTypeController : ControllerBase
+		public class PropertyTypesController : ControllerBase
 		{
     	private readonly IPropertyTypeRepository _propertObjectRepository;
 
-			public PropertyTypeController(IPropertyTypeRepository propertObjectRepository)
+			public PropertyTypesController(IPropertyTypeRepository propertObjectRepository)
 			{
       	_propertObjectRepository = propertObjectRepository;
 			}
 
 			[HttpGet("list")]
-			public async Task<ActionResult<List<PropertyTypeViewModel>>> ListAllPropertyTypesAsync()
+			public async Task<ActionResult<List<PropertyTypeViewModel>>> GetAll()
 			{
 				var respons = await _propertObjectRepository.ListAllPropertyTypesAsync();
 
@@ -24,7 +24,7 @@ namespace HomefinderAPI.Controllers
 			}
 
 			[HttpGet("{id}")]
-			public async Task<ActionResult<PropertyTypeViewModel>> GetPropertyTypeByIdAsync(int id)
+			public async Task<ActionResult<PropertyTypeViewModel>> Get(int id)
 			{
 				var respons = await _propertObjectRepository.GetPropertyTypeByIdAsync(id);
 
@@ -37,7 +37,7 @@ namespace HomefinderAPI.Controllers
 			}
 
 			[HttpPut("id")]
-			public async Task<ActionResult> UpdatePropertTypeAsync(int id, PostPropertyTypeViewModel model)
+			public async Task<ActionResult> Update(int id, PostPropertyTypeViewModel model)
 			{
 				try
 				{
@@ -57,7 +57,7 @@ namespace HomefinderAPI.Controllers
 			}
 
 			[HttpPost]
-			public async Task<ActionResult> AddPropertyTypeAsync(PostPropertyTypeViewModel model)
+			public async Task<ActionResult> Create(PostPropertyTypeViewModel model)
 			{
 				try
 				{

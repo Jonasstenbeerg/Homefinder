@@ -1,30 +1,38 @@
 using HomefinderAPI.Interfaces;
 using HomefinderAPI.ViewModels.Advertisement;
+using HomefinderAPI.ViewModels.Queries;
 using Microsoft.AspNetCore.Mvc;
 
 namespace HomefinderAPI.Controllers
-{  
+{
   [ApiController]
   [Route("api/advertisements")]
-  public class AdvertisementController : ControllerBase
+  public class AdvertisementsController : ControllerBase
   {
     private readonly IAdvertisementRepository _advertisementRepository;
     
-    public AdvertisementController(IAdvertisementRepository advertisementRepository)
+    public AdvertisementsController(IAdvertisementRepository advertisementRepository)
     {
       _advertisementRepository = advertisementRepository;
     }
 
     [HttpGet("list")]
-    public async Task<ActionResult<List<AdvertisementViewModel>>> ListAllAdvertisementsAsync()
+    public async Task<ActionResult<List<AdvertisementViewModel>>> GetAll([FromQuery]AdvertisementQuery query)
     {
-      var respons = await _advertisementRepository.ListAllAdvertisementsAsync();
+      try
+      {
+        var respons = await _advertisementRepository.ListAllAdvertisementsAsync(query);
 
-      return Ok(respons);
+        return Ok(respons);
+      }
+      catch (System.Exception ex)
+      {
+        return StatusCode(500, ex.Message);
+      }
     }
 
     [HttpGet("{id}")]
-    public async Task<ActionResult<AdvertisementViewModel>> GetAdvertisementByIdAsync(int id)
+    public async Task<ActionResult<AdvertisementViewModel>> Get(int id)
     {
       var respons = await _advertisementRepository.GetAdvertisementByIdAsync(id);
 
@@ -37,7 +45,7 @@ namespace HomefinderAPI.Controllers
     }
 
     [HttpPost]
-    public async Task<ActionResult> AddAdvertisementAsync(PostAdvertisementViewModel model)
+    public async Task<ActionResult> Create(PostAdvertisementViewModel model)
     {
       try
       {
@@ -57,7 +65,7 @@ namespace HomefinderAPI.Controllers
     }
 
     [HttpPut("{id}")]
-    public async Task<ActionResult> UpdateAdvertisementAsync(int id, PostAdvertisementViewModel model)
+    public async Task<ActionResult> Update(int id, PostAdvertisementViewModel model)
     {
       try
       {
@@ -77,7 +85,7 @@ namespace HomefinderAPI.Controllers
     }
 
     [HttpDelete("{id}")]
-    public async Task<ActionResult> DeleteAdvertisementAsync(int id)
+    public async Task<ActionResult> Delete(int id)
     {
       try
       {

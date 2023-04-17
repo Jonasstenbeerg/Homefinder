@@ -17,7 +17,7 @@ namespace HomefinderAPI.Controllers
     }
 
     [HttpGet("list")]
-    public async Task<ActionResult<List<AdvertisementViewModel>>> GetAll([FromQuery]AdvertisementQuery query)
+    public async Task<ActionResult<List<AdvertisementViewModel>>> GetAll([FromQuery]AdvertisementQuery? query)
     {
       try
       {

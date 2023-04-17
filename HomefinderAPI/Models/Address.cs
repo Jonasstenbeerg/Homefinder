@@ -1,5 +1,4 @@
 using System.ComponentModel.DataAnnotations;
-using System.ComponentModel.DataAnnotations.Schema;
 
 namespace HomefinderAPI.Models
 {
@@ -17,5 +16,10 @@ namespace HomefinderAPI.Models
     public int? StreetNumber { get; set; }
     
     public ICollection<PropertyObject>? PropertyObjects { get; set; }
+
+    public override string ToString()
+    {
+      return $"{StreetName} ${StreetNumber}, {PostalCode} {City}";
+    }
   }
 }

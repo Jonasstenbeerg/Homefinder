@@ -6,18 +6,18 @@ namespace HomefinderAPI.Controllers
 {
 	[ApiController]
 	[Route("api/leasetypes")]
-	public class LeaseTypeController : ControllerBase
+	public class LeaseTypesController : ControllerBase
 	{
 		private readonly ILeaseTypeRepository _leaseTypeRepository;
 
-		public LeaseTypeController(ILeaseTypeRepository leaseTypeRepository)
+		public LeaseTypesController(ILeaseTypeRepository leaseTypeRepository)
 		{
 			_leaseTypeRepository = leaseTypeRepository;
 			
 		}
 
 		[HttpGet("list")]
-		public async Task<ActionResult<List<LeaseTypeViewModel>>> ListAllAdvertisementsAsync()
+		public async Task<ActionResult<List<LeaseTypeViewModel>>> GetAll()
 		{
 			var respons = await _leaseTypeRepository.ListAllLeaseTypesAsync();
 
@@ -25,7 +25,7 @@ namespace HomefinderAPI.Controllers
 		}
 
 		[HttpGet("{id}")]
-    public async Task<ActionResult<LeaseTypeViewModel>> GetLeaseTypeByIdAsync(int id)
+    public async Task<ActionResult<LeaseTypeViewModel>> Get(int id)
     {
       var respons = await _leaseTypeRepository.GetLeaseTypeByIdAsync(id);
 
@@ -38,7 +38,7 @@ namespace HomefinderAPI.Controllers
     }
 
 		[HttpPost]
-		public async Task<ActionResult> AddLeaseTypeAsync(PostLeaseTypeViewModel model)
+		public async Task<ActionResult> Create(PostLeaseTypeViewModel model)
 		{
 			try
 			{
@@ -58,7 +58,7 @@ namespace HomefinderAPI.Controllers
 		}
 
 		[HttpPut("{id}")]
-		public async Task<ActionResult> UpdateLeaseTypeAsync(int id, PostLeaseTypeViewModel model)
+		public async Task<ActionResult> Update(int id, PostLeaseTypeViewModel model)
 		{
 			try
 			{

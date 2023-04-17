@@ -7,11 +7,11 @@ namespace HomefinderAPI.Controllers
 {
   [ApiController]
   [Route("api/advertisements")]
-  public class AdvertisementController : ControllerBase
+  public class AdvertisementsController : ControllerBase
   {
     private readonly IAdvertisementRepository _advertisementRepository;
     
-    public AdvertisementController(IAdvertisementRepository advertisementRepository)
+    public AdvertisementsController(IAdvertisementRepository advertisementRepository)
     {
       _advertisementRepository = advertisementRepository;
     }

@@ -20,7 +20,7 @@ namespace HomefinderAPI.Controllers
 			}
 
 			[HttpPost("register")]
-			public async Task<ActionResult<UserViewModel>> RegisteruserAsync(RegisterUserViewModel model)
+			public async Task<ActionResult<UserViewModel>> Register(RegisterUserViewModel model)
 			{
 				var user = new IdentityUser
 				{

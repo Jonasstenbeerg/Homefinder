@@ -66,11 +66,16 @@ body {
   border: none;
 }
 
-input#password {
+input#form-password {
 margin-bottom: 1.5rem;
 }
 
 a#form-forgot-password {
   text-decoration: underline;
   cursor: pointer;
+}
+
+#nav {
+  height: 3rem;
+  border-bottom: 2px solid black;
 }

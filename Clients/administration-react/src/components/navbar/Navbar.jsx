@@ -7,10 +7,7 @@ const Navbar = () => {
       <section className='nav-inner-wrapper'>
         <FontAwesomeIcon icon={faHouse} size="xl"/>
         <h1 className="nav-heading">
-          <span>
-            Home
-          </span>
-          Finder
+          HomeFinder Admin
         </h1>
       </section>
     </nav>

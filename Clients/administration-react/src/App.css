@@ -19,13 +19,13 @@ body {
 .form-container {
   margin: auto;
   height: 41em;
-  min-width: 30em;
+  min-width: 425px;
+  width: inherit;
   display: flex;
   flex-shrink: 0;
   align-items: flex-end;
   justify-content: center;
   padding-bottom: 2rem;
- 
 }
 
 .form-props-area {
@@ -180,7 +180,7 @@ a#form-forgot-password {
     border-bottom: 1px solid black;
     transition: transform 0.3s ease-in-out;
   }
-  
+
   ul.burger-menu-list > * {
     margin: 1rem;
     text-decoration: underline;

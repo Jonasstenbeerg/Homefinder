@@ -13,11 +13,19 @@ const Navbar = () => {
   return (
     <nav id="nav">
       <section className='nav-inner-wrapper'>
-        <button aria-label="Toggle Menu" id="menu-btn"className={isBurgerMenuOpen ? "open": ""} onClick={handleBurgerMenuToggle}>
+        <button aria-label="Toggle Menu" id="burger-menu" className={isBurgerMenuOpen ? "open": ""} onClick={handleBurgerMenuToggle}>
           <span></span>
           <span></span>
           <span></span>
         </button>
+        <ul className={isBurgerMenuOpen ? "burger-menu-list": "burger-menu-list closed"}>
+          <li>
+            <a href="/forgot-password">Forgot password</a>
+          </li>
+          <li>
+            <a href="/Login">Sign in</a>
+          </li>
+        </ul>
         <FontAwesomeIcon icon={faHouse} size="xl"/>
         <h1 className="nav-heading">
           HomeFinder Admin

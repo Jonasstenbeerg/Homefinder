@@ -15,10 +15,13 @@ body {
 
 .form-container {
   margin: auto;
-  height: 40rem;
+  height: 41em;
+  min-width: 30em;
   display: flex;
+  flex-shrink: 0;
   align-items: flex-end;
   justify-content: center;
+  padding-bottom: 2rem;
  
 }
 
@@ -26,6 +29,7 @@ body {
   border-radius: 44px;
   padding: 2rem;
   display: flex;
+  flex-shrink: inherit;
   flex-direction: column;
   gap: 1rem;
   width: 25rem;
@@ -76,17 +80,18 @@ a#form-forgot-password {
 }
 
 #nav {
+  min-width: 31.3rem;
   height: 6rem;
   border-bottom: 2px solid rgb(170, 170, 170);
 }
 
 .nav-inner-wrapper {
-  display: flex;
   height: inherit;
-  align-items: flex-end;
+  flex-shrink: unset;
 }
 
 #nav > * {
+  
   padding: 1.2rem;
 }
 
@@ -95,7 +100,7 @@ a#form-forgot-password {
 }
 
 .nav-heading {
-  line-height: 2rem;
+  display: inline;
   font-family: 'Hubballi';
   font-style: normal;
   font-weight: 400;

@@ -76,6 +76,30 @@ a#form-forgot-password {
 }
 
 #nav {
-  height: 3rem;
-  border-bottom: 2px solid black;
+  height: 6rem;
+  border-bottom: 2px solid rgb(170, 170, 170);
+}
+
+.nav-inner-wrapper {
+  display: flex;
+  height: inherit;
+  align-items: flex-end;
+}
+
+#nav > * {
+  padding: 1.2rem;
+}
+
+#nav svg {
+  font-size: 4rem;
+}
+
+.nav-heading {
+  line-height: 2rem;
+  font-family: 'Hubballi';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 48px;
+  color: #002F56;
+  margin-left: 1rem;
 }

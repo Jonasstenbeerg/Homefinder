@@ -1,16 +1,18 @@
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faHouse } from '@fortawesome/free-solid-svg-icons'
+import  { faHouse }  from '@fortawesome/free-solid-svg-icons'
 
 const Navbar = () => {
   return (
     <nav id="nav">
-      <h1 className="logo-area">
+      <section className='nav-inner-wrapper'>
         <FontAwesomeIcon icon={faHouse} size="xl"/>
-        <span>
-          Home
-        </span>
-        Finder
-      </h1>
+        <h1 className="nav-heading">
+          <span>
+            Home
+          </span>
+          Finder
+        </h1>
+      </section>
     </nav>
   )
 }

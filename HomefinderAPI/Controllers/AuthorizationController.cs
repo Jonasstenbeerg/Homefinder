@@ -1,7 +1,10 @@
+using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
+using System.Text;
 using HomefinderAPI.ViewModels.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.IdentityModel.Tokens;
 
 namespace HomefinderAPI.Controllers
 {
@@ -11,9 +14,11 @@ namespace HomefinderAPI.Controllers
 		{
     private readonly UserManager<IdentityUser> _userManager;
     private readonly SignInManager<IdentityUser> _signInManager;
+    private readonly IConfiguration _config;
 		
-			public AuthorizationController(UserManager<IdentityUser> userManager, SignInManager<IdentityUser> signInManager)
+			public AuthorizationController(IConfiguration config, UserManager<IdentityUser> userManager, SignInManager<IdentityUser> signInManager)
 			{
+      _config = config;
       _signInManager = signInManager;
       _userManager = userManager;
 					
@@ -36,6 +41,10 @@ namespace HomefinderAPI.Controllers
 					{
 						await _userManager.AddClaimAsync(user, new Claim("Admin", "true"));
 					}
+
+					await _userManager.AddClaimAsync(user, new Claim("User", "true"));
+        	await _userManager.AddClaimAsync(user, new Claim(ClaimTypes.Name, user.UserName));
+        	await _userManager.AddClaimAsync(user, new Claim(ClaimTypes.Email, user.Email));
 
 					var userData = new UserViewModel
 					{
@@ -73,10 +82,30 @@ namespace HomefinderAPI.Controllers
 
 				var userData = new UserViewModel
 				{
-					Username = user.UserName
+					Username = user.UserName,
+					Token = await CreateJwtToken(user),
+					Expires = DateTime.Now.AddDays(1)
 				};
 
 				return Ok(userData);
 			}
-		}
+
+    private async Task<string> CreateJwtToken(IdentityUser user)
+    {
+      var key = Encoding.ASCII.GetBytes(_config.GetValue<string>("apiSecret")!);
+
+			var userClaims = (await _userManager.GetClaimsAsync(user)).ToList();
+
+			var jwt = new JwtSecurityToken(
+				claims: userClaims,
+				notBefore: DateTime.Now,
+				expires: DateTime.Now.AddDays(1),
+				signingCredentials: new SigningCredentials(
+					new SymmetricSecurityKey(key),
+					SecurityAlgorithms.HmacSha512Signature
+				)
+			);
+			return new JwtSecurityTokenHandler().WriteToken(jwt);
+    }
+  }
 }

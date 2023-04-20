@@ -1,5 +1,6 @@
 using HomefinderAPI.Interfaces;
 using HomefinderAPI.ViewModels.PropertyType;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace HomefinderAPI.Controllers
@@ -36,6 +37,7 @@ namespace HomefinderAPI.Controllers
 				return Ok(respons);
 			}
 
+			[Authorize]
 			[HttpPut("id")]
 			public async Task<ActionResult> Update(int id, PostPropertyTypeViewModel model)
 			{
@@ -56,6 +58,7 @@ namespace HomefinderAPI.Controllers
 				}
 			}
 
+			[Authorize]
 			[HttpPost]
 			public async Task<ActionResult> Create(PostPropertyTypeViewModel model)
 			{

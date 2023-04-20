@@ -105,7 +105,7 @@ builder.Services.AddSwaggerGen(options =>
 	options.IncludeXmlComments(xmlPath);
 });
 
-//Regler för vilka avsändare som får lov att komma in hos oss...
+//Configure allowed connecting origins
 builder.Services.AddCors(options =>
 {
   options.AddPolicy("Homefinder",

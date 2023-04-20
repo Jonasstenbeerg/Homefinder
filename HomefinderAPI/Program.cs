@@ -105,6 +105,20 @@ builder.Services.AddSwaggerGen(options =>
 	options.IncludeXmlComments(xmlPath);
 });
 
+//Configure allowed connecting origins
+builder.Services.AddCors(options =>
+{
+  options.AddPolicy("Homefinder",
+    policy =>
+    {
+      policy.AllowAnyHeader();
+      policy.AllowAnyMethod();
+      policy.WithOrigins(
+        "http://localhost:3000");
+    }
+  );
+});
+
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.

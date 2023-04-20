@@ -4,13 +4,21 @@ import './index.css';
 import App from './App';
 import { BrowserRouter } from "react-router-dom";
 import reportWebVitals from './reportWebVitals';
+import { AuthProvider } from "react-auth-kit";
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
-    <BrowserRouter>
-      <App />
-    </BrowserRouter>
+    <AuthProvider>
+      <BrowserRouter
+        authType={"cookie"}
+        authName={"homefinder-auth-cookie"}
+        cookieDomain={window.location.hostname}
+        cookieSecure={true}
+      >
+        <App />
+      </BrowserRouter>
+    </AuthProvider>
   </React.StrictMode>
 );
 

@@ -1,5 +1,6 @@
 using HomefinderAPI.Interfaces;
 using HomefinderAPI.ViewModels.LeaseType;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace HomefinderAPI.Controllers
@@ -37,6 +38,7 @@ namespace HomefinderAPI.Controllers
       return Ok(respons);
     }
 
+		[Authorize]
 		[HttpPost]
 		public async Task<ActionResult> Create(PostLeaseTypeViewModel model)
 		{
@@ -57,6 +59,7 @@ namespace HomefinderAPI.Controllers
 			}
 		}
 
+		[Authorize]
 		[HttpPut("{id}")]
 		public async Task<ActionResult> Update(int id, PostLeaseTypeViewModel model)
 		{

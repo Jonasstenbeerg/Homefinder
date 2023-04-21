@@ -80,6 +80,11 @@ body {
   height: 2.7rem;
 }
 
+.form-error {
+  color: red;
+  height: 3rem;
+}
+
 input#form-password {
 margin-bottom: 1.5rem;
 }

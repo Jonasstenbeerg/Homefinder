@@ -14,7 +14,7 @@ root.render(
         authType={"cookie"}
         authName={"homefinder-auth-cookie"}
         cookieDomain={window.location.hostname}
-        cookieSecure={true}
+        cookieSecure={false}
       >
         <App />
       </BrowserRouter>

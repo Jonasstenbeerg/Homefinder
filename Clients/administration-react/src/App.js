@@ -7,7 +7,7 @@ import {Routes, Route, Navigate } from "react-router-dom";
 import { RequireAuth } from 'react-auth-kit';
 
 const loginPath = '/login'
-const homePath = '/'
+const homePath = '/home'
 
 function App() {
   return (

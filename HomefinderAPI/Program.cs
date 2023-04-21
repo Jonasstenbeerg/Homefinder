@@ -130,6 +130,8 @@ if (app.Environment.IsDevelopment())
 
 app.UseHttpsRedirection();
 
+app.UseCors("Homefinder");
+
 app.UseAuthentication();
 app.UseAuthorization();
 

@@ -50,7 +50,7 @@ const Login = () => {
         token: response.data.token,
         expiresIn: 2600,
         tokenType: "Bearer",
-        authState: { email: user.userName }
+        authState: { name: user.userName }
       })
   
       navigate("/home")

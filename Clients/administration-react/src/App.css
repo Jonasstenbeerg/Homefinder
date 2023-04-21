@@ -109,6 +109,7 @@ a#form-forgot-password {
 }
 
 .nav-inner-wrapper {
+  position: relative;
   height: inherit;
   flex-shrink: unset;
   @media only screen and (max-width: 425px) {
@@ -134,7 +135,23 @@ a#form-forgot-password {
 }
 
 .nav-signout {
-  float: right
+  float: right;
+  border-radius: 50px;
+  background-color: #002F56;
+  height: 3rem;
+  width: 3rem;
+  color: #FFFFFF;
+  border: 0;
+  font-family: 'Montserrat';
+  font-weight: bold ;
+  font-size: 1.2rem;
+  position: absolute;
+  top: auto;
+  right: 1rem;
+  bottom: 1rem;
+  @media only screen and (max-width: 425px) {
+    display: none;
+  }
 }
 
 #burger-menu,

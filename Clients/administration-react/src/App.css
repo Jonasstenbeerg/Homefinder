@@ -133,6 +133,10 @@ a#form-forgot-password {
   margin-left: 1rem;
 }
 
+.nav-signout {
+  float: right
+}
+
 #burger-menu,
 .burger-menu-list {
   display: none;

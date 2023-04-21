@@ -11,24 +11,16 @@ const Navbar = () => {
   const signOut = useSignOut()
   const isAuthenticated = useIsAuthenticated()
   const [isBurgerMenuOpen, setIsBurgerMenuOpen] = useState(false)
-  const [burgerContent, setBurgerContent] = useState()
+  const [menuContent, setmenuContent] = useState()
   const navigate = useNavigate()
   
+  //TODO: Generates warning in console
   useEffect(() => {
-    updateBurgerMenu()
+    updateMenuContent()
   },[isAuthenticated()])
-
-  const handleBurgerMenuToggle = () => {
-    setIsBurgerMenuOpen(!isBurgerMenuOpen)
-  }
-
-  const handleSignOutClicked = () => {
-    navigate("/login")
-    signOut()
-  }
-
-  const updateBurgerMenu = () => {
-    const content = isAuthenticated() ? 
+  
+  const updateMenuContent = () => {
+    setmenuContent(isAuthenticated() ? 
     <li>
       <a onClick={handleSignOutClicked} href="/login">Sign out</a>
     </li>
@@ -40,11 +32,22 @@ const Navbar = () => {
       <li>
         <a onClick={handleBurgerMenuToggle} href="/Login">Sign in</a>
       </li>
-    </>
-
-    setBurgerContent(content)
+    </>)
   }
 
+  const handleElipseMenuClicked = () => {
+
+  }
+  
+  const handleBurgerMenuToggle = () => {
+    setIsBurgerMenuOpen(!isBurgerMenuOpen)
+  }
+  
+  const handleSignOutClicked = () => {
+    navigate("/login")
+    signOut()
+  }
+  
   return (
     <nav id="nav">
       <section className='nav-inner-wrapper'>
@@ -54,14 +57,19 @@ const Navbar = () => {
           <span></span>
         </button>
         <ul className={isBurgerMenuOpen ? "burger-menu-list": "burger-menu-list closed"}>
-          {burgerContent}
+          {menuContent}
         </ul>
         <FontAwesomeIcon icon={faHouse} size="xl"/>
         <h1 className="nav-heading">
           HomeFinder Admin
         </h1>
         {isAuthenticated() && (
-          <button className="nav-signout" onClick={handleSignOutClicked}>{authInfo().name[0]}</button>
+          <>
+            <button className="nav-elipse" onClick={handleElipseMenuClicked}>{authInfo().name[0]}</button>
+            <ul className="nav-elipse-menu">
+              {menuContent}
+            </ul>
+          </>
         )}
       </section>
     </nav>

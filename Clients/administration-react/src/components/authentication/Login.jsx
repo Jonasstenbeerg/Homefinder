@@ -55,7 +55,7 @@ const Login = () => {
   
       navigate("/home")
     } catch (error) {
-      setErrorMessage(error.response.status === 401 ? error.response.data : "Du kan inte logga in just nu")
+      setErrorMessage(error?.response?.status === 401 ? error.response.data : "Du kan inte logga in just nu")
       return
     }
   }

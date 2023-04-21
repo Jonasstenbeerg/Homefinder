@@ -69,6 +69,7 @@ body {
 }
 
 .form-submit-button {
+  cursor: pointer;
   background-color: #007CE8;
   color: #EDEDED;
   font-size: 1rem;
@@ -78,6 +79,11 @@ body {
   border-radius: 12px;
   border: none;
   height: 2.7rem;
+  
+}
+
+.form-submit-button:hover {
+  background-color: #002F56;
 }
 
 .form-error {
@@ -134,7 +140,9 @@ a#form-forgot-password {
   margin-left: 1rem;
 }
 
-.nav-signout {
+.nav-elipse {
+  z-index: 10;
+  cursor: pointer;
   float: right;
   border-radius: 50px;
   background-color: #002F56;
@@ -152,6 +160,38 @@ a#form-forgot-password {
   @media only screen and (max-width: 425px) {
     display: none;
   }
+}
+
+.nav-elipse-menu {
+  opacity: 0;
+  font-family: "Roboto";
+  padding: 0.5rem;
+  font-size: 1rem;
+  top: auto;
+  right: 1rem;
+  bottom: 1.5rem;
+  z-index: 20;
+  position: absolute;
+  background-color: rgb(255, 255, 255);
+  width: 10rem;
+  float: right;
+  list-style-type: none;
+  box-shadow:  
+  rgba(0, 0, 0, 0.2) 0px 5px 5px -3px, 
+  rgba(0, 0, 0, 0.14) 0px 8px 10px 1px,
+  rgba(0, 0, 0, 0.12) 0px 3px 14px 2px;
+  visibility: hidden;
+  transition: visibility 0s, opacity 0.3s linear;  
+}
+
+.nav-elipse:hover + ul.nav-elipse-menu,
+.nav-elipse-menu:hover {
+  opacity: 1;
+  visibility: visible;
+}
+
+.nav-elipse-menu a {
+  text-decoration: none;
 }
 
 #burger-menu,

@@ -1,5 +1,29 @@
 
 :root {
-	--primary-color: #243778;
-	--text-color: #ffffff;
+    --primary-color: #243778;
+    --text-color: #ffffff;
+}
+
+.container-big {
+    width: 1020px;
+    max-width: 100%;
+    padding: 0 1em;
+    margin: auto;
+    height: auto;
+}
+
+.container-medium {
+    width: 880px;
+    max-width: 100%;
+    padding: 0 1em;
+    margin: auto;
+    height: auto;
+}
+
+.container-small {
+    width: 520px;
+    max-width: 100%;
+    padding: 0 1em;
+    margin: auto;
+    height: auto;
 }

@@ -1,8 +1,21 @@
-﻿@{
+﻿@model IEnumerable<HomefinderAPI.Models.Advertisement>
+
+@{
     ViewData["Title"] = "Home Page";
 }
 
-<div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a asp-controller="Advertisements" asp-action="Index">building Web apps with ASP.NET Core</a>.</p>
-</div>
+<section class="advertisement">
+
+    <div class="container-medium">
+        <p>container-medium</p>
+        <div class="advertisement__container">
+            <div class="advertisement__card">
+                @*@foreach (var ad in Model)
+                {
+
+                }*@
+            </div>
+        </div>
+    </div>
+
+</section>

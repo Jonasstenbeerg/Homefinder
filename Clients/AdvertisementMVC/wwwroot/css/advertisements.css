@@ -1,0 +1,4 @@
+.advertisement__container {
+    background-color: var(--primary-color);
+    justify-content: center;
+}

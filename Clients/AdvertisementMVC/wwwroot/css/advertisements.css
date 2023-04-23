@@ -1,4 +1,22 @@
-.advertisement__container {
-    background-color: var(--primary-color);
-    justify-content: center;
+.advertisement__container{
+height: 45em;
+width: 50em;
+background-color: var(--primary-color);
+opacity: 0.85;
+border-radius: 25px;
+}
+
+.advertisement__card{
+background-color: #fff;
+height: 7em;
+width: 40em;
+margin: 1em 1em;
+}
+
+.search-container{
+justify-content: center;
+}
+
+.search-container p{
+    color: #fff;
 }

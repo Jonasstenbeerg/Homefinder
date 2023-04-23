@@ -2,20 +2,26 @@
 
 @{
     ViewData["Title"] = "Home Page";
+    Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<section class="advertisement">
-
     <div class="container-medium">
-        <p>container-medium</p>
         <div class="advertisement__container">
+            <div class="search-container">
+                <p>Sökfilter</p>
+                <hr>
+                <p>Skriv adress</p>
+                <p>Ange pris</p>
+                <button class="sort-by-ad">Filtrera efter bostad</button>
+            </div>
             <div class="advertisement__card">
-                @*@foreach (var ad in Model)
-                {
-
-                }*@
+                <h1>Bostad 1</h1>
+            </div>
+            <div class="advertisement__card">
+                <h1>Bostad 2</h1>
+            </div>
+            <div class="advertisement__card">
+                <h1>Bostad 3</h1>
             </div>
         </div>
     </div>
-
-</section>

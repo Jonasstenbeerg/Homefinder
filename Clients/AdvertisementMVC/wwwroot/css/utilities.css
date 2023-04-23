@@ -5,6 +5,9 @@
 }
 
 .container-big {
+    display: flex;
+    justify-content: center;
+    align-items: center;
     width: 1020px;
     max-width: 100%;
     padding: 0 1em;
@@ -13,6 +16,9 @@
 }
 
 .container-medium {
+    display: flex;
+    justify-content: center;
+    align-items: center;
     width: 880px;
     max-width: 100%;
     padding: 0 1em;
@@ -21,6 +27,9 @@
 }
 
 .container-small {
+    display: flex;
+    justify-content: center;
+    align-items: center;
     width: 520px;
     max-width: 100%;
     padding: 0 1em;

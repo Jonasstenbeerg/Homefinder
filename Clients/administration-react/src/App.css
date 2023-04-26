@@ -79,7 +79,6 @@ body {
   border-radius: 12px;
   border: none;
   height: 2.7rem;
-  
 }
 
 .form-submit-button:hover {
@@ -255,24 +254,31 @@ a#form-forgot-password {
   .burger-menu-list.closed {
     transform: translateX(-20rem);
   }
-  
 }
 
 .home-wrapper {
   display: grid;
+  gap: 1rem;
   grid-template-columns: 13.5rem auto 15rem;
   height: 91.3vh;
   height: 91.3svh;
 }
 
-.objects-nav-wrapper {
+.home-sidebar-wrapper {
   padding: 1.5rem;
-  border-radius: 0 50px 0 0;
   background-color: #FFFFFF;
   height: 100%;
 }
 
-.objects-nav-heading {
+#left-sidebar {
+  border-radius: 0 50px 0 0;
+}
+
+#right-sidebar {
+  border-radius: 50px 0 0 0;
+}
+
+.home-sidebar-heading {
   font-size: 1.3rem;
   text-align: center;
   border-bottom: 1px solid black;
@@ -315,3 +321,81 @@ a#form-forgot-password {
   margin-top: 70%;
   text-align: center;
 }
+
+.objects-overview-wrapper {
+  height: 100%;
+}
+
+.objects-overview-header-container{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 7rem;
+  padding: 0 2rem;
+}
+.search-container {
+  display: flex;
+  padding: 0.5rem;
+  background-color: white;
+  border: 1px solid black;
+  border-radius: 10px;
+}
+
+.search {
+  outline: none;
+  margin-left: 0.3rem;
+  border: 0;
+}
+
+.objects-overview-heading {
+  color: #002F56;
+  font-size: 2rem;
+}
+
+.add-counter {
+  border: 1px solid black;
+  border-radius: 50px;
+  background-color: white;
+  padding: 0.2rem 0.8rem;
+  font-size: 1.5rem;
+}
+
+.objects-overview-table-container {
+  background-color: #FFFFFF;
+  height: 48.3rem;
+  padding: 1rem 2rem;
+}
+
+.objects-overview-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.objects-overview-table th,
+.objects-overview-table td {
+ 
+  
+  padding: 1rem;
+  text-align: center;
+}
+
+.objects-overview-table tr:nth-of-type(2n) {
+  background-color: rgb(245, 245, 245);
+}
+
+.objects-overview-table-top {
+  font-size: 1.2rem;
+  font-family: 'Montserrat';
+  border-bottom: 1px solid black;
+}
+
+.table-column {
+  font-size: 0.875rem;
+  font-weight: 700;
+  font-family: Inter;
+}
+
+.table-column-subrow {
+  color: #868686;
+}
+

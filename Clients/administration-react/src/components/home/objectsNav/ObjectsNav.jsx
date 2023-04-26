@@ -3,8 +3,8 @@ import { faRectangleAd, faUsers }  from '@fortawesome/free-solid-svg-icons'
 
 const ObjectsNav = () => {
   return (
-    <section className="objects-nav-wrapper">
-      <h1 className="objects-nav-heading">Objects</h1>
+    <section className="home-sidebar-wrapper" id="left-sidebar">
+      <h1 className="home-sidebar-heading">Objects</h1>
       <ul className="objects-nav-list">
         <li>
           <ObjectsNavItem picture={faRectangleAd} name={'advertisements'}/>

@@ -10,12 +10,12 @@ namespace HomefinderAPI.Tests.Controllers
 	public class AdvertisementControllerTest
 	{
     private readonly Mock<IAdvertisementRepository>? _mockedRepository;
-    private readonly AdvertisementController? _sut; //System Under Test
+    private readonly AdvertisementsController? _sut; //System Under Test
 
 		public AdvertisementControllerTest()
 		{
 			_mockedRepository = new Mock<IAdvertisementRepository>();
-			_sut = new AdvertisementController(_mockedRepository.Object); 
+			_sut = new AdvertisementsController(_mockedRepository.Object); 
 		}
 		
 		[TestMethod]
@@ -27,7 +27,7 @@ namespace HomefinderAPI.Tests.Controllers
 			_mockedRepository!.Setup(repo => repo.GetAdvertisementByIdAsync(id)).ReturnsAsync(advertisement);
 
 			//Act
-			var respons = await _sut!.GetAdvertisementByIdAsync(id);
+			var respons = await _sut!.Get(id);
 
 			//Assert
 			_mockedRepository.Verify(repo => repo.GetAdvertisementByIdAsync(id), Times.Once);
@@ -39,7 +39,7 @@ namespace HomefinderAPI.Tests.Controllers
 		{
 			var id = 2;
 
-			var respons = await _sut!.GetAdvertisementByIdAsync(id);
+			var respons = await _sut!.Get(id);
 
 			_mockedRepository!.Verify(repo => repo.GetAdvertisementByIdAsync(id), Times.Once);
 			Assert.IsInstanceOfType(respons.Result, typeof(NotFoundObjectResult));
@@ -49,11 +49,11 @@ namespace HomefinderAPI.Tests.Controllers
 		public async Task ListAllAdvertisementsAsync_Should_Return_OK_Respons_And_Not_Be_Null()
 		{
 			var advertisements = new List<AdvertisementViewModel>();
-			_mockedRepository!.Setup(repo => repo.ListAllAdvertisementsAsync()).ReturnsAsync(advertisements);
+			_mockedRepository!.Setup(repo => repo.ListAllAdvertisementsAsync(null)).ReturnsAsync(advertisements);
 
-			var respons = await _sut!.ListAllAdvertisementsAsync();
+			var respons = await _sut!.GetAll(null);
 
-			_mockedRepository!.Verify(repo => repo.ListAllAdvertisementsAsync(), Times.Once);
+			_mockedRepository!.Verify(repo => repo.ListAllAdvertisementsAsync(null), Times.Once);
 			Assert.IsNotNull(respons);
 			Assert.IsInstanceOfType(respons.Result, typeof(OkObjectResult));
 		}

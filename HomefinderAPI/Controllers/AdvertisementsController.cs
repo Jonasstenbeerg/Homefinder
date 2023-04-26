@@ -1,6 +1,7 @@
 using HomefinderAPI.Interfaces;
 using HomefinderAPI.ViewModels.Advertisement;
 using HomefinderAPI.ViewModels.Queries;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace HomefinderAPI.Controllers
@@ -15,9 +16,12 @@ namespace HomefinderAPI.Controllers
     {
       _advertisementRepository = advertisementRepository;
     }
-
+    
+    /// <summary>
+    /// Returns all advertisements in the system pointed by the filter
+    /// </summary>
     [HttpGet("list")]
-    public async Task<ActionResult<List<AdvertisementViewModel>>> GetAll([FromQuery]AdvertisementQuery query)
+    public async Task<ActionResult<List<AdvertisementViewModel>>> GetAll([FromQuery]AdvertisementQuery? query)
     {
       try
       {
@@ -43,7 +47,8 @@ namespace HomefinderAPI.Controllers
 
       return Ok(respons);
     }
-
+    
+    [Authorize]
     [HttpPost]
     public async Task<ActionResult> Create(PostAdvertisementViewModel model)
     {
@@ -64,6 +69,7 @@ namespace HomefinderAPI.Controllers
       }
     }
 
+    [Authorize]
     [HttpPut("{id}")]
     public async Task<ActionResult> Update(int id, PostAdvertisementViewModel model)
     {
@@ -84,6 +90,7 @@ namespace HomefinderAPI.Controllers
       }
     }
 
+    [Authorize]
     [HttpDelete("{id}")]
     public async Task<ActionResult> Delete(int id)
     {

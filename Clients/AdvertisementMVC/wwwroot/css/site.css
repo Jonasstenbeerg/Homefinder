@@ -1,3 +1,6 @@
+@import url('https://fonts.googleapis.com/css2?family=Hubballi&display=swap');
+
+
 /* Reset */
 * {
     margin: 0;
@@ -6,7 +9,50 @@
 }
 
 body {
+    margin: 0;
+    padding: 0;
+    min-height: 100%;
+    position: relative;
+    font-family: 'Hubballi', cursive;
+  }
+  
+  main {
+    margin-bottom: 5rem;
+    height: 100%;
+    box-sizing: border-box;
+  }
 
+  .container-big {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 1140px;
+    max-width: 100%;
+    padding: 0 1em;
+    margin: auto;
+    height: auto;
+}
+
+.container-medium {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 880px;
+    max-width: 100%;
+    padding: 0 1em;
+    margin: auto;
+    height: auto;
+}
+
+.container-small {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 520px;
+    max-width: 100%;
+    padding: 0 1em;
+    margin: auto;
+    height: auto;
 }
 
 .background-image {
@@ -26,7 +72,6 @@ body {
 
 #navbar {
     display: flex;
-    justify-content: space-between;
     margin-bottom: 3em;
     align-items: center;
     height: 4.5rem;
@@ -34,18 +79,29 @@ body {
     opacity: 0.85;
 }
 
-    #navbar h1.logo-area {
-        margin-left: 10px;
-        color: var(--text-color);
-        font-family: 'Hubballi';
-        font-style: normal;
-        font-weight: 400;
-        font-size: 48px;
-        line-height: 46px;
-    }
+.navbar__logo{
+    display: inline-flex;
+    align-items: center;
+    color: #fff;
+    margin-left: 0.3em;
+    font-size: 2.7em;
+    font-weight: 400;
+}
+
+.navbar__logo span{
+    display: inline-flex;
+    align-items: center;
+    color: #cac5c5;
+}
+
+.navbar__icon{
+    height: 2.5em;
+    margin-left: 0.5em;
+}
 
 footer {
-    position: absolute;
+    display:flex;
+    position: fixed;
     text-align: center;
     bottom: 0;
     margin-top: 3em;

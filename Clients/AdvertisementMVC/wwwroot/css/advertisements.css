@@ -1,22 +1,29 @@
 .advertisement__container{
-height: 45em;
-width: 50em;
+height: auto;
+width: auto;
+padding: 1.5em;
 background-color: var(--primary-color);
 opacity: 0.85;
 border-radius: 25px;
 }
 
 .advertisement__card{
+display:flex;
 background-color: #fff;
 height: 7em;
-width: 40em;
-margin: 1em 1em;
+width: 42em;
+margin: 1em auto 1em auto;
 }
 
-.search-container{
+.advertisement__card-image{
+    height: 7em;
+    width: auto;
+}
+
+.search__container{
 justify-content: center;
 }
 
-.search-container p{
+.search__container p{
     color: #fff;
 }

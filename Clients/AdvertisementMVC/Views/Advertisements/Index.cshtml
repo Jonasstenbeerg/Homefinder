@@ -1,11 +1,28 @@
 @model IEnumerable<AdvertisementMVC.ViewModels.AdvertisementViewModel>
 
-@section styles{
-    <link rel="stylesheet" href="~/css/add-page.css">
-}
-
 @{
+    Layout = "~/Views/Shared/_Layout.cshtml";
     ViewData["Title"] = "Advertisements";
 }
 
-<h1>@ViewData["Title"]</h1>
+    <div class="container-big">
+        <div class="advertisement__container">
+            <div class="search__container">
+                <p>Sökfilter</p>
+                <hr>
+                <p>Skriv adress</p>
+                <p>Ange pris</p>
+                <button class="search__container-btn-sort">Filtrera efter bostad</button>
+            </div>
+                @foreach (var ad in Model)
+                {
+                    <div class="advertisement__card">
+                        <img src=@ad.ImageUrl class="advertisement-card__image" alt="Image of ad">
+
+                        <p>@ad.StreetName @ad.StreetNumber</p>
+                        <p>@ad.City</p>
+                        <p>@ad.ListPrice kr @ad.Area m²</p>
+                    </div>
+                }
+        </div>
+    </div>

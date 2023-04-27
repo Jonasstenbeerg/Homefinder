@@ -16,7 +16,13 @@
 </div>
 
 	<nav id="navbar">
-		<h1 class="logo-area">HomeFinder</h1>
+				<img src="../images/home.png" class="navbar__icon"></i>
+		<h1 class="navbar__logo">
+				Home
+			<span class="text-primary">
+				Finder
+			</span>
+		</h1>
 	</nav>
 
 	<main role="main">
@@ -25,12 +31,12 @@
 
 	<script src="~/js/site.js" asp-append-version="true"></script>
 	@await RenderSectionAsync("Scripts", required: false)
-</body>
 
-  <footer>
+	  <footer>
     <div class="container-medium">
       <p>&#169; 2023 HomeFinder</p>
     </div>
   </footer>
+</body>
 
 </html>

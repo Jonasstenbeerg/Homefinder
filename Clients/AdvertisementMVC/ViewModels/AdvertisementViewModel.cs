@@ -5,6 +5,7 @@ namespace AdvertisementMVC.ViewModels
     public int Id { get; set; }
     public int ListPrice { get; set; }
     public string? LeaseType { get; set; }
+    public string? LeaseTypeIconUrl {get;set;}
     public string? PropertyType { get; set; }
     public int Area { get; set; }
     public string? City { get; set; }

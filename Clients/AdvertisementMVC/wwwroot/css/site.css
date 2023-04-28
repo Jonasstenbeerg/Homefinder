@@ -1,6 +1,5 @@
 @import url('https://fonts.googleapis.com/css2?family=Hubballi&display=swap');
 
-
 /* Reset */
 * {
     margin: 0;
@@ -9,11 +8,12 @@
 }
 
 body {
+    position: relative;
     margin: 0;
     padding: 0;
     min-height: 100%;
-    position: relative;
     font-family: 'Hubballi', cursive;
+    font-size: 17px;
   }
   
   main {
@@ -21,39 +21,6 @@ body {
     height: 100%;
     box-sizing: border-box;
   }
-
-  .container-big {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    width: 1140px;
-    max-width: 100%;
-    padding: 0 1em;
-    margin: auto;
-    height: auto;
-}
-
-.container-medium {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    width: 880px;
-    max-width: 100%;
-    padding: 0 1em;
-    margin: auto;
-    height: auto;
-}
-
-.container-small {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    width: 520px;
-    max-width: 100%;
-    padding: 0 1em;
-    margin: auto;
-    height: auto;
-}
 
 .background-image {
     position: fixed;
@@ -91,7 +58,7 @@ body {
 .navbar__logo span{
     display: inline-flex;
     align-items: center;
-    color: #cac5c5;
+    color: var(--secondary-text-color);
 }
 
 .navbar__icon{
@@ -101,8 +68,8 @@ body {
 
 footer {
     display:flex;
-    position: fixed;
-    text-align: center;
+    position: relative;
+    justify-content: center;
     bottom: 0;
     margin-top: 3em;
     width: 100%;
@@ -113,5 +80,5 @@ footer {
 }
 
     footer p {
-        color: #fff;
+        color: var(--secondary-color);
     }

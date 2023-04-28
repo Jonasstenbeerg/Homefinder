@@ -1,37 +1,114 @@
-.advertisement__container{
-height: auto;
-width: auto;
-padding: 1.5em;
-background-color: var(--primary-color);
-border-radius: 25px;
-opacity: 0.85;
+.advertisements{
+    display:block;
+    max-width: 100%;
+    margin: 0 20%;
+    padding: 2em 2em;
+    background-color: rgba(36, 55, 120, 0.85);
+    border-radius: 25px;
 }
 
-.advertisement__card{
-display:flex;
-background-color: #fff;
-height: 7em;
-width: 42em;
-margin: 1em auto 1em auto;
+.advertisements__card{
+    display:flex;
+    background-color: var(--secondary-color);
+    height: 12em;
+    width: 100%;
+    margin: 1em auto 1em auto;
+    border: 1px solid var(--secondary-text-color);
+    border-radius: 4px;
+    cursor: pointer;
+    overflow: hidden;
+    box-sizing: border-box;
+    border: 1px solid #E9E9E9;
+    border-radius: 4px;
+    cursor: pointer;
 }
 
-.advertisement__card-image{
-    height: 7em;
+@media only screen and (max-width: 480px) {
+    .advertisements__card{
+        flex-direction: column;
+    }
+}
+
+.advertisements__card-image-container{
+    width: 50%
+}
+
+.advertisements__card-image{
+    height: 100%;
     width: auto;
+    border-right: 1px solid var(--secondary-text-color);
 }
 
-.advertisement__card p{
-    margin: 0.5em 1em;
+.advertisements__card-text-container{
+    width: 100%;
+    padding: 1rem;
 }
 
-.advertisement__card span{
+.advertisements__card:hover{
+   border-color: var(--primary-color);
+}
+
+.advertisements__card-inner-container-top {
+    display: flex;
+    justify-content: space-between;
+}
+
+.advertisements__card-inner-container-bottom {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 4.5em;
+}
+
+.advertisements__card-inner-container-bottom img{
+    width: 2em;
+}
+
+.advertisements__card-address{
+    font-size: 24px;
+    font-weight: 600;
+    margin: 0;
+}
+
+.advertisements__card-price-and-area {
+    align-self: center;
+    font-weight: 600;
+    margin: 0;
+}
+
+.advertisements__card-city {
+    font-weight: 600;
+    color: var(--secondary-color);
+    margin-top: 0;
+    padding: 0.222em 0.889em;
+    width: max-content;
+    border-radius: 100px;
+    background: var(--primary-color);
+    text-align: center;
+    max-height: 1.667em;
+}
+
+.advertisements__card-lease-type{
+    margin-top: 1em;
+}
+
+.advertisements__card-lease-type img{
+    vertical-align: sub;
+    height: auto;
+    width: 1.5em;
+}
+
+.advertisements__card span{
     margin-left: 3em;
 }
 
-.search__container{
-justify-content: center;
+.search-container{
+    display:block;
+    height: 7em;
+    width: 100%;
+    margin: 1em auto 1em auto;
+    box-sizing: border-box;
 }
 
-.search__container p{
-    color: #fff;
+.search-container p{
+    color: var(--secondary-color);
 }

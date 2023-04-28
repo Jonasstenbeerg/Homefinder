@@ -5,27 +5,35 @@
     ViewData["Title"] = "Advertisements";
 }
 
-    <div class="container-big">
-        <div class="advertisement__container">
-            <div class="search__container">
-                <p>Sökfilter</p>
-                <hr>
-                <p>Skriv adress</p>
-                <p>Ange pris</p>
-                <button class="search__container-btn-sort">Filtrera efter bostad</button>
-            </div>
-                @foreach (var ad in Model)
-                {
-                    <div class="advertisement__card">
-                        <img src=@ad.ImageUrl class="advertisement-card__image" alt="Image of ad">
-                        <p>@ad.StreetName @ad.StreetNumber<br>
-                           @ad.City<br>
-                           @(ad.ListPrice.ToString("N0").Replace(",", " ")) kr <span>@ad.Area m²</span></p>
-                    </div>
-                }
+<div class="advertisements">
+        <div class="search-container">
+            <p>Sökfilter</p>
+            <hr>
+            <p>Skriv adress</p>
+            <p>Ange pris</p>
+            <button type="submit" class="search__container-btn-sort">Filtrera efter bostad</button>
         </div>
-    </div>
+        <div class="advertisements__container">
+            @foreach (var ad in Model)
+            {
+                <div class="advertisements__card">
+                    <div class="advertisements__card-image-container">
+                        <img src=@ad.ImageUrl class="advertisements__card-image" alt="Image of ad">
+                    </div>
+                    <div class="advertisements__card-text-container">
+                        <div class="advertisements__card-inner-container-top">
+                            <p class="advertisements__card-address">@ad.StreetName @ad.StreetNumber</p>
+                            <p class="advertisements__card-city">@ad.City</p>
+                        </div>
 
-int number = 2400000;
-string formattedNumber = number.ToString("N0").Replace(",", " ");
-Console.WriteLine(formattedNumber); 
+                        <p class="advertisements__card-lease-type"><img src="@ad.LeaseTypeIconUrl"> @ad.LeaseType</p>
+
+                        <div class="advertisements__card-inner-container-bottom">
+                            <p class="advertisements__card-price-and-area">@(ad.ListPrice.ToString("N0").Replace(",", " ")) kr <span>@ad.Area m²</span></p>
+                            <img src="../images/arrow-right.png">
+                        </div>
+                    </div>
+                </div>
+            }
+        </div>
+</div>

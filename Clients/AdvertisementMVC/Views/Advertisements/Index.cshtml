@@ -18,11 +18,14 @@
                 {
                     <div class="advertisement__card">
                         <img src=@ad.ImageUrl class="advertisement-card__image" alt="Image of ad">
-
-                        <p>@ad.StreetName @ad.StreetNumber</p>
-                        <p>@ad.City</p>
-                        <p>@ad.ListPrice kr @ad.Area m²</p>
+                        <p>@ad.StreetName @ad.StreetNumber<br>
+                           @ad.City<br>
+                           @(ad.ListPrice.ToString("N0").Replace(",", " ")) kr <span>@ad.Area m²</span></p>
                     </div>
                 }
         </div>
     </div>
+
+int number = 2400000;
+string formattedNumber = number.ToString("N0").Replace(",", " ");
+Console.WriteLine(formattedNumber); 

@@ -4,7 +4,7 @@ import { faMagnifyingGlass }  from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 
-const ObjectsOverview = () => {
+const ObjectsOverview = ({selectObject}) => {
   const [advertisements, setAdvertisements] = useState([])
 
   useEffect(() => {
@@ -15,7 +15,10 @@ const ObjectsOverview = () => {
     var res = await axios.get(`${process.env.REACT_APP_API_BASEURL}advertisements/list`)
     setAdvertisements(res.data)
   }
-  
+  const handleRowClicked = (rowObject) => {
+    selectObject(rowObject)
+  }
+
   return (
     <section className="objects-overview-wrapper">
       <section className="objects-overview-header-container">
@@ -38,7 +41,7 @@ const ObjectsOverview = () => {
           </thead>
           <tbody>
           {advertisements.map((add, index) => (
-            <tr key={index}>
+            <tr key={index} onClick={() =>{handleRowClicked(add)}}>
               <td>
                 <div className='table-column'>{add.streetName} {add.streetNumber}</div>
                 <div className='table-column-subrow table-column'>{add.city}</div>

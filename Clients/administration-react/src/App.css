@@ -259,7 +259,7 @@ a#form-forgot-password {
 .home-wrapper {
   display: grid;
   gap: 1rem;
-  grid-template-columns: 13.5rem auto 15rem;
+  grid-template-columns: 13.5rem auto 22rem;
   height: 91.3vh;
   height: 91.3svh;
 }
@@ -267,8 +267,11 @@ a#form-forgot-password {
 .home-sidebar-wrapper {
   padding: 1.5rem;
   background-color: #FFFFFF;
-  height: 100%;
+  height: 91.3vh;
+  height: 91.3svh;
+  
 }
+
 
 #left-sidebar {
   border-radius: 0 50px 0 0;
@@ -399,3 +402,95 @@ a#form-forgot-password {
   color: #868686;
 }
 
+.manage-objects-nav-button-container {
+  margin-top: 1rem;
+  justify-content: space-around;
+  display: flex;
+}
+
+.manage-objects-nav-button-container button {
+  font-size: 1rem;
+  font-family: 'Montserrat';
+  font-weight: 600;
+  cursor: pointer;
+  border: 0;
+  position: relative;
+  padding-bottom: 0.1rem;
+}
+
+.manage-objects-nav-button-container button::after {
+  content: "";
+  position: absolute;
+  width: 100%;
+  height: 0.2rem;
+  background: #007CE8;
+  left: 0;
+  bottom: 0;
+  transform: scale(0,1);
+  transition: transform 0.3s ease;
+}
+
+.manage-objects-nav-button-container button:hover::after,
+.manage-objects-nav-button-container button.selected::after{
+  transform: scale(1,1);
+}
+
+.manage-objects-nav-button-container  button.selected {
+  color: #007CE8;
+}
+
+.manage-objects-form-wrapper {
+  height: 82vh;
+  height: 82svh;
+  overflow: auto;
+}
+
+.manage-objects-form-heading {
+  font-size: 1.4rem;
+  margin-top: 4rem;
+  margin-bottom: 2rem;
+}
+
+.manage-objects-form-input {
+ border: 0;
+ outline: none;
+ padding: 0.5rem;
+ height: 100%;
+ width: 100%;
+}
+
+.manage-objects-form-input-wrapper {
+  position: relative;
+  border: 1px solid black;
+  height: 3rem;
+  border-radius: 4px;
+  margin-top: 2.5rem;
+}
+
+.manage-objects-form-input-wrapper label {
+  padding: 0 0.5rem;
+  background-color: #FFFFFF;
+  position: absolute;
+  top: 0;
+  left: 1rem;
+  right: auto;
+  transform: translateY(-0.8rem);
+}
+
+.manage-objects-form-button {
+  cursor: pointer;
+  border: 0;
+  background-color: #007CE8;
+  color: #FFFFFF;
+  font-size: 1.3rem;
+  font-family: 'montserrat';
+  margin-top: 3rem;
+  margin-bottom: 0.4rem;
+  padding: 1rem;
+  border-radius: 16px;
+  width: 100%;
+}
+
+.manage-objects-form-button:hover {
+  background-color: #002F56;
+}

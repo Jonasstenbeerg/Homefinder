@@ -1,5 +1,9 @@
 import { useEffect, useState } from "react";
-const ManageObject = ({objectToManage}) => {
+import axios from "axios";
+import {useAuthHeader} from 'react-auth-kit'
+
+const ManageObject = ({objectToManage, fetchAdvertisements}) => {
+  const authHeader = useAuthHeader()
   const [activeButton, setActiveButton] = useState('Info')
   const [city, setCity] = useState("")
   const [postalCode, setPostalCode] = useState("")
@@ -16,7 +20,33 @@ const ManageObject = ({objectToManage}) => {
     setPropertyType(objectToManage?.propertyType)
     setLeaseType(objectToManage?.leaseType)
   },[objectToManage])
-  console.log(objectToManage)
+  
+  const handleSubmit = (e) => {
+    console.log('hej')
+    e.preventDefault()
+    const add = {
+      city,
+      postalCode,
+      streetName,
+      streetNumber,
+      propertyType,
+      leaseType
+    }
+
+    console.log(add)
+
+    createAdvertisement(add)
+  }
+
+  const createAdvertisement = async (advertisement) => {
+    const url = `${process.env.REACT_APP_API_BASEURL}advertisements`
+    
+    await axios.post(url,advertisement,{
+      headers: {
+        authorization: authHeader()
+      }
+    })
+  }
 
   const handleButtonClick = (e) => {
     setActiveButton(e.target.id)
@@ -47,52 +77,115 @@ const ManageObject = ({objectToManage}) => {
   }
 
   return (
-    <section className="home-sidebar-wrapper"id="right-sidebar">
+    <section className="home-sidebar-wrapper" id="right-sidebar">
       <h1 className="home-sidebar-heading">ManageObjects</h1>
       <div className="manage-objects-nav-button-container">
-        <button onClick={handleButtonClick} id="Info" className={activeButton === "Info" ? "selected": ""}>info</button>
-        <button onClick={handleButtonClick} id="Create" className={activeButton === "Create" ? "selected": ""}>Create</button>
-        <button onClick={handleButtonClick} id="Customizie" className={activeButton === "Customizie" ? "selected": ""}>Customize</button>
+        <button
+          onClick={handleButtonClick}
+          id="Info"
+          className={activeButton === "Info" ? "selected" : ""}
+        >
+          info
+        </button>
+        <button
+          onClick={handleButtonClick}
+          id="Create"
+          className={activeButton === "Create" ? "selected" : ""}
+        >
+          Create
+        </button>
+        <button
+          onClick={handleButtonClick}
+          id="Customizie"
+          className={activeButton === "Customizie" ? "selected" : ""}
+        >
+          Customize
+        </button>
       </div>
-      <form action="" className="manage-objects-form-wrapper">
-          <h1 className="manage-objects-form-heading">Address</h1>  
-          <div className="manage-objects-form-input-wrapper">
-            <label htmlFor="manage-objects-form-input">city</label>
-            <input disabled={activeButton === "Info"} onChange={handleCityTextChanged} value={city} type="text" className="manage-objects-form-input" />
-          </div>
-          <div className="manage-objects-form-input-wrapper">
-            <label htmlFor="manage-objects-form-input">postal code</label>
-            <input disabled={activeButton === "Info"} onChange={handlePostalCodeTextChanged} value={postalCode} type="text" className="manage-objects-form-input" />
-          </div>
-          <div className="manage-objects-form-input-wrapper">
-            <label htmlFor="manage-objects-form-input">street name</label>
-            <input disabled={activeButton === "Info"} onChange={handleStreetNameTextChanged} value={streetName} type="text" className="manage-objects-form-input" />
-          </div>
-          <div className="manage-objects-form-input-wrapper">
-            <label htmlFor="manage-objects-form-input">street number</label>
-            <input disabled={activeButton === "Info"} onChange={handleStreetNumberTextChanged} value={streetNumber} type="text" className="manage-objects-form-input" />
-          </div>
-          <h1 className="manage-objects-form-heading">Propertytype</h1> 
-          <div className="manage-objects-form-input-wrapper">
-            <select disabled={activeButton === "Info"} onChange={handlePropertyTypeSelectChanged} value={propertyType} className="manage-objects-form-input">
-              <option disabled selected value> -- select an option -- </option>
-              <option value="Villa">Villa</option>
-              <option value="Radhus">Radhus</option>
-            </select>
-          </div>
-          <h1 className="manage-objects-form-heading">Leasetype</h1> 
-          <div className="manage-objects-form-input-wrapper">
-          <select disabled={activeButton === "Info"} onChange={handleLeaseTypeSelectChanged} value={leaseType} className="manage-objects-form-input">
-              <option disabled selected value> -- select an option -- </option>
-              <option value="Egenrätt">Egenrätt</option>
-              <option value="Bostadsrätt">Bostadsrätt</option>
-            </select>
-          </div>
-          {activeButton === "Info" || (
-            <button className="manage-objects-form-button">{activeButton === "Create" ? "Create":"Accept changes"}</button>
-          )}  
+      <form action="" onSubmit={handleSubmit} className="manage-objects-form-wrapper">
+        <h1 className="manage-objects-form-heading">Address</h1>
+        <div className="manage-objects-form-input-wrapper">
+          <label htmlFor="manage-objects-form-input">city</label>
+          <input
+            disabled={activeButton === "Info"}
+            onChange={handleCityTextChanged}
+            value={city}
+            type="text"
+            className="manage-objects-form-input"
+          />
+        </div>
+        <div className="manage-objects-form-input-wrapper">
+          <label htmlFor="manage-objects-form-input">postal code</label>
+          <input
+            disabled={activeButton === "Info"}
+            onChange={handlePostalCodeTextChanged}
+            value={postalCode}
+            type="text"
+            className="manage-objects-form-input"
+          />
+        </div>
+        <div className="manage-objects-form-input-wrapper">
+          <label htmlFor="manage-objects-form-input">street name</label>
+          <input
+            disabled={activeButton === "Info"}
+            onChange={handleStreetNameTextChanged}
+            value={streetName}
+            type="text"
+            className="manage-objects-form-input"
+          />
+        </div>
+        <div className="manage-objects-form-input-wrapper">
+          <label htmlFor="manage-objects-form-input">street number</label>
+          <input
+            disabled={activeButton === "Info"}
+            onChange={handleStreetNumberTextChanged}
+            value={streetNumber}
+            type="text"
+            className="manage-objects-form-input"
+          />
+        </div>
+        <h1 className="manage-objects-form-heading">Propertytype</h1>
+        <div className="manage-objects-form-input-wrapper">
+          <select
+            disabled={activeButton === "Info"}
+            onChange={handlePropertyTypeSelectChanged}
+            value={propertyType}
+            className="manage-objects-form-input"
+          >
+            <option disabled defaultValue value>
+              {" "}
+              -- select an option --{" "}
+            </option>
+            <option value="Villa">Villa</option>
+            <option value="Radhus">Radhus</option>
+          </select>
+        </div>
+        <h1 className="manage-objects-form-heading">Leasetype</h1>
+        <div className="manage-objects-form-input-wrapper">
+          <select
+            disabled={activeButton === "Info"}
+            onChange={handleLeaseTypeSelectChanged}
+            value={leaseType}
+            className="manage-objects-form-input"
+          >
+            <option disabled defaultValue value>
+              {" "}
+              -- select an option --{" "}
+            </option>
+            <option value="Egenrätt">Egenrätt</option>
+            <option value="Bostadsrätt">Bostadsrätt</option>
+          </select>
+        </div>
+        {activeButton === "Info" || (
+          <button 
+            className="manage-objects-form-button"
+            
+          >
+            {activeButton === "Create" ? "Create" : "Accept changes"}
+          </button>
+        )}
       </form>
-      </section>
-  )
+    </section>
+  );
 }
 export default ManageObject;

@@ -1,9 +1,8 @@
 import { useEffect, useState } from "react";
-import axios from "axios";
-import {useAuthHeader} from 'react-auth-kit'
 
-const ManageObject = ({objectToManage, fetchAdvertisements}) => {
-  const authHeader = useAuthHeader()
+
+const ManageObject = ({objectToManage, onCreateAdvertisement}) => {
+  
   const [activeButton, setActiveButton] = useState('Info')
   const [city, setCity] = useState("")
   const [postalCode, setPostalCode] = useState("")
@@ -35,18 +34,10 @@ const ManageObject = ({objectToManage, fetchAdvertisements}) => {
 
     console.log(add)
 
-    createAdvertisement(add)
+    onCreateAdvertisement(add)
   }
 
-  const createAdvertisement = async (advertisement) => {
-    const url = `${process.env.REACT_APP_API_BASEURL}advertisements`
-    
-    await axios.post(url,advertisement,{
-      headers: {
-        authorization: authHeader()
-      }
-    })
-  }
+  
 
   const handleButtonClick = (e) => {
     setActiveButton(e.target.id)

@@ -1,4 +1,6 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import axios from "axios";
+import {useAuthHeader} from 'react-auth-kit'
 import ObjectsNav from "./objectsNav/ObjectsNav";
 import ObjectsOverview from "./ObjectsOverview";
 import ManageObject from "./ManageObject";
@@ -6,7 +8,30 @@ import ManageObject from "./ManageObject";
 
 
 const Home = () => {
+  const authHeader = useAuthHeader()
   const [selectedobject, setSelectedObject] = useState(null)
+  const [advertisements, setAdvertisements] = useState([])
+
+  const handleFetchAdvertisements = async () => {
+    var res = await axios.get(`${process.env.REACT_APP_API_BASEURL}advertisements/list`)
+    setAdvertisements(res.data)
+  }
+
+  const handleCreateAdvertisement = async (advertisement) => {
+    const url = `${process.env.REACT_APP_API_BASEURL}advertisements`
+    
+    const res = await axios.post(url,advertisement,{
+      headers: {
+        authorization: authHeader()
+      }
+    })
+
+    console.log(res)
+  }
+
+  useEffect(() =>{
+    handleFetchAdvertisements()
+  },[handleCreateAdvertisement])
   
   return (
     <section className="home-wrapper">
@@ -14,10 +39,10 @@ const Home = () => {
         <ObjectsNav></ObjectsNav>
       </nav>
       <article>
-        <ObjectsOverview selectObject={setSelectedObject}></ObjectsOverview>
+        <ObjectsOverview advertisements={advertisements} onFetchAdvertisements={handleFetchAdvertisements} selectObject={setSelectedObject}></ObjectsOverview>
       </article>
       <article>
-        <ManageObject objectToManage={selectedobject}></ManageObject>
+        <ManageObject objectToManage={selectedobject} onCreateAdvertisement={handleCreateAdvertisement}></ManageObject>
       </article>
     </section>
   )

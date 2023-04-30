@@ -1,20 +1,14 @@
-import { useEffect, useState } from 'react';
-import axios from 'axios';
 import { faMagnifyingGlass }  from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { useEffect } from 'react';
 
 
-const ObjectsOverview = ({selectObject}) => {
-  const [advertisements, setAdvertisements] = useState([])
+const ObjectsOverview = ({selectObject, advertisements,onFetchAdvertisements}) => {
 
-  useEffect(() => {
-    fetchAdvertisements()
+  useEffect(() =>{
+    onFetchAdvertisements()
   },[])
   
-  async function fetchAdvertisements() {
-    var res = await axios.get(`${process.env.REACT_APP_API_BASEURL}advertisements/list`)
-    setAdvertisements(res.data)
-  }
   const handleRowClicked = (rowObject) => {
     selectObject(rowObject)
   }

@@ -23,7 +23,7 @@
     cursor: pointer;
 }
 
-@media only screen and (max-width: 480px) {
+@media only screen and (max-width: 768px) {
     .advertisements__card{
         flex-direction: column;
     }
@@ -89,6 +89,7 @@
 
 .advertisements__card-lease-type{
     margin-top: 1em;
+    text-align: start;
 }
 
 .advertisements__card-lease-type img{

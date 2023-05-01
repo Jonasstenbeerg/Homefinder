@@ -1,31 +1,31 @@
-import { useState } from "react";
-import { useNavigate } from "react-router-dom";
-import { useSignIn } from "react-auth-kit";
-import axios from "axios";
-import jwt_decode from "jwt-decode";
-import styles from "./Login.module.css"
+import { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
+import { useSignIn } from 'react-auth-kit';
+import axios from 'axios';
+import jwt_decode from 'jwt-decode';
+import styles from './Login.module.css'
 
 const Login = () => {
-  const [userName, setUserName] = useState("")
-  const [password, setPassword] = useState("")
-  const [errorMessage, setErrorMessage]  = useState("")
+  const [userName, setUserName] = useState('')
+  const [password, setPassword] = useState('')
+  const [errorMessage, setErrorMessage]  = useState('')
   const login = useSignIn()
   const navigate = useNavigate()
 
   const passwordChangeHandler = (e) => {
     setPassword(e.target.value)
-    setErrorMessage("")
+    setErrorMessage('')
   }
 
   const userNameChangeHandler = (e) => {
     setUserName(e.target.value)
-    setErrorMessage("")
+    setErrorMessage('')
   }
 
   const isNotAuthorized = async (response) => {
     const token = jwt_decode(response?.data?.token)
     
-    return token?.Admin !== "true"
+    return token?.Admin !== 'true'
   };
 
   const handleLogin = async (e) => {

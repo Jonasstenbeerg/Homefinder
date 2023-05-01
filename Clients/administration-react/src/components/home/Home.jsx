@@ -20,19 +20,15 @@ const Home = () => {
   const handleCreateAdvertisement = async (advertisement) => {
     const url = `${process.env.REACT_APP_API_BASEURL}advertisements`
     
-    const res = await axios.post(url,advertisement,{
+    await axios.post(url,advertisement,{
       headers: {
         authorization: authHeader()
       }
     })
 
-    console.log(res)
+    await handleFetchAdvertisements()
   }
 
-  useEffect(() =>{
-    handleFetchAdvertisements()
-  },[handleCreateAdvertisement])
-  
   return (
     <section className="home-wrapper">
       <nav>

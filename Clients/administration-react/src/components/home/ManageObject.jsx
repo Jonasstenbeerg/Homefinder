@@ -21,8 +21,8 @@ const ManageObject = ({objectToManage, onCreateAdvertisement}) => {
   },[objectToManage])
   
   const handleSubmit = (e) => {
-    console.log('hej')
     e.preventDefault()
+    
     const add = {
       city,
       postalCode,
@@ -31,8 +31,6 @@ const ManageObject = ({objectToManage, onCreateAdvertisement}) => {
       propertyType,
       leaseType
     }
-
-    console.log(add)
 
     onCreateAdvertisement(add)
   }

@@ -66,7 +66,7 @@ const ManageObject = ({objectToManage, onCreateAdvertisement}) => {
   }
 
   return (
-    <section className="home-sidebar-wrapper" id="right-sidebar">
+    <section className="home-sidebar-container" id="right-sidebar">
       <h1 className="home-sidebar-heading">ManageObjects</h1>
       <div className="manage-objects-nav-button-container">
         <button

@@ -1,0 +1,33 @@
+.navItem-wrapper {
+  cursor: pointer;
+  border-radius: 10px;
+  border: 2px solid black;
+  margin-top: 2rem;
+  height: 10rem;
+  position: relative;
+}
+
+.navItem-wrapper:hover {
+  border: 2px solid #007CE8;
+}
+
+.navItem-picture {
+  position: absolute;
+  top: 4rem;
+  left: 4rem;
+  right: auto;
+}
+
+.navItem-gear {
+  position: absolute;
+  top: 1.5rem;
+  left: 2.5rem;
+  right: auto;
+}
+
+.navItem-wrapper p {
+  font-family: 'Montserrat';
+  font-weight: 600;
+  margin-top: 70%;
+  text-align: center;
+}

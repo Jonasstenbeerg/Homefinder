@@ -1,10 +1,10 @@
-import { useEffect, useState } from "react";
-import axios from "axios";
+import {  useState } from 'react';
+import axios from 'axios';
 import {useAuthHeader} from 'react-auth-kit'
-import ObjectsNav from "./objectsNav/ObjectsNav";
-import ObjectsOverview from "./ObjectsOverview";
-import ManageObject from "./ManageObject";
-
+import ObjectsNav from './objectsNav/ObjectsNav';
+import ObjectsOverview from './ObjectsOverview';
+import ManageObject from './ManageObject';
+import styles from './Home.module.css'
 
 
 const Home = () => {
@@ -30,7 +30,7 @@ const Home = () => {
   }
 
   return (
-    <section className="home-wrapper">
+    <section className={styles["home-container"]}>
       <nav>
         <ObjectsNav></ObjectsNav>
       </nav>

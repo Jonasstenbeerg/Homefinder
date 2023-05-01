@@ -1,4 +1,5 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState } from 'react';
+import styles from './ManageObject.module.css'
 
 
 const ManageObject = ({objectToManage, onCreateAdvertisement}) => {
@@ -66,9 +67,9 @@ const ManageObject = ({objectToManage, onCreateAdvertisement}) => {
   }
 
   return (
-    <section className="home-sidebar-container" id="right-sidebar">
+    <section className="home-sidebar-container" id={styles["right-sidebar"]}>
       <h1 className="home-sidebar-heading">ManageObjects</h1>
-      <div className="manage-objects-nav-button-container">
+      <div className={styles["manage-objects-nav-button-container"]}>
         <button
           onClick={handleButtonClick}
           id="Info"
@@ -79,67 +80,67 @@ const ManageObject = ({objectToManage, onCreateAdvertisement}) => {
         <button
           onClick={handleButtonClick}
           id="Create"
-          className={activeButton === "Create" ? "selected" : ""}
+          className={activeButton === styles["Create"] ? styles["selected"] : ""}
         >
           Create
         </button>
         <button
           onClick={handleButtonClick}
           id="Customizie"
-          className={activeButton === "Customizie" ? "selected" : ""}
+          className={activeButton === styles["Customizie"] ? styles["selected"] : ""}
         >
           Customize
         </button>
       </div>
-      <form action="" onSubmit={handleSubmit} className="manage-objects-form-wrapper">
-        <h1 className="manage-objects-form-heading">Address</h1>
-        <div className="manage-objects-form-input-wrapper">
+      <form action="" onSubmit={handleSubmit} className={styles["manage-objects-form-container"]}>
+        <h1 className={styles["manage-objects-form-heading"]}>Address</h1>
+        <div className={styles["manage-objects-form-input-container"]}>
           <label htmlFor="manage-objects-form-input">city</label>
           <input
             disabled={activeButton === "Info"}
             onChange={handleCityTextChanged}
             value={city}
             type="text"
-            className="manage-objects-form-input"
+            className={styles["manage-objects-form-input"]}
           />
         </div>
-        <div className="manage-objects-form-input-wrapper">
+        <div className={styles["manage-objects-form-input-container"]}>
           <label htmlFor="manage-objects-form-input">postal code</label>
           <input
             disabled={activeButton === "Info"}
             onChange={handlePostalCodeTextChanged}
             value={postalCode}
             type="text"
-            className="manage-objects-form-input"
+            className={styles["manage-objects-form-input"]}
           />
         </div>
-        <div className="manage-objects-form-input-wrapper">
+        <div className={styles["manage-objects-form-input-container"]}>
           <label htmlFor="manage-objects-form-input">street name</label>
           <input
             disabled={activeButton === "Info"}
             onChange={handleStreetNameTextChanged}
             value={streetName}
             type="text"
-            className="manage-objects-form-input"
+            className={styles["manage-objects-form-input"]}
           />
         </div>
-        <div className="manage-objects-form-input-wrapper">
+        <div className={styles["manage-objects-form-input-container"]}>
           <label htmlFor="manage-objects-form-input">street number</label>
           <input
             disabled={activeButton === "Info"}
             onChange={handleStreetNumberTextChanged}
             value={streetNumber}
             type="text"
-            className="manage-objects-form-input"
+            className={styles["manage-objects-form-input"]}
           />
         </div>
-        <h1 className="manage-objects-form-heading">Propertytype</h1>
-        <div className="manage-objects-form-input-wrapper">
+        <h1 className={styles["manage-objects-form-heading"]}>Propertytype</h1>
+        <div className={styles["manage-objects-form-input-container"]}>
           <select
             disabled={activeButton === "Info"}
             onChange={handlePropertyTypeSelectChanged}
             value={propertyType}
-            className="manage-objects-form-input"
+            className={styles["manage-objects-form-input"]}
           >
             <option disabled defaultValue value>
               {" "}
@@ -149,13 +150,13 @@ const ManageObject = ({objectToManage, onCreateAdvertisement}) => {
             <option value="Radhus">Radhus</option>
           </select>
         </div>
-        <h1 className="manage-objects-form-heading">Leasetype</h1>
-        <div className="manage-objects-form-input-wrapper">
+        <h1 className={styles["manage-objects-form-heading"]}>Leasetype</h1>
+        <div className={styles["manage-objects-form-input-container"]}>
           <select
             disabled={activeButton === "Info"}
             onChange={handleLeaseTypeSelectChanged}
             value={leaseType}
-            className="manage-objects-form-input"
+            className={styles["manage-objects-form-input"]}
           >
             <option disabled defaultValue value>
               {" "}
@@ -167,7 +168,7 @@ const ManageObject = ({objectToManage, onCreateAdvertisement}) => {
         </div>
         {activeButton === "Info" || (
           <button 
-            className="manage-objects-form-button"
+            className={styles["manage-objects-form-button"]}
             
           >
             {activeButton === "Create" ? "Create" : "Accept changes"}

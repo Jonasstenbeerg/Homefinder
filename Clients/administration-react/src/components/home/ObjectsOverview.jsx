@@ -1,3 +1,4 @@
+import { useState } from 'react';
 import { faMagnifyingGlass }  from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { useEffect } from 'react';
@@ -5,13 +6,14 @@ import styles from './ObjectsOverview.module.css'
 
 
 const ObjectsOverview = ({selectObject, advertisements,onFetchAdvertisements}) => {
-
+  const [selectedIndex, setSelectedIndex] = useState('')
   useEffect(() =>{
     onFetchAdvertisements()
   },[])
   
-  const handleRowClicked = (rowObject) => {
+  const handleRowClicked = (rowObject, index) => {
     selectObject(rowObject)
+    setSelectedIndex(index)
   }
 
   return (
@@ -36,7 +38,7 @@ const ObjectsOverview = ({selectObject, advertisements,onFetchAdvertisements}) =
           </thead>
           <tbody>
           {advertisements.map((add, index) => (
-            <tr key={index} onClick={() =>{handleRowClicked(add)}}>
+            <tr key={index} onClick={() =>{handleRowClicked(add, index)}} className={selectedIndex === index ? styles["selected"]:""}>
               <td>
                 <div className={styles["table-column"]}>{add.streetName} {add.streetNumber}</div>
                 <div className={`${styles["table-column-subrow"]} ${styles["table-column"]}`}>{add.city}</div>

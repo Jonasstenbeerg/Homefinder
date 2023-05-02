@@ -54,11 +54,14 @@
   height:calc(100vh - 18rem);
   width:100%;
 }
+
 .objects-overview-table thead tr{
   display:block;
 }
+
 .objects-overview-table tr {
- width: 100%;
+  transition: 150ms ease-in;
+  width: 100%;
 }
 
 .objects-overview-table th,
@@ -66,6 +69,11 @@
   width: 100vw;
   padding: 1rem;
   text-align: center;
+}
+
+.objects-overview-table tbody tr:hover {
+  cursor: pointer;
+  background-color: rgb(104, 104, 104);
 }
 
 .objects-overview-table tr:nth-of-type(2n) {
@@ -86,4 +94,14 @@
 
 .table-column-subrow {
   color: #868686;
+}
+
+.objects-overview-table  tbody tr.selected
+{
+  background-color: #0a85e9 !important;
+  color: #ffffff;
+}
+
+.objects-overview-table  tbody tr.selected div {
+  color: #ffffff;
 }

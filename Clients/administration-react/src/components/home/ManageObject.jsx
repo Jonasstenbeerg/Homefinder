@@ -1,9 +1,11 @@
 import { useEffect, useState } from 'react';
+import { faRectangleAd, faUsers, faChevronRight, faChevronLeft }  from '@fortawesome/free-solid-svg-icons'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import styles from './ManageObject.module.css'
 
 
 const ManageObject = ({objectToManage, onCreateAdvertisement}) => {
-  
+  const [mobileManageObjectVisible, setMobileManageObjectVisible] = useState(false)
   const [activeButton, setActiveButton] = useState('Info')
   const [city, setCity] = useState("")
   const [postalCode, setPostalCode] = useState("")
@@ -36,7 +38,9 @@ const ManageObject = ({objectToManage, onCreateAdvertisement}) => {
     onCreateAdvertisement(add)
   }
 
-  
+  const handleToggleManageObject = () => {
+    setMobileManageObjectVisible(!mobileManageObjectVisible)
+  }
 
   const handleButtonClick = (e) => {
     setActiveButton(e.target.id)
@@ -67,7 +71,7 @@ const ManageObject = ({objectToManage, onCreateAdvertisement}) => {
   }
 
   return (
-    <section className="home-sidebar-container" id={styles["right-sidebar"]}>
+    <section className={`home-sidebar-container ${mobileManageObjectVisible ? "":styles["hidden"]}`} id={styles["right-sidebar"]}>
       <h1 className="home-sidebar-heading">ManageObjects</h1>
       <div className={styles["manage-objects-nav-button-container"]}>
         <button
@@ -175,6 +179,7 @@ const ManageObject = ({objectToManage, onCreateAdvertisement}) => {
           </button>
         )}
       </form>
+      <FontAwesomeIcon onClick={handleToggleManageObject} icon={mobileManageObjectVisible ? faChevronRight:faChevronLeft} className={styles["right-sidebar-toggle-button"]}/>
     </section>
   );
 }

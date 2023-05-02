@@ -5,14 +5,14 @@ import styles from './ObjectsNav.module.css'
 import { useState } from 'react';
 
 const ObjectsNav = () => {
-  const [mobileNavHidden, setMobileNavHidden] = useState(false)
+  const [mobileObjectsNavVisible, setMobileObjectsNavVisible] = useState(false)
 
   const handleToggleObjectsNav = () => {
-    setMobileNavHidden(!mobileNavHidden)
+    setMobileObjectsNavVisible(!mobileObjectsNavVisible)
   }
 
   return (
-    <section className={`home-sidebar-container ${mobileNavHidden ? styles["hidden"]: ""}`} id={styles["left-sidebar"]}>
+    <section className={`home-sidebar-container ${mobileObjectsNavVisible ? "": styles["hidden"]}`} id={styles["left-sidebar"]}>
       <h1 className="home-sidebar-heading">Objects</h1>
       <ul className={styles["objects-nav-list"]}>
         <li>
@@ -22,7 +22,7 @@ const ObjectsNav = () => {
           <ObjectsNavItem picture={faUsers} name={'users'}/>
         </li>
       </ul>
-      <FontAwesomeIcon onClick={handleToggleObjectsNav} icon={mobileNavHidden ? faChevronRight:faChevronLeft} className={styles["left-sidebar-toggle-button"]}/>
+      <FontAwesomeIcon onClick={handleToggleObjectsNav} icon={mobileObjectsNavVisible ? faChevronLeft:faChevronRight} className={styles["left-sidebar-toggle-button"]}/>
     </section>
   )
 }

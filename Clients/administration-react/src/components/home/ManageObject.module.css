@@ -1,5 +1,33 @@
 #right-sidebar {
   border-radius: 50px 0 0 0;
+  @media only screen and (max-width: 425px) {
+    transform: translateX(-12.5rem);
+    border-left: 1px solid black;
+    border-top: 1px solid black;
+  }
+}
+
+#right-sidebar.hidden {
+  @media only screen and (max-width: 425px) {
+    transform: translateX(-0rem);
+    
+  }
+}
+
+.right-sidebar-toggle-button {
+  visibility: hidden;
+}
+
+.right-sidebar-toggle-button {
+  @media only screen and (max-width: 425px) {
+    visibility: visible;
+    position: absolute;
+    right:auto;
+    top: 20rem;
+    left: -1.8rem;
+    font-size: 2.5rem;
+    background-color: #EDEDED;
+  }
 }
 
 .manage-objects-nav-button-container {
@@ -16,6 +44,9 @@
   border: 0;
   position: relative;
   padding-bottom: 0.1rem;
+  @media only screen and (max-width: 425px) {
+    font-size: 0.8rem;
+  }
 }
 
 .manage-objects-nav-button-container button::after {

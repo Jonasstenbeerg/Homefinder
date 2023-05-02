@@ -25,6 +25,7 @@
     left: auto;
     font-size: 2.5rem;
     background-color: #EDEDED;
+    z-index: 1;
   }
 }
 

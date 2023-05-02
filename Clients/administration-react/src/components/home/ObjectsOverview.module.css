@@ -37,8 +37,9 @@
 }
 
 .objects-overview-table-container {
+  overflow-y: scroll;
   background-color: #FFFFFF;
-  height: 48.3rem;
+  height: calc(100vh - 12.2rem);
   padding: 1rem 2rem;
 }
 

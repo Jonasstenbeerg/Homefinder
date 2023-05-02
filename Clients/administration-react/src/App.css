@@ -4,8 +4,14 @@ html {
     background-color: #FFFFFF;
   }
 }
-body {
+body,
+div#root {
+  height: 100svh;
   height: 100vh;
+}
+
+main {
+  height:calc(100% - 5.2rem) ;
 }
 
 /* Reset */
@@ -19,8 +25,7 @@ body {
 .home-sidebar-container {
   padding: 1.5rem;
   background-color: #FFFFFF;
-  height: 91.3vh;
-  height: 91.3svh;
+  height: inherit;
 }
 
 .home-sidebar-heading {

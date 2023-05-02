@@ -2,6 +2,9 @@
   display: grid;
   gap: 1rem;
   grid-template-columns: 13.5rem auto 22rem;
-  height: 91.3vh;
-  height: 91.3svh;
+  height: 100%;
+}
+
+.home-container > * {
+  height: calc(100vh - 5.2rem);
 }

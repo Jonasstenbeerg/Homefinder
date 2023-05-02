@@ -1,7 +1,11 @@
-
 :root {
-    --primary-color: #243778;
-    --secondary-color: #ffffff;
-    /* --primary-text-color: #ffffff; */
-    --secondary-text-color: #cac5c5;
+  --primary-color: #243778;
+  --secondary-color: #ffffff;
+  /* --primary-text-color: #ffffff; */
+  --secondary-text-color: #cac5c5;
+}
+
+h2{
+    color: var(--secondary-color);
+    font-weight: 200;
 }

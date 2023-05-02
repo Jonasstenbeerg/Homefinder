@@ -3,6 +3,7 @@
   height: 5.2rem;
   border-bottom: 2px solid rgb(170, 170, 170);
   @media only screen and (max-width: 425px) {
+    min-width: unset;
     height: 4.5rem;
     position: relative;
   }

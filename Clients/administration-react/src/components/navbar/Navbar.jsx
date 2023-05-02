@@ -60,7 +60,7 @@ const Navbar = () => {
         <ul className={isBurgerMenuOpen ? styles["burger-menu-list"]: `${styles["burger-menu-list"]} ${styles.closed}`}>
           {menuContent}
         </ul>
-        <FontAwesomeIcon icon={faHouse} size="xl"/>
+        <FontAwesomeIcon icon={faHouse} className={styles["nav-icon"]} size="xl"/>
         <h1 className={styles["nav-heading"]}>
           HomeFinder Admin
         </h1>

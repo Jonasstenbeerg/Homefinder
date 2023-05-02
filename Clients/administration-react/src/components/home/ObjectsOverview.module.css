@@ -55,7 +55,7 @@
 .objects-overview-table-container {
   overflow: hidden;
   background-color: #FFFFFF;
-  height: calc(100vh - 12.2rem);
+  height: calc(100vh - 11rem);
   padding: 1rem 2rem;
   @media only screen and (max-width: 425px) {
     padding: 0;
@@ -71,7 +71,7 @@
 .objects-overview-table tbody{
   display:block;
   overflow:auto;
-  height:calc(100vh - 18rem);
+  height:calc(100vh - 17rem);
   width:100%;
 }
 

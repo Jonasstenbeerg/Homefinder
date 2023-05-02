@@ -1,10 +1,10 @@
 #nav {
   min-width: 69.4rem;
-  height: 5.2rem;
+  height: 4rem;
   border-bottom: 2px solid rgb(170, 170, 170);
   @media only screen and (max-width: 425px) {
     min-width: unset;
-    height: 4.5rem;
+    height: 4rem;
     position: relative;
   }
 }
@@ -19,11 +19,15 @@
 }
 
 #nav > * {
-  padding: 1.1rem;
+  padding: 0.5rem;
   font-size: 2rem;
   @media only screen and (max-width: 425px) {
     font-size: 1.7rem;
   }
+}
+
+.nav-icon {
+  margin-left: 3rem;
 }
 
 .nav-heading {
@@ -51,7 +55,7 @@
   position: absolute;
   top: auto;
   right: 1rem;
-  bottom: 1rem;
+  bottom: 0.5rem;
   @media only screen and (max-width: 425px) {
     display: none;
   }
@@ -64,7 +68,7 @@
   font-size: 1rem;
   top: auto;
   right: 1rem;
-  bottom: 1.5rem;
+  bottom: 1rem;
   z-index: 20;
   position: absolute;
   background-color: rgb(255, 255, 255);
@@ -99,7 +103,7 @@
 @media (max-width: 425px) {
   #burger-menu {
     display: unset;
-    top: 1.5rem;
+    top: 1.3rem;
     left: 1rem;
     right: auto;
     position: absolute;

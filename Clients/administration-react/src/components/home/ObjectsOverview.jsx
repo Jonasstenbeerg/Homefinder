@@ -47,7 +47,6 @@ const ObjectsOverview = ({selectObject, advertisements,onFetchAdvertisements}) =
               </td>
               <td>
                 <div className={styles["table-column"]}>{add.area}m2</div>
-                
               </td>
               <td className={styles["table-column"]}>{add.listPrice}</td>
               <td className={styles["table-column"]}>{add.deleted.toString()}</td>

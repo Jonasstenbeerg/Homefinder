@@ -37,7 +37,7 @@
 }
 
 .objects-overview-table-container {
-  overflow-y: scroll;
+  overflow: hidden;
   background-color: #FFFFFF;
   height: calc(100vh - 12.2rem);
   padding: 1rem 2rem;
@@ -48,10 +48,22 @@
   border-collapse: collapse;
 }
 
+.objects-overview-table tbody{
+  display:block;
+  overflow:auto;
+  height:calc(100vh - 18rem);
+  width:100%;
+}
+.objects-overview-table thead tr{
+  display:block;
+}
+.objects-overview-table tr {
+ width: 100%;
+}
+
 .objects-overview-table th,
 .objects-overview-table td {
- 
-  
+  width: 100vw;
   padding: 1rem;
   text-align: center;
 }

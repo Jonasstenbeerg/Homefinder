@@ -179,7 +179,7 @@ const ManageObject = ({objectToManage, onCreateAdvertisement}) => {
           </button>
         )}
       </form>
-      <FontAwesomeIcon onClick={handleToggleManageObject} icon={mobileManageObjectVisible ? faChevronRight:faChevronLeft} className={styles["right-sidebar-toggle-button"]}/>
+    <FontAwesomeIcon onClick={handleToggleManageObject} icon={mobileManageObjectVisible ? faChevronRight:faChevronLeft} className={styles["right-sidebar-toggle-button"]}/>
     </section>
   );
 }

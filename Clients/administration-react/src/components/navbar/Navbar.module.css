@@ -91,6 +91,8 @@
 
 #burger-menu,
 .burger-menu-list {
+  background-color: #FFFFFF;
+  z-index: 1;
   display: none;
 }
 

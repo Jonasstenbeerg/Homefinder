@@ -73,21 +73,21 @@ const ManageObject = ({objectToManage, onCreateAdvertisement}) => {
         <button
           onClick={handleButtonClick}
           id="Info"
-          className={activeButton === "Info" ? "selected" : ""}
+          className={activeButton === "Info" ? styles["selected"] : ""}
         >
           info
         </button>
         <button
           onClick={handleButtonClick}
           id="Create"
-          className={activeButton === styles["Create"] ? styles["selected"] : ""}
+          className={activeButton === "Create" ? styles["selected"] : ""}
         >
           Create
         </button>
         <button
           onClick={handleButtonClick}
           id="Customizie"
-          className={activeButton === styles["Customizie"] ? styles["selected"] : ""}
+          className={activeButton === "Customizie" ? styles["selected"] : ""}
         >
           Customize
         </button>

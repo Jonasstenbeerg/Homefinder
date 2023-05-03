@@ -205,6 +205,18 @@
 
 .search__container-top {
   width: 40%;
+
+  @media only screen and (max-width: 1440px) {
+    width: 50%;
+  }
+
+  @media only screen and (max-width: 640px) {
+    width: 60%;
+  }
+
+  @media only screen and (max-width: 480px) {
+    width: 100%;
+  }
 }
 
 /***************Slider******************/
@@ -228,6 +240,10 @@
   display: flex;
   color: var(--secondary-color);
   justify-content: space-between;
+
+  @media only screen and (max-width: 480px) {
+    justify-content: start;
+  }
 }
 
 .form_control_container__time__input {
@@ -237,6 +253,12 @@
 
 .form_control_container__time {
   text-align: start;
+}
+
+.max {
+  @media only screen and (max-width: 480px) {
+    margin-left: 1.2em;
+  }
 }
 
 input[type="range"]::-webkit-slider-thumb {
@@ -302,5 +324,8 @@ input[type="range"] {
 
 #toInput {
   width: 100%;
-  /* margin-left: 1.1em; */
+
+  @media only screen and (max-width: 480px) {
+    margin-left: 1em;
+  }
 }

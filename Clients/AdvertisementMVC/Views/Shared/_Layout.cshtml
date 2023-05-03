@@ -1,0 +1,44 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="utf-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+	<link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+	<link rel="stylesheet" href="~/css/utilities.css">
+	<link rel="stylesheet" href="~/css/advertisements.css">
+	<link rel="stylesheet" href="	https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+	<link rel="icon" type="image/png" sizes="16x16" href="../images/icon-home-blue.png">
+	<title>@ViewData["Title"] - HomeFinder</title>
+</head>
+
+<body>
+	<div class="background-image">
+		<img src="../images/city.jpg" alt="City" />
+</div>
+
+	<nav id="navbar">
+				<img src="../images/icon-home-white.png" class="navbar__icon"></i>
+		<h1 class="navbar__logo">
+				Home
+			<span class="navbar__logo-span">
+				Finder
+			</span>
+		</h1>
+	</nav>
+
+	<main role="main">
+		@RenderBody()
+	</main>
+
+	<footer>
+		<p>&#169; 2023 HomeFinder</p>
+	</footer>
+
+	<script src="~/js/site.js" asp-append-version="true"></script>
+	<script src="~/js/price-slider.js" asp-append-version="true"></script>
+	<script src="	https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/js/all.min.js" asp-append-version="true"></script>
+	@await RenderSectionAsync("Scripts", required: false)
+
+</body>
+</html>

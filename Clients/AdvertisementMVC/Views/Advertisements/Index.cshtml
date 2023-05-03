@@ -1,0 +1,73 @@
+@model IEnumerable<AdvertisementMVC.ViewModels.AdvertisementViewModel>
+
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    ViewData["Title"] = "Advertisements";
+}
+
+<div class="advertisements">
+        <div class="search__container">
+            <div class="search__container-title">
+                <h2>Sökfilter</h2>
+            </div>
+            <hr>
+            <form method="post">
+                <div class="search__container-top">
+                    <div class="search__container-adress-field search-text-box">
+                        <i class="fa-solid fa-magnifying-glass"></i>
+                        <input type="text" class="search__container-address search-text-box" placeholder=" Skriv adress">
+                    </div>
+
+                    <div class="range_container">
+                        
+                        <div class="sliders_control">
+                            <input id="fromSlider" type="range" value="0" min="0" max="10000"/>
+                            <input id="toSlider" type="range" value="10000" min="0" max="10000"/>
+                        </div>
+
+                        <div class="form_control">
+
+                            <div class="form_control_container">
+                                <div class="form_control_container__time min">Min</div>
+                                <input class="form_control_container__time__input" type="number" id="fromInput" value="0" min="0" max="10000"/>
+                            </div>
+
+                            <div class="form_control_container">
+                                <div class="form_control_container__time max">Max</div>
+                                <input class="form_control_container__time__input" type="number" id="toInput" value="10000" min="0" max="10000"/>
+                            </div>
+                            
+                        </div>
+
+                    </div>
+                </div>
+                    <div class="search__container-bottom">
+                        <input type="submit" class="search__container-btn-sort search-text-box" value="Filtrera efter bostad">
+                    </div>
+            </form>
+        </div>
+        <hr>
+        <div class="advertisements__container">
+            @foreach (var ad in Model)
+            {
+                <div class="advertisements__card">
+                    <div class="advertisements__card-image-container">
+                        <img src=@ad.ImageUrl class="advertisements__card-image" alt="Ad">
+                    </div>
+                    <div class="advertisements__card-text-container">
+                        <div class="advertisements__card-inner-container-top">
+                            <p class="advertisements__card-address">@ad.StreetName @ad.StreetNumber</p>
+                            <p class="advertisements__card-city">@ad.City</p>
+                        </div>
+
+                        <p class="advertisements__card-lease-type"><img src="@ad.LeaseTypeIconUrl"> @ad.LeaseType</p>
+
+                        <div class="advertisements__card-inner-container-bottom">
+                            <p class="advertisements__card-price-and-area">@(ad.ListPrice.ToString("N0").Replace(",", " ")) kr <span>@ad.Area m²</span></p>
+                            <img src="../images/arrow-right.png">
+                        </div>
+                    </div>
+                </div>
+            }
+        </div>
+</div>

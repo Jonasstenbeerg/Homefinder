@@ -18,15 +18,20 @@ const Home = () => {
   }
 
   const handleCreateAdvertisement = async (advertisement) => {
-    const url = `${process.env.REACT_APP_API_BASEURL}advertisements`
+    try {
+      const url = `${process.env.REACT_APP_API_BASEURL}advertisements`
     
-    await axios.post(url,advertisement,{
-      headers: {
-        authorization: authHeader()
-      }
-    })
+      await axios.post(url,advertisement,{
+        headers: {
+          authorization: authHeader()
+        }
+      })
 
-    await handleFetchAdvertisements()
+      await handleFetchAdvertisements()
+    } catch (error) {
+      //TODO: this should generate a custom error modal
+      alert('Something went wrong')
+    }
   }
 
   return (

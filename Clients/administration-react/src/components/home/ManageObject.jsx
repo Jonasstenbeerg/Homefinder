@@ -34,7 +34,7 @@ const ManageObject = ({objectToManage, onCreateAdvertisement}) => {
       propertyType,
       leaseType
     }
-
+    
     onCreateAdvertisement(add)
   }
 
@@ -69,7 +69,7 @@ const ManageObject = ({objectToManage, onCreateAdvertisement}) => {
   const handleLeaseTypeSelectChanged = (e) => {
     setLeaseType(e.target.value)
   }
-
+  //TODO: add custom validation to form
   return (
     <section className={`home-sidebar-container ${mobileManageObjectVisible ? "":styles["hidden"]}`} id={styles["right-sidebar"]}>
       <h1 className="home-sidebar-heading">ManageObjects</h1>
@@ -96,7 +96,7 @@ const ManageObject = ({objectToManage, onCreateAdvertisement}) => {
           Customize
         </button>
       </div>
-      <form action="" onSubmit={handleSubmit} className={styles["manage-objects-form-container"]}>
+      <form action="" onSubmit={handleSubmit} className={styles["manage-objects-form"]}>
         <h1 className={styles["manage-objects-form-heading"]}>Address</h1>
         <div className={styles["manage-objects-form-input-container"]}>
           <label htmlFor="manage-objects-form-input">city</label>
@@ -106,6 +106,8 @@ const ManageObject = ({objectToManage, onCreateAdvertisement}) => {
             value={city}
             type="text"
             className={styles["manage-objects-form-input"]}
+            onInvalid={(e) => e.target.setCustomValidity("City is required")}
+            required
           />
         </div>
         <div className={styles["manage-objects-form-input-container"]}>
@@ -116,6 +118,8 @@ const ManageObject = ({objectToManage, onCreateAdvertisement}) => {
             value={postalCode}
             type="text"
             className={styles["manage-objects-form-input"]}
+            required
+            onInvalid={(e) => e.target.setCustomValidity("Postal code is required")}
           />
         </div>
         <div className={styles["manage-objects-form-input-container"]}>
@@ -126,6 +130,8 @@ const ManageObject = ({objectToManage, onCreateAdvertisement}) => {
             value={streetName}
             type="text"
             className={styles["manage-objects-form-input"]}
+            required
+            onInvalid={(e) => e.target.setCustomValidity("Street name is required")}
           />
         </div>
         <div className={styles["manage-objects-form-input-container"]}>
@@ -136,6 +142,8 @@ const ManageObject = ({objectToManage, onCreateAdvertisement}) => {
             value={streetNumber}
             type="text"
             className={styles["manage-objects-form-input"]}
+            required
+            onInvalid={(e) => e.target.setCustomValidity("Street number is required")}
           />
         </div>
         <h1 className={styles["manage-objects-form-heading"]}>Propertytype</h1>
@@ -145,6 +153,8 @@ const ManageObject = ({objectToManage, onCreateAdvertisement}) => {
             onChange={handlePropertyTypeSelectChanged}
             value={propertyType}
             className={styles["manage-objects-form-input"]}
+            required
+            onInvalid={(e) => e.target.setCustomValidity("Propertytype is required")}
           >
             <option value="" defaultValue disabled hidden>
               -- select an option --
@@ -160,6 +170,8 @@ const ManageObject = ({objectToManage, onCreateAdvertisement}) => {
             onChange={handleLeaseTypeSelectChanged}
             value={leaseType}
             className={styles["manage-objects-form-input"]}
+            required
+            onInvalid={(e) => e.target.setCustomValidity("Leasetype is required")}
           >
             <option value="" defaultValue disabled hidden>
               -- select an option --

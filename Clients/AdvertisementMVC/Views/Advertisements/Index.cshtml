@@ -12,32 +12,35 @@
             </div>
             <hr>
             <form method="post">
+                <div class="search__container-top">
                     <div class="search__container-adress-field search-text-box">
                         <i class="fa-solid fa-magnifying-glass"></i>
                         <input type="text" class="search__container-address search-text-box" placeholder=" Skriv adress">
                     </div>
 
-                <div class="range_container">
-                    
-                    <div class="sliders_control">
-                        <input id="fromSlider" type="range" value="0" min="0" max="10000"/>
-                        <input id="toSlider" type="range" value="10000" min="0" max="10000"/>
-                    </div>
+                    <div class="range_container">
+                        
+                        <div class="sliders_control">
+                            <input id="fromSlider" type="range" value="0" min="0" max="10000"/>
+                            <input id="toSlider" type="range" value="10000" min="0" max="10000"/>
+                        </div>
 
-                    <div class="form_control">
-                        <div class="form_control_container">
-                         <div class="form_control_container__time">Min</div>
-                         <input class="form_control_container__time__input" type="number" id="fromInput" value="0" min="0" max="10000"/>
-                    </div>
+                        <div class="form_control">
 
-                    <div class="form_control_container">
-                         <div class="form_control_container__time">Max</div>
-                         <input class="form_control_container__time__input" type="number" id="toInput" value="10000" min="0" max="10000"/>
-                    </div>
+                            <div class="form_control_container">
+                                <div class="form_control_container__time">Min</div>
+                                <input class="form_control_container__time__input" type="number" id="fromInput" value="0" min="0" max="10000"/>
+                            </div>
+
+                            <div class="form_control_container">
+                                <div class="form_control_container__time">Max</div>
+                                <input class="form_control_container__time__input" type="number" id="toInput" value="10000" min="0" max="10000"/>
+                            </div>
+                            
+                        </div>
 
                     </div>
                 </div>
-
                     <div class="search__container-bottom">
                         <input type="submit" class="search__container-btn-sort search-text-box" value="Filtrera efter bostad">
                     </div>

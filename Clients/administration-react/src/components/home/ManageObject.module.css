@@ -17,10 +17,11 @@
 }
 
 section#right-sidebar.hidden h1,
-section#right-sidebar.hidden div {
+section#right-sidebar.hidden div,
+section#right-sidebar.hidden button {
  @media only screen and (max-width: 425px) {
-  display: none;
-}
+    display: none;
+  }
 }
 
 .right-sidebar-toggle-button {
@@ -90,6 +91,9 @@ section#right-sidebar.hidden div {
   font-size: 1.4rem;
   margin-top: 4rem;
   margin-bottom: 2rem;
+  @media only screen and (max-width: 425px) {
+    margin-top: 2rem;
+  }
 }
 
 .manage-objects-form-input {
@@ -130,6 +134,9 @@ section#right-sidebar.hidden div {
   padding: 1rem;
   border-radius: 16px;
   width: 100%;
+  @media only screen and (max-width: 425px) {
+    font-size: 0.8rem;
+  }
 }
 
 .manage-objects-form-button:hover {

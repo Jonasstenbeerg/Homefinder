@@ -70,7 +70,7 @@ const Login = () => {
         <label className="form-label" htmlFor="form-password">Password:</label>
         <input value={password} className={styles["form-input"]} onChange={passwordChangeHandler} placeholder="Password" type="password" id="form-password" name="password" tocomplete="off" required/>
         <span className={styles["form-error"]}>{errorMessage}</span>
-        <a href="/forgot-password" id="form-forgot-password">I forgot my password</a>
+        <a href="/forgot-password" id={styles["form-forgot-password"]}>I forgot my password</a>
 
         <button className={styles["form-submit-button"]} type="submit">Login</button>
       </section>

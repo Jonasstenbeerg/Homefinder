@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { faRectangleAd, faUsers, faChevronRight, faChevronLeft }  from '@fortawesome/free-solid-svg-icons'
+import { faChevronRight, faChevronLeft }  from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import styles from './ManageObject.module.css'
 
@@ -146,9 +146,8 @@ const ManageObject = ({objectToManage, onCreateAdvertisement}) => {
             value={propertyType}
             className={styles["manage-objects-form-input"]}
           >
-            <option disabled defaultValue value>
-              {" "}
-              -- select an option --{" "}
+            <option value="" defaultValue disabled hidden>
+              -- select an option --
             </option>
             <option value="Villa">Villa</option>
             <option value="Radhus">Radhus</option>
@@ -162,9 +161,8 @@ const ManageObject = ({objectToManage, onCreateAdvertisement}) => {
             value={leaseType}
             className={styles["manage-objects-form-input"]}
           >
-            <option disabled defaultValue value>
-              {" "}
-              -- select an option --{" "}
+            <option value="" defaultValue disabled hidden>
+              -- select an option --
             </option>
             <option value="Egenrätt">Egenrätt</option>
             <option value="Bostadsrätt">Bostadsrätt</option>

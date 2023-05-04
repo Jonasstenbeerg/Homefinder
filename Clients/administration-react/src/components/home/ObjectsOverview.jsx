@@ -1,34 +1,34 @@
-import { useEffect, useState } from 'react';
-import axios from 'axios';
+import { useState } from 'react';
 import { faMagnifyingGlass }  from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { useEffect } from 'react';
+import styles from './ObjectsOverview.module.css'
 
 
-const ObjectsOverview = () => {
-  const [advertisements, setAdvertisements] = useState([])
-
-  useEffect(() => {
-    fetchAdvertisements()
+const ObjectsOverview = ({selectObject, advertisements,onFetchAdvertisements}) => {
+  const [selectedIndex, setSelectedIndex] = useState('')
+  useEffect(() =>{
+    onFetchAdvertisements()
   },[])
   
-  async function fetchAdvertisements() {
-    var res = await axios.get(`${process.env.REACT_APP_API_BASEURL}advertisements/list`)
-    setAdvertisements(res.data)
+  const handleRowClicked = (rowObject, index) => {
+    selectObject(rowObject)
+    setSelectedIndex(index)
   }
-  
+
   return (
-    <section className="objects-overview-wrapper">
-      <section className="objects-overview-header-container">
-        <h1 className="objects-overview-heading" >Advertisements <span className='add-counter'>{advertisements.length}</span></h1>
-        <div className='search-container'>
+    <section className={styles["objects-overview-container"]}>
+      <section className={styles["objects-overview-header-container"]}>
+        <h1 className={styles["objects-overview-heading"]} >Advertisements <span className={styles["add-counter"]}>{advertisements.length}</span></h1>
+        <div className={styles["search-container"]}>
           <FontAwesomeIcon icon={faMagnifyingGlass}/>
-          <input placeholder='search address' className='search' type="text" />
+          <input placeholder='search address' className={styles["search"]} type="text" />
         </div>
       </section>
-      <section className="objects-overview-table-container">
-        <table className='objects-overview-table'>
+      <section className={styles["objects-overview-table-container"]}>
+        <table className={styles["objects-overview-table"]}>
           <thead>
-            <tr className='objects-overview-table-top'>
+            <tr className={styles["objects-overview-table-top"]}>
               <th>Address</th>
               <th>Type</th>
               <th>Size</th>
@@ -38,21 +38,20 @@ const ObjectsOverview = () => {
           </thead>
           <tbody>
           {advertisements.map((add, index) => (
-            <tr key={index}>
+            <tr key={index} onClick={() =>{handleRowClicked(add, index)}} className={selectedIndex === index ? styles["selected"]:""}>
               <td>
-                <div className='table-column'>{add.streetName} {add.streetNumber}</div>
-                <div className='table-column-subrow table-column'>{add.city}</div>
+                <div className={styles["table-column"]}>{add.streetName} {add.streetNumber}</div>
+                <div className={`${styles["table-column-subrow"]} ${styles["table-column"]}`}>{add.city}</div>
               </td>
               <td>
-                <div className='table-column'>{add.propertyType}</div>
-                <div className='table-column-subrow table-column'>{add.leaseType}</div>
+                <div className={styles["table-column"]}>{add.propertyType}</div>
+                <div className={`${styles["table-column-subrow"]} ${styles["table-column"]}`}>{add.leaseType}</div>
               </td>
               <td>
-                <div className='table-column'>{add.area}m2</div>
-                
+                <div className={styles["table-column"]}>{add.area}m2</div>
               </td>
-              <td className='table-column'>{add.listPrice}</td>
-              <td className='table-column'>{add.deleted.toString()}</td>
+              <td className={styles["table-column"]}>{add.listPrice}</td>
+              <td className={styles["table-column"]}>{add.deleted.toString()}</td>
             </tr>
           ))}
           </tbody>

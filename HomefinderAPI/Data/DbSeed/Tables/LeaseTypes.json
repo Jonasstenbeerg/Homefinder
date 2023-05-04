@@ -1,0 +1,12 @@
+[
+	{
+		"Id": 1,
+		"Name": "Egenrätt",
+		"Description": "You own it"
+	},
+	{
+		"Id": 2,
+		"Name": "Bostadsrätt",
+		"Description": "You own everything with your neighbours"
+	}
+]

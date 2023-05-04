@@ -1,0 +1,156 @@
+[
+	{
+			"Id": 1,
+			"City": "Valbo",
+			"PostalCode": "81833",
+			"StreetName": "Vallrundan",
+			"StreetNumber": 95
+	},
+	{
+			"Id": 2,
+			"City": "Gävle",
+			"PostalCode": "34652",
+			"StreetName": "Majorsgatan",
+			"StreetNumber": 1
+	},
+	{
+			"Id": 3,
+			"City": "Stockholm",
+			"PostalCode": "34567",
+			"StreetName": "Sveavägen",
+			"StreetNumber": 98
+	},
+	{
+			"Id": 4,
+			"City": "Malmö",
+			"PostalCode": "37656",
+			"StreetName": "Grötgatan",
+			"StreetNumber": 9
+	},
+	{
+			"Id": 5,
+			"City":"Handen",
+			"PostalCode": "13648",
+			"StreetName": "Milavägen",
+			"StreetNumber": 5
+	},
+	{
+			"Id": 6,
+			"City":"Hässleholm",
+			"PostalCode": "28136",
+			"StreetName": "Strömsbergs säteri",
+			"StreetNumber": 1
+	},
+	{
+			"Id": 7,
+			"City":"Vättershaga",
+			"PostalCode": "98826",
+			"StreetName": "Gustavslundsvägsgatan",
+			"StreetNumber": 8
+	},
+	{
+			"Id": 8,
+			"City":"Norrtälje",
+			"PostalCode": "31840",
+			"StreetName": "Odengatanvägen",
+			"StreetNumber": 15
+	},
+	{
+			"Id": 9,
+			"City":"Malmö",
+			"PostalCode": "79465",
+			"StreetName": "Gästrikegatuvägen",
+			"StreetNumber": 34
+	},
+	{
+			"Id": 10,
+			"City":"Stockholm",
+			"PostalCode": "97369",
+			"StreetName": "Kungsvägsgatan",
+			"StreetNumber": 13
+	},
+	{
+			"Id": 11,
+			"City":"Stockholm",
+			"PostalCode": "10770",
+			"StreetName": "Storgatanvägen",
+			"StreetNumber": 21
+	},
+	{
+			"Id": 12,
+			"City":"Vara",
+			"PostalCode": "78413",
+			"StreetName": "Myrvägsgatan",
+			"StreetNumber": 27
+	},
+	{
+			"Id": 13,
+			"City":"Solna",
+			"PostalCode": "70419",
+			"StreetName": "Gustavslundsvägen",
+			"StreetNumber": 28
+	},
+	{
+			"Id": 14,
+			"City":"Herrljunga",
+			"PostalCode": "14063",
+			"StreetName": "Viaduktengatan",
+			"StreetNumber": 13
+	},
+	{
+			"Id": 15,
+			"City":"Norrtälje",
+			"PostalCode": "91092",
+			"StreetName": "Årstavägsgatan",
+			"StreetNumber": 17
+	},
+	{
+			"Id": 16,
+			"City":"Skara",
+			"PostalCode": "43426",
+			"StreetName": "Kristallgatan",
+			"StreetNumber": 19
+	},
+	{
+			"Id": 17,
+			"City":"Boden",
+			"PostalCode": "88543",
+			"StreetName": "Björkstigen",
+			"StreetNumber": 5
+	},
+	{
+			"Id": 18,
+			"City":"Alingsås",
+			"PostalCode": "66141",
+			"StreetName": "Årstavägsgatan",
+			"StreetNumber": 11
+	},
+	{
+			"Id": 19,
+			"City":"Umeå",
+			"PostalCode": "17716",
+			"StreetName": "Kronobergsgatanvägsgatan",
+			"StreetNumber": 36
+	},
+	{
+			"Id": 20,
+			"City":"Borås",
+			"PostalCode": "57842",
+			"StreetName": "Storforsgatan",
+			"StreetNumber": 23
+	},
+	{
+			"Id": 21,
+			"City":"Skellefteå",
+			"PostalCode": "69369",
+			"StreetName": "Myrvägsgatan",
+			"StreetNumber": 40
+	},
+	{
+			"Id": 22,
+			"City":"Göteborg",
+			"PostalCode": "97403",
+			"StreetName": "Ringvägsgatan",
+			"StreetNumber": 42
+	}
+]

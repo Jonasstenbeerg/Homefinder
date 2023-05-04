@@ -1,0 +1,34 @@
+#left-sidebar {
+  border-radius: 0 50px 0 0;
+  @media only screen and (max-width: 425px) {
+    border-right: 1px solid black;
+    border-top: 1px solid black;
+  }
+}
+
+#left-sidebar.hidden {
+  @media only screen and (max-width: 425px) {
+    transform: translateX(-12.2rem);
+  }
+}
+
+.left-sidebar-toggle-button {
+  visibility: hidden;
+}
+
+.left-sidebar-toggle-button {
+  @media only screen and (max-width: 425px) {
+    visibility: visible;
+    position: absolute;
+    right:-1.9rem;
+    top: 25rem;
+    left: auto;
+    font-size: 2.5rem;
+    background-color: #EDEDED;
+    z-index: 1;
+  }
+}
+
+.objects-nav-list {
+  list-style-type: none
+}

@@ -1,8 +1,9 @@
-import { useState } from "react";
-import { useNavigate } from "react-router-dom";
-import { useSignIn } from "react-auth-kit";
+import { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
+import { useSignIn } from 'react-auth-kit';
 import axios from 'axios';
-import jwt_decode from "jwt-decode";
+import jwt_decode from 'jwt-decode';
+import styles from './Login.module.css'
 
 const Login = () => {
   const [userName, setUserName] = useState('')
@@ -60,18 +61,18 @@ const Login = () => {
     }
   }
   return (
-    <form onSubmit={handleLogin} className="form-container">
-      <section className="form-props-area">
-        <h1 className="form-heading">Sign in</h1>
-        <label className="form-label" htmlFor="form-username">Username:</label>
-        <input value={userName} className="form-input" onChange={userNameChangeHandler} placeholder="Username" type="text" id="form-username" name="username" tocomplete="off" required/>
+    <form onSubmit={handleLogin} className={styles["form-container"]}>
+      <section className={styles["form-props-area"]}>
+        <h1 className={styles["form-heading"]}>Sign in</h1>
+        <label className={styles["form-label"]} htmlFor="form-username">Username:</label>
+        <input value={userName} className={styles["form-input"]} onChange={userNameChangeHandler} placeholder="Username" type="text" id="form-username" name="username" tocomplete="off" required/>
         
         <label className="form-label" htmlFor="form-password">Password:</label>
-        <input value={password} className="form-input" onChange={passwordChangeHandler} placeholder="Password" type="password" id="form-password" name="password" tocomplete="off" required/>
-        <span className="form-error">{errorMessage}</span>
-        <a href="/forgot-password" id="form-forgot-password">I forgot my password</a>
+        <input value={password} className={styles["form-input"]} onChange={passwordChangeHandler} placeholder="Password" type="password" id="form-password" name="password" tocomplete="off" required/>
+        <span className={styles["form-error"]}>{errorMessage}</span>
+        <a href="/forgot-password" id={styles["form-forgot-password"]}>I forgot my password</a>
 
-        <button className="form-submit-button" type="submit">Login</button>
+        <button className={styles["form-submit-button"]} type="submit">Login</button>
       </section>
     </form>
   )

@@ -13,6 +13,7 @@ const ManageObject = ({objectToManage, onCreateAdvertisement}) => {
   const [streetNumber, setStreetNumber] = useState("")
   const [propertyType, setPropertyType] = useState("")
   const [leaseType, setLeaseType] = useState("")
+  const [selectedImage, setSelectedImage] = useState("")
 
   useEffect(() => {
     setCity(objectToManage?.city)
@@ -21,10 +22,16 @@ const ManageObject = ({objectToManage, onCreateAdvertisement}) => {
     setStreetNumber(objectToManage?.streetNumber)
     setPropertyType(objectToManage?.propertyType)
     setLeaseType(objectToManage?.leaseType)
+    setSelectedImage(objectToManage?.imageBin)
   },[objectToManage])
   
   const handleSubmit = (e) => {
     e.preventDefault()
+
+    let imageBin;
+    const reader = new FileReader()
+    reader.onload = function() { imageBin = reader.result }
+    reader.readAsDataURL(selectedImage)
     
     const add = {
       city,
@@ -32,7 +39,8 @@ const ManageObject = ({objectToManage, onCreateAdvertisement}) => {
       streetName,
       streetNumber,
       propertyType,
-      leaseType
+      leaseType,
+      imageBin
     }
     
     onCreateAdvertisement(add)
@@ -68,6 +76,12 @@ const ManageObject = ({objectToManage, onCreateAdvertisement}) => {
 
   const handleLeaseTypeSelectChanged = (e) => {
     setLeaseType(e.target.value)
+  }
+
+  const handleSelectedImageChanged = (e) => {
+    const file = e.target.files[0]
+    const image = URL.createObjectURL(file)
+    setSelectedImage(image)
   }
   //TODO: add custom validation to form
   return (
@@ -179,6 +193,18 @@ const ManageObject = ({objectToManage, onCreateAdvertisement}) => {
             <option value="Egenrätt">Egenrätt</option>
             <option value="Bostadsrätt">Bostadsrätt</option>
           </select>
+        </div>
+        <div className={styles["manage-objects-form-input-container"]} id={styles["image-input-container"]}>
+          <label htmlFor="manage-objects-form-input">image</label>
+          <input
+            disabled={activeButton === "Info"}
+            onChange={handleSelectedImageChanged}
+            type="file"
+            className={styles["manage-objects-form-input"]}
+          />
+          {selectedImage && (
+            <img src={selectedImage} className={styles["form-image"]} height={mobileManageObjectVisible ? "140":"250"} width={mobileManageObjectVisible ? "140":"250"}/>
+          )}
         </div>
         {activeButton === "Info" || (
           <button 

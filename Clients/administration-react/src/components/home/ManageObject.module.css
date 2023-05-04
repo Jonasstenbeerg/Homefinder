@@ -18,7 +18,8 @@
 
 section#right-sidebar.hidden h1,
 section#right-sidebar.hidden div,
-section#right-sidebar.hidden button {
+section#right-sidebar.hidden button,
+section#right-sidebar.hidden img {
  @media only screen and (max-width: 425px) {
     display: none;
   }
@@ -136,9 +137,27 @@ section#right-sidebar.hidden button {
   width: 100%;
   @media only screen and (max-width: 425px) {
     font-size: 0.8rem;
+    margin-top: 1.5rem;
   }
 }
 
 .manage-objects-form-button:hover {
   background-color: #002F56;
+}
+
+#image-input-container {
+  height: 19.5rem;
+  @media only screen and (max-width: 425px) {
+    height:11.7rem;
+  } 
+}
+
+.form-image {
+  position: absolute;
+  left: 1rem;
+  top: 2.5rem;
+  right: auto;
+  @media only screen and (max-width: 425px) {
+    left:0.3rem;
+  } 
 }

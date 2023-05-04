@@ -21,5 +21,6 @@ namespace HomefinderAPI.Models
     public Address? Address { get; set; }
     [ForeignKey("LeaseTypeId")]
     public LeaseType? LeaseType { get; set; }
+    public ICollection<Image>? Images { get; set; }
   }
 }

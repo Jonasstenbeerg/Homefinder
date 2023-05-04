@@ -197,6 +197,10 @@
   font-size: 1em;
 }
 
+.search__container-btn-sort:hover {
+  cursor: pointer;
+}
+
 .search__container-bottom {
   display: flex;
   justify-content: right;

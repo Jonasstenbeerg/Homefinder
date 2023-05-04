@@ -30,6 +30,7 @@ namespace AdvertisementMVC.Controllers
     		{
         	new AdvertisementViewModel 
 					{ 
+						Id = 0,
     				ListPrice = 2400000,
 						LeaseType = "Villa",
 						LeaseTypeIconUrl = "../images/lease-type-house.png", 
@@ -42,6 +43,7 @@ namespace AdvertisementMVC.Controllers
 						},
         	new AdvertisementViewModel 
 					{ 
+						Id = 1,
 						ListPrice = 3700000,
 						LeaseType = "Lägenhet",
 						LeaseTypeIconUrl = "../images/lease-type-apartment.png", 
@@ -54,6 +56,7 @@ namespace AdvertisementMVC.Controllers
 						},
         	new AdvertisementViewModel 
 					{ 
+						Id = 2,
 						ListPrice = 1570000,
 						LeaseType = "Lägenhet",
 						LeaseTypeIconUrl = "../images/lease-type-apartment.png",  
@@ -73,6 +76,21 @@ namespace AdvertisementMVC.Controllers
 				throw;
 			}
 		}
+
+    [HttpPost("Find")]
+    public async Task<IActionResult> Find(AdvertisementFilterViewModel advertisementFilterViewModel)
+    {
+      try
+      {
+        var advertisement = await _advertisementService.FindAdvertisement(advertisementFilterViewModel);
+        return View("Index", advertisement);
+      }
+      catch (Exception ex)
+      {
+        Console.WriteLine(ex.Message);
+        return View("Error");
+      }
+    }
 
 		[ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
 		public IActionResult Error()

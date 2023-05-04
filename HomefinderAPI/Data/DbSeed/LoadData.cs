@@ -26,6 +26,16 @@ namespace HomefinderAPI.Data.DbSeed
       var addData = await File.ReadAllTextAsync("Data/DbSeed/Tables/Advertisements.json");
       var adds = JsonSerializer.Deserialize<List<Advertisement>>(addData);
 
+      foreach (var add in adds!)
+      {
+        var propObj = await context.PropertyObjects.FindAsync(add.PropertyId);
+
+        if (propObj is not null)
+        {
+          add.Property = propObj!;
+        }
+      }
+
       await context.AddRangeAsync(adds!);
       await context.SaveChangesAsync();
 

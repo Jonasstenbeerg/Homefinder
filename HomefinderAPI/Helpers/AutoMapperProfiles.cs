@@ -21,7 +21,9 @@ namespace HomefinderAPI.Helpers
       .ForMember(dest => dest.PropertyType, options => options.MapFrom(src => src.Property.PropertyType!.Name))
       .ForMember(dest => dest.City, options => options.MapFrom(src => src.Property.Address!.City))
       .ForMember(dest => dest.StreetName, options => options.MapFrom(src => src.Property.Address!.StreetName))
-      .ForMember(dest => dest.StreetNumber, options => options.MapFrom(src => src.Property.Address!.StreetNumber));
+      .ForMember(dest => dest.StreetNumber, options => options.MapFrom(src => src.Property.Address!.StreetNumber))
+      .ForMember(dest => dest.PostalCode, options => options.MapFrom(src => src.Property.Address!.PostalCode))
+      .ForMember(dest => dest.ImageBin, options => options.MapFrom(src => src.Property.Images!.First().ImageBin));
       CreateMap<PostAdvertisementViewModel, Advertisement>()
       .ForPath(dest => dest.Property.Address!.City, options => options.MapFrom(src => src.City))
       .ForPath(dest => dest.Property.Address!.PostalCode, options => options.MapFrom(src => src.PostalCode))

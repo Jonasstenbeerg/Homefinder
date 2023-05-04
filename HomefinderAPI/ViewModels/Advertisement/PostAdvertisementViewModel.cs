@@ -20,5 +20,7 @@ namespace HomefinderAPI.ViewModels.Advertisement
 		public string? StreetName { get; set; }
 		[Required(ErrorMessage = "Gatunummer är obligatoriskt")]
 		public int StreetNumber { get; set; }
+		[Required(ErrorMessage = "Binär kod för bild är obligatoriskt")]
+		public string? ImageBin { get; set; }
 	}
 }

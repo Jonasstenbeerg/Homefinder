@@ -75,6 +75,7 @@ namespace HomefinderAPI.Repositories
         .Include(a => a.Property.Address)
         .Include(a => a.Property.LeaseType)
         .Include(a => a.Property.PropertyType)
+        .Include(a => a.Property.Images)
         .ToListAsync();
 
       var addFilter = _mapper.Map<AdvertisementSearchFilter>(query);

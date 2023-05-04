@@ -13,7 +13,10 @@ const ManageObject = ({objectToManage, onCreateAdvertisement}) => {
   const [streetNumber, setStreetNumber] = useState("")
   const [propertyType, setPropertyType] = useState("")
   const [leaseType, setLeaseType] = useState("")
-  const [selectedImage, setSelectedImage] = useState("")
+  const [image, setImage] = useState("")
+  const [previewImage, setPreviewImage] = useState("")
+  const [displayImage, setDisplayImage] = useState("")
+  
 
   useEffect(() => {
     setCity(objectToManage?.city)
@@ -22,17 +25,24 @@ const ManageObject = ({objectToManage, onCreateAdvertisement}) => {
     setStreetNumber(objectToManage?.streetNumber)
     setPropertyType(objectToManage?.propertyType)
     setLeaseType(objectToManage?.leaseType)
-    setSelectedImage(objectToManage?.imageBin)
+    setDisplayImage(objectToManage?.imageBin)
+    setPreviewImage("")
   },[objectToManage])
   
-  const handleSubmit = (e) => {
+  const toBase64 = (file) => 
+    new Promise((resolve, reject) => {
+      const reader = new FileReader()
+      reader.readAsDataURL(file)
+      reader.onload = () => resolve(reader.result)
+      reader.onerror = (error) => reject(error)
+    })
+  
+
+  const handleSubmit = async (e) => {
     e.preventDefault()
 
-    let imageBin;
-    const reader = new FileReader()
-    reader.onload = function() { imageBin = reader.result }
-    reader.readAsDataURL(selectedImage)
-    
+    let imgaeBin = await toBase64(image)
+
     const add = {
       city,
       postalCode,
@@ -40,7 +50,7 @@ const ManageObject = ({objectToManage, onCreateAdvertisement}) => {
       streetNumber,
       propertyType,
       leaseType,
-      imageBin
+      imgaeBin
     }
     
     onCreateAdvertisement(add)
@@ -79,9 +89,9 @@ const ManageObject = ({objectToManage, onCreateAdvertisement}) => {
   }
 
   const handleSelectedImageChanged = (e) => {
-    const file = e.target.files[0]
-    const image = URL.createObjectURL(file)
-    setSelectedImage(image)
+    setImage(e.target.files[0])
+    let previewBlob = URL.createObjectURL(e.target.files[0])
+    setPreviewImage(previewBlob)
   }
   //TODO: add custom validation to form
   return (
@@ -202,8 +212,8 @@ const ManageObject = ({objectToManage, onCreateAdvertisement}) => {
             type="file"
             className={styles["manage-objects-form-input"]}
           />
-          {selectedImage && (
-            <img src={selectedImage} className={styles["form-image"]} height={mobileManageObjectVisible ? "140":"250"} width={mobileManageObjectVisible ? "140":"250"}/>
+          {previewImage && (
+            <img src={previewImage} className={styles["form-image"]} height={mobileManageObjectVisible ? "140":"250"} width={mobileManageObjectVisible ? "140":"250"}/>
           )}
         </div>
         {activeButton === "Info" || (

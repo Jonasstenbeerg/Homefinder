@@ -68,7 +68,6 @@ namespace HomefinderAPI.Repositories
         .SingleOrDefaultAsync();
     }
 
-
     public async Task<List<AdvertisementViewModel>> ListAllAdvertisementsAsync(AdvertisementQuery? query = null)
     {
       var advertisements = await _context.Advertisements

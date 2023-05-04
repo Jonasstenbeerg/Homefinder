@@ -49,6 +49,7 @@ namespace HomefinderAPI.Repositories
             advertisementToAdd.Property.AddressId = address.Id;
         }
 
+        advertisementToAdd.Property.Images = new List<Image>(){new Image{ImageBin = model.ImageBin}};
         advertisementToAdd.Property.LeaseType = leaseType;
         advertisementToAdd.Property.PropertyType = propertyType;
 

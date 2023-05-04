@@ -17,17 +17,29 @@ const ManageObject = ({objectToManage, onCreateAdvertisement}) => {
   const [previewImage, setPreviewImage] = useState("")
   const [displayImage, setDisplayImage] = useState("")
   
-
   useEffect(() => {
-    setCity(objectToManage?.city)
-    setPostalCode(objectToManage?.postalCode)
-    setStreetName(objectToManage?.streetName)
-    setStreetNumber(objectToManage?.streetNumber)
-    setPropertyType(objectToManage?.propertyType)
-    setLeaseType(objectToManage?.leaseType)
-    setDisplayImage(objectToManage?.imageBin)
-    setPreviewImage("")
-  },[objectToManage])
+    if (activeButton !== "Create") {
+      setCity(objectToManage?.city)
+      setPostalCode(objectToManage?.postalCode)
+      setStreetName(objectToManage?.streetName)
+      setStreetNumber(objectToManage?.streetNumber)
+      setPropertyType(objectToManage?.propertyType)
+      setLeaseType(objectToManage?.leaseType)
+      setDisplayImage(objectToManage?.imageBin)
+      setPreviewImage("")
+    }
+    else {
+      setCity("")
+      setPostalCode("")
+      setStreetName("")
+      setStreetNumber("")
+      setPropertyType("")
+      setLeaseType("")
+      setDisplayImage("")
+      setPreviewImage("")
+    }
+  },[objectToManage,activeButton])
+  
   
   const toBase64 = (file) => 
     new Promise((resolve, reject) => {
@@ -37,11 +49,10 @@ const ManageObject = ({objectToManage, onCreateAdvertisement}) => {
       reader.onerror = (error) => reject(error)
     })
   
-
   const handleSubmit = async (e) => {
     e.preventDefault()
 
-    let imgaeBin = await toBase64(image)
+    let imageBin = await toBase64(image)
 
     const add = {
       city,
@@ -50,9 +61,9 @@ const ManageObject = ({objectToManage, onCreateAdvertisement}) => {
       streetNumber,
       propertyType,
       leaseType,
-      imgaeBin
+      imageBin
     }
-    
+  
     onCreateAdvertisement(add)
   }
 
@@ -212,7 +223,10 @@ const ManageObject = ({objectToManage, onCreateAdvertisement}) => {
             type="file"
             className={styles["manage-objects-form-input"]}
           />
-          {previewImage && (
+          {(activeButton !== "Create" && displayImage) && (
+            <img src={displayImage} className={styles["form-image"]} height={mobileManageObjectVisible ? "140":"250"} width={mobileManageObjectVisible ? "140":"250"}/>
+          )}
+          {(activeButton === "Create" && previewImage) && (
             <img src={previewImage} className={styles["form-image"]} height={mobileManageObjectVisible ? "140":"250"} width={mobileManageObjectVisible ? "140":"250"}/>
           )}
         </div>

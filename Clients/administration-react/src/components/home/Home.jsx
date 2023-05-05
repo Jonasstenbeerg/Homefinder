@@ -1,4 +1,4 @@
-import {  useState } from 'react';
+import {  useEffect, useState } from 'react';
 import axios from 'axios';
 import {useAuthHeader} from 'react-auth-kit'
 import ObjectsNav from './objectsNav/ObjectsNav';
@@ -11,7 +11,9 @@ const Home = () => {
   const authHeader = useAuthHeader()
   const [selectedobject, setSelectedObject] = useState(null)
   const [advertisements, setAdvertisements] = useState([])
+  const errorMessage = "something went wrong"
 
+  
   const handleFetchAdvertisements = async () => {
     var res = await axios.get(`${process.env.REACT_APP_API_BASEURL}advertisements/list`)
     setAdvertisements(res.data)
@@ -30,7 +32,7 @@ const Home = () => {
       await handleFetchAdvertisements()
     } catch (error) {
       //TODO: this should generate a custom error modal
-      alert('Something went wrong')
+      alert(errorMessage)
     }
   }
 
@@ -47,7 +49,7 @@ const Home = () => {
       await handleFetchAdvertisements()
     } catch (error) {
       //TODO: this should generate a custom error modal
-      alert('Something went wrong')
+      alert(errorMessage)
     }
   }
 

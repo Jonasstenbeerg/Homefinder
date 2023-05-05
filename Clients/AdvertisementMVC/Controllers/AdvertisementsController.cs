@@ -25,7 +25,7 @@ namespace AdvertisementMVC.Controllers
 			{
 				var advertisements = await _advertisementService.ListAllAdvertisementsAsync();
 
-				return View("Index", advertisements);
+				return View(advertisements);
 				// var ads = new List<AdvertisementViewModel>
     		// {
         // 	new AdvertisementViewModel 

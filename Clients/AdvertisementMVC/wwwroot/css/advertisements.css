@@ -35,6 +35,10 @@
   }
 }
 
+.advertisements__card:hover {
+  border-color: var(--primary-color);
+}
+
 .advertisements__card-image-container {
   width: 100%;
   overflow: hidden;
@@ -49,16 +53,14 @@
   @media only screen and (max-width: 768px) {
     border-right: none;
     border-bottom: 1px solid var(--secondary-text-color);
+    max-height: 100%;
+    max-width: 100%;
   }
 }
 
 .advertisements__card-text-container {
   width: 100%;
   padding: 1rem;
-}
-
-.advertisements__card:hover {
-  border-color: var(--primary-color);
 }
 
 .advertisements__card-inner-container-top {
@@ -69,7 +71,7 @@
 .advertisements__card-inner-container-bottom {
   display: flex;
   justify-content: space-between;
-  margin-top: 4.5em;
+  margin-top: 2.5em;
 }
 
 .advertisements__card-inner-container-bottom img {
@@ -100,12 +102,13 @@
   max-height: 1.667em;
 }
 
+.advertisements__card-property-type,
 .advertisements__card-lease-type {
   margin-top: 1em;
   text-align: start;
 }
 
-.advertisements__card-lease-type img {
+.advertisements__card-property-type img {
   vertical-align: sub;
   height: auto;
   width: 1.5em;
@@ -192,9 +195,15 @@
 
 .search__container-btn-sort {
   background-color: #fff;
+  border: 1px solid #e9e9e9;
   width: 10em;
   height: 2em;
   font-size: 1em;
+}
+
+.search__container-btn-sort:hover{
+  cursor: pointer;
+  border-color: var(--primary-color);
 }
 
 .search__container-bottom {

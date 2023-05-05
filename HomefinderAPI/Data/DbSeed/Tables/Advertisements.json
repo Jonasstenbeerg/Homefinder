@@ -1,0 +1,134 @@
+[
+	{
+		"Id": 1,
+		"Price": 1034500,
+		"Deleted": false,
+		"PropertyId": 1
+	},
+	{
+		"Id": 2,
+		"Price": 324234,
+		"Deleted": false,
+		"PropertyId": 2
+	},
+	{
+		"Id": 3,
+		"Price": 600000,
+		"Deleted": false,
+		"PropertyId": 3
+	},
+	{
+		"Id": 4,
+		"Price": 25500000,
+		"Deleted": false,
+		"PropertyId": 4
+	},
+	{
+		"Id": 5,
+		"Price": 100000,
+		"Deleted": false,
+		"PropertyId": 5
+	},
+	{
+		"Id": 6,
+		"Price": 200423000,
+		"Deleted": false,
+		"PropertyId": 6
+	},
+	{
+		"Id": 7,
+		"Price": 20024000,
+		"Deleted": false,
+		"PropertyId": 7
+	},
+	{
+		"Id": 8,
+		"Price": 54600000,
+		"Deleted": false,
+		"PropertyId": 8
+	},
+	{
+		"Id": 9,
+		"Price": 34600000,
+		"Deleted": false,
+		"PropertyId": 9
+	},
+	{
+		"Id": 10,
+		"Price": 21300000,
+		"Deleted": false,
+		"PropertyId": 10
+	},
+	{
+		"Id": 11,
+		"Price": 2001230,
+		"Deleted": false,
+		"PropertyId": 11
+	},
+	{
+		"Id": 12,
+		"Price": 2000000,
+		"Deleted": false,
+		"PropertyId": 12
+	},
+	{
+		"Id": 13,
+		"Price": 700000,
+		"Deleted": false,
+		"PropertyId": 13
+	},
+	{
+		"Id": 14,
+		"Price": 2003000,
+		"Deleted": false,
+		"PropertyId": 14
+	},
+	{
+		"Id": 15,
+		"Price": 900000,
+		"Deleted": false,
+		"PropertyId": 15
+	},
+	{
+		"Id": 16,
+		"Price": 600000,
+		"Deleted": false,
+		"PropertyId": 16
+	},
+	{
+		"Id": 17,
+		"Price": 4001300,
+		"Deleted": false,
+		"PropertyId": 17
+	},
+	{
+		"Id": 18,
+		"Price": 400012300,
+		"Deleted": false,
+		"PropertyId": 18
+	},
+	{
+		"Id": 19,
+		"Price": 40321000,
+		"Deleted": false,
+		"PropertyId": 19
+	},
+	{
+		"Id": 20,
+		"Price": 46543500,
+		"Deleted": false,
+		"PropertyId": 20
+	},
+	{
+		"Id": 21,
+		"Price": 100000,
+		"Deleted": false,
+		"PropertyId": 21
+	},
+	{
+		"Id": 22,
+		"Price": 4353,
+		"Deleted": false,
+		"PropertyId": 22
+	}
+]

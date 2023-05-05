@@ -1,0 +1,12 @@
+[
+	{
+		"Id": 1,
+		"Name": "Villa",
+		"Description": "Ett hus"
+	},
+	{
+		"Id": 2,
+		"Name": "Radhus",
+		"Description": "En radda med hus"
+	}
+]

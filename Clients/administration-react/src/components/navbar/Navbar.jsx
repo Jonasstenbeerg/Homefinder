@@ -1,9 +1,10 @@
-import { useEffect, useState } from "react"
+import { useEffect, useState } from 'react'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import  { faHouse }  from '@fortawesome/free-solid-svg-icons'
 import { useIsAuthenticated, useSignOut } from 'react-auth-kit';
-import { useNavigate } from "react-router-dom";
+import { useNavigate } from 'react-router-dom';
 import {useAuthUser} from 'react-auth-kit'
+import styles from './Navbar.module.css'
 
 
 const Navbar = () => {
@@ -49,24 +50,24 @@ const Navbar = () => {
   }
   
   return (
-    <nav id="nav">
-      <section className='nav-inner-wrapper'>
-        <button aria-label="Toggle Menu" id="burger-menu" className={isBurgerMenuOpen ? "open": ""} onClick={handleBurgerMenuToggle}>
+    <nav id={styles["nav"]}>
+      <section className={styles["nav-inner-container"]}>
+        <button aria-label="Toggle Menu" id={styles["burger-menu"]} className={isBurgerMenuOpen ? styles['open']: ""} onClick={handleBurgerMenuToggle}>
           <span></span>
           <span></span>
           <span></span>
         </button>
-        <ul className={isBurgerMenuOpen ? "burger-menu-list": "burger-menu-list closed"}>
+        <ul className={isBurgerMenuOpen ? styles["burger-menu-list"]: `${styles["burger-menu-list"]} ${styles.closed}`}>
           {menuContent}
         </ul>
-        <FontAwesomeIcon icon={faHouse} size="xl"/>
-        <h1 className="nav-heading">
+        <FontAwesomeIcon icon={faHouse} className={styles["nav-icon"]} size="xl"/>
+        <h1 className={styles["nav-heading"]}>
           HomeFinder Admin
         </h1>
         {isAuthenticated() && (
           <>
-            <button className="nav-elipse" onClick={handleElipseMenuClicked}>{authInfo().name[0]}</button>
-            <ul className="nav-elipse-menu">
+            <button className={styles["nav-elipse"]} onClick={handleElipseMenuClicked}>{authInfo().name[0]}</button>
+            <ul className={styles["nav-elipse-menu"]}>
               {menuContent}
             </ul>
           </>

@@ -1,6 +1,7 @@
 using System.Reflection;
 using System.Text;
 using HomefinderAPI.Data;
+using HomefinderAPI.Data.DbSeed;
 using HomefinderAPI.Helpers;
 using HomefinderAPI.Interfaces;
 using HomefinderAPI.Repositories;
@@ -143,6 +144,15 @@ try
 {
 	var context = services.GetRequiredService<HomefinderContext>();
 	await context.Database.MigrateAsync();
+	await LoadData.LoadAddressesAsync(context);
+	await LoadData.LoadPropertyTypesAsync(context);
+	await LoadData.LoadLeaseTypesAsync(context);
+	await LoadData.LoadPropertyObjectsAsync(context);
+	await LoadData.LoadImagesAsync(context);
+	await LoadData.LoadAspNetUsersAsync(context);
+	await LoadData.LoadAspNetUserClaimsAsync(context);
+  await LoadData.LoadAdvertisementsAsync(context);
+	
 }
 catch(Exception ex)
 {

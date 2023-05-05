@@ -1,0 +1,156 @@
+[
+  {
+		"Id": 1,
+		"Area": 15,
+		"PropertyTypeId": 1,
+		"AddressId": 1,
+		"LeaseTypeId": 1
+	},
+	{
+		"Id": 2,
+		"Area": 25,
+		"PropertyTypeId": 1,
+		"AddressId": 2,
+		"LeaseTypeId": 1
+	},
+	{
+		"Id": 3,
+		"Area": 63,
+		"PropertyTypeId": 2,
+		"AddressId": 3,
+		"LeaseTypeId": 2
+	},
+	{
+		"Id": 4,
+		"Area": 300,
+		"PropertyTypeId": 1,
+		"AddressId": 4,
+		"LeaseTypeId": 2
+	},
+	{
+		"Id": 5,
+		"Area": 80,
+		"PropertyTypeId": 1,
+		"AddressId": 5,
+		"LeaseTypeId": 1
+	},
+	{
+		"Id": 6,
+		"Area": 78,
+		"PropertyTypeId": 2,
+		"AddressId": 6,
+		"LeaseTypeId": 2
+	},
+	{
+		"Id": 7,
+		"Area": 45,
+		"PropertyTypeId": 2,
+		"AddressId": 7,
+		"LeaseTypeId": 1
+	},
+	{
+		"Id": 8,
+		"Area": 600,
+		"PropertyTypeId": 1,
+		"AddressId": 8,
+		"LeaseTypeId": 1
+	},
+	{
+		"Id": 9,
+		"Area": 120,
+		"PropertyTypeId": 2,
+		"AddressId": 9,
+		"LeaseTypeId": 2
+	},
+	{
+		"Id": 10,
+		"Area": 100,
+		"PropertyTypeId": 1,
+		"AddressId": 10,
+		"LeaseTypeId": 1
+	},
+	{
+		"Id": 11,
+		"Area": 23,
+		"PropertyTypeId": 2,
+		"AddressId": 11,
+		"LeaseTypeId": 2
+	},
+	{
+		"Id": 12,
+		"Area": 400,
+		"PropertyTypeId": 1,
+		"AddressId": 12,
+		"LeaseTypeId": 1
+	},
+	{
+		"Id": 13,
+		"Area": 78,
+		"PropertyTypeId": 2,
+		"AddressId": 13,
+		"LeaseTypeId": 2
+	},
+	{
+		"Id": 14,
+		"Area": 44,
+		"PropertyTypeId": 2,
+		"AddressId": 14,
+		"LeaseTypeId": 1
+	},
+	{
+		"Id": 15,
+		"Area": 67,
+		"PropertyTypeId": 1,
+		"AddressId": 15,
+		"LeaseTypeId": 2
+	},
+	{
+		"Id": 16,
+		"Area": 23,
+		"PropertyTypeId": 2,
+		"AddressId": 16,
+		"LeaseTypeId": 2
+	},
+	{
+		"Id": 17,
+		"Area": 67,
+		"PropertyTypeId": 1,
+		"AddressId": 17,
+		"LeaseTypeId": 2
+	},
+	{
+		"Id": 18,
+		"Area": 50,
+		"PropertyTypeId": 2,
+		"AddressId": 18,
+		"LeaseTypeId": 1
+	},
+	{
+		"Id": 19,
+		"Area": 2002,
+		"PropertyTypeId": 1,
+		"AddressId": 19,
+		"LeaseTypeId": 2
+	},
+	{
+		"Id": 20,
+		"Area": 40,
+		"PropertyTypeId": 2,
+		"AddressId": 20,
+		"LeaseTypeId": 1
+	},
+	{
+		"Id": 21,
+		"Area": 120,
+		"PropertyTypeId": 2,
+		"AddressId": 21,
+		"LeaseTypeId": 2
+	},
+	{
+		"Id": 22,
+		"Area": 34,
+		"PropertyTypeId": 1,
+		"AddressId": 22,
+		"LeaseTypeId": 1
+	} 
+]

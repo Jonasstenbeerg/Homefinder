@@ -1,0 +1,15 @@
+.home-container {
+  display: grid;
+  gap: 1rem;
+  grid-template-columns: 13.5rem auto 22rem;
+  height: 100%;
+  @media only screen and (max-width: 425px) {
+    grid-template-columns: 0rem auto 0rem;
+    gap: 0rem;
+  }
+
+}
+
+.home-container > * {
+  height: calc(100vh - 4rem);
+}

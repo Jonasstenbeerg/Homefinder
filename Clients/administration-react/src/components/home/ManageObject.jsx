@@ -197,7 +197,7 @@ const ManageObject = ({objectToManage, onCreateAdvertisement, onUpdateAdvertisem
               -- select an option --
             </option>
             <option value="Villa">Villa</option>
-            <option value="Radhus">Radhus</option>
+            <option value="Lägenhet">Lägenhet</option>
           </select>
         </div>
         <h1 className={styles["manage-objects-form-heading"]}>Leasetype</h1>

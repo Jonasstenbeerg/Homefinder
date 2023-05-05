@@ -49,7 +49,7 @@ namespace HomefinderAPI.Repositories
             advertisementToAdd.Property.AddressId = address.Id;
         }
 
-        advertisementToAdd.Property.Images = new List<Image>(){new Image{ImageBin = model.ImageBin}};
+        
         advertisementToAdd.Property.LeaseType = leaseType;
         advertisementToAdd.Property.PropertyType = propertyType;
 
@@ -76,7 +76,7 @@ namespace HomefinderAPI.Repositories
         .Include(a => a.Property.Address)
         .Include(a => a.Property.LeaseType)
         .Include(a => a.Property.PropertyType)
-        .Include(a => a.Property.Images)
+        .Include(a => a.Property.Image)
         .ToListAsync();
 
       var addFilter = _mapper.Map<AdvertisementSearchFilter>(query);
@@ -92,6 +92,7 @@ namespace HomefinderAPI.Repositories
       .Include(a => a.Property.Address)
       .Include(a => a.Property.LeaseType)
       .Include(a => a.Property.PropertyType)
+      .Include(a => a.Property.Image)
       .SingleOrDefaultAsync(a => a.Id == id);
 
       if (advertisement is null)

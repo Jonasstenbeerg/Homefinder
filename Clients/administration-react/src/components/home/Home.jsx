@@ -34,6 +34,23 @@ const Home = () => {
     }
   }
 
+  const handleUpdateAdvertisement = async (advertisement) => {
+    try {
+      const url = `${process.env.REACT_APP_API_BASEURL}advertisements/${selectedobject.id}`
+    
+      await axios.put(url,advertisement,{
+        headers: {
+          authorization: authHeader()
+        }
+      })
+
+      await handleFetchAdvertisements()
+    } catch (error) {
+      //TODO: this should generate a custom error modal
+      alert('Something went wrong')
+    }
+  }
+
   return (
     <section className={styles["home-container"]}>
       <nav>
@@ -43,7 +60,7 @@ const Home = () => {
         <ObjectsOverview advertisements={advertisements} onFetchAdvertisements={handleFetchAdvertisements} selectObject={setSelectedObject}></ObjectsOverview>
       </article>
       <article>
-        <ManageObject objectToManage={selectedobject} onCreateAdvertisement={handleCreateAdvertisement}></ManageObject>
+        <ManageObject objectToManage={selectedobject} onCreateAdvertisement={handleCreateAdvertisement} onUpdateAdvertisement={handleUpdateAdvertisement}></ManageObject>
       </article>
     </section>
   )

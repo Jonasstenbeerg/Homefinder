@@ -4,7 +4,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import styles from './ManageObject.module.css'
 
 
-const ManageObject = ({objectToManage, onCreateAdvertisement}) => {
+const ManageObject = ({objectToManage, onCreateAdvertisement, onUpdateAdvertisement}) => {
   const [mobileManageObjectVisible, setMobileManageObjectVisible] = useState(false)
   const [activeButton, setActiveButton] = useState('Info')
   const [city, setCity] = useState("")
@@ -26,6 +26,7 @@ const ManageObject = ({objectToManage, onCreateAdvertisement}) => {
       setPropertyType(objectToManage?.propertyType)
       setLeaseType(objectToManage?.leaseType)
       setDisplayImage(objectToManage?.imageBin)
+      setImage(objectToManage?.imageBin)
       setPreviewImage("")
     }
     else {
@@ -40,7 +41,7 @@ const ManageObject = ({objectToManage, onCreateAdvertisement}) => {
     }
   },[objectToManage,activeButton])
   
-  
+  console.log(objectToManage)
   const toBase64 = (file) => 
     new Promise((resolve, reject) => {
       const reader = new FileReader()
@@ -51,8 +52,9 @@ const ManageObject = ({objectToManage, onCreateAdvertisement}) => {
   
   const handleSubmit = async (e) => {
     e.preventDefault()
-
-    let imageBin = await toBase64(image)
+    console.log(image)
+    console.log(typeof(image))
+    let imageBin = typeof(image) === "string" ? image : await toBase64(image)
 
     const add = {
       city,
@@ -63,8 +65,8 @@ const ManageObject = ({objectToManage, onCreateAdvertisement}) => {
       leaseType,
       imageBin
     }
-  
-    onCreateAdvertisement(add)
+    console.log(add)
+    activeButton ==="Create" ? onCreateAdvertisement(add) : onUpdateAdvertisement(add)
   }
 
   const handleToggleManageObject = () => {
@@ -226,7 +228,7 @@ const ManageObject = ({objectToManage, onCreateAdvertisement}) => {
           {(activeButton !== "Create" && displayImage) && (
             <img src={displayImage} className={styles["form-image"]} height={mobileManageObjectVisible ? "140":"250"} width={mobileManageObjectVisible ? "140":"250"}/>
           )}
-          {(activeButton === "Create" && previewImage) && (
+          {((activeButton === "Create" || activeButton === "Customizie") && previewImage) && (
             <img src={previewImage} className={styles["form-image"]} height={mobileManageObjectVisible ? "140":"250"} width={mobileManageObjectVisible ? "140":"250"}/>
           )}
         </div>

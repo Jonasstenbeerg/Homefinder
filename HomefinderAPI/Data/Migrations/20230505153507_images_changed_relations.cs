@@ -5,7 +5,7 @@
 namespace HomefinderAPI.Data.Migrations
 {
     /// <inheritdoc />
-    public partial class images_changed_relations : Migration
+    public partial class Images_Canged_Relations : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)

@@ -11,8 +11,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace HomefinderAPI.Data.Migrations
 {
     [DbContext(typeof(HomefinderContext))]
-    [Migration("20230504154236_propertyObject_updated")]
-    partial class propertyObject_updated
+    [Migration("20230504154236_PropertyObject_Updated")]
+    partial class PropertyObject_Updated
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)

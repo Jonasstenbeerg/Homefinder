@@ -11,6 +11,8 @@ const ManageObject = ({objectName, objectToManage, onCreateAdvertisement, onUpda
   const [postalCode, setPostalCode] = useState("")
   const [streetName, setStreetName] = useState("")
   const [streetNumber, setStreetNumber] = useState("")
+  const [listPrice, setListPrice] = useState("")
+  const [area, setArea] = useState("")
   const [propertyType, setPropertyType] = useState("")
   const [leaseType, setLeaseType] = useState("")
   const [image, setImage] = useState("")
@@ -23,6 +25,8 @@ const ManageObject = ({objectName, objectToManage, onCreateAdvertisement, onUpda
       setPostalCode(objectToManage?.postalCode)
       setStreetName(objectToManage?.streetName)
       setStreetNumber(objectToManage?.streetNumber)
+      setListPrice(objectToManage?.listPrice)
+      setArea(objectToManage?.area)
       setPropertyType(objectToManage?.propertyType)
       setLeaseType(objectToManage?.leaseType)
       setDisplayImage(objectToManage?.imageBin)
@@ -34,6 +38,8 @@ const ManageObject = ({objectName, objectToManage, onCreateAdvertisement, onUpda
       setPostalCode("")
       setStreetName("")
       setStreetNumber("")
+      setListPrice("")
+      setArea("")
       setPropertyType("")
       setLeaseType("")
       setDisplayImage("")
@@ -51,8 +57,7 @@ const ManageObject = ({objectName, objectToManage, onCreateAdvertisement, onUpda
   
   const handleSubmit = async (e) => {
     e.preventDefault()
-    console.log(image)
-    console.log(typeof(image))
+    
     let imageBin = typeof(image) === "string" ? image : await toBase64(image)
 
     const add = {
@@ -60,11 +65,13 @@ const ManageObject = ({objectName, objectToManage, onCreateAdvertisement, onUpda
       postalCode,
       streetName,
       streetNumber,
+      listPrice,
+      area,
       propertyType,
       leaseType,
       imageBin
     }
-    console.log(add)
+   
     activeButton ==="Create" ? onCreateAdvertisement(add) : onUpdateAdvertisement(add)
   }
 
@@ -90,6 +97,14 @@ const ManageObject = ({objectName, objectToManage, onCreateAdvertisement, onUpda
 
   const handleStreetNumberTextChanged = (e) => {
     setStreetNumber(e.target.value)
+  }
+
+  const handleListPriceChanged = (e) => {
+    setListPrice(e.target.value)
+  }
+
+  const handleAreaChanged = (e) => {
+    setArea(e.target.value)
   }
 
   const handlePropertyTypeSelectChanged = (e) => {
@@ -182,6 +197,30 @@ const ManageObject = ({objectName, objectToManage, onCreateAdvertisement, onUpda
             className={styles["manage-objects-form-input"]}
             required
             onInvalid={(e) => e.target.setCustomValidity("Street number is required")}
+          />
+        </div>
+        <h1 className={styles["manage-objects-form-heading"]}>Price</h1>
+        <div className={styles["manage-objects-form-input-container"]}>
+        <input
+            disabled={activeButton === "Info"}
+            onChange={handleListPriceChanged}
+            value={listPrice || ''}
+            type="number"
+            className={styles["manage-objects-form-input"]}
+            required
+            onInvalid={(e) => e.target.setCustomValidity("Price is required")}
+          />
+        </div>
+        <h1 className={styles["manage-objects-form-heading"]}>Area</h1>
+        <div className={styles["manage-objects-form-input-container"]}>
+        <input
+            disabled={activeButton === "Info"}
+            onChange={handleAreaChanged}
+            value={area || ''}
+            type="number"
+            className={styles["manage-objects-form-input"]}
+            required
+            onInvalid={(e) => e.target.setCustomValidity("Area is required")}
           />
         </div>
         <h1 className={styles["manage-objects-form-heading"]}>Propertytype</h1>

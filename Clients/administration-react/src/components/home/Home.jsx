@@ -11,6 +11,7 @@ const Home = () => {
   const authHeader = useAuthHeader()
   const [selectedobject, setSelectedObject] = useState(null)
   const [advertisements, setAdvertisements] = useState([])
+  const [selectedNavItem, setSelectedNavItem] = useState("advertisements")
   const errorMessage = "something went wrong"
 
   
@@ -56,13 +57,18 @@ const Home = () => {
   return (
     <section className={styles["home-container"]}>
       <nav>
-        <ObjectsNav></ObjectsNav>
+        <ObjectsNav selctedNavITem={selectedNavItem} onSelectNavItem={setSelectedNavItem}></ObjectsNav>
       </nav>
       <article>
-        <ObjectsOverview advertisements={advertisements} onFetchAdvertisements={handleFetchAdvertisements} selectObject={setSelectedObject}></ObjectsOverview>
+        {selectedNavItem === "advertisements" && (
+          <ObjectsOverview advertisements={advertisements} onFetchAdvertisements={handleFetchAdvertisements} selectedRowIndex={advertisements.indexOf(selectedobject) < 0 ? 0 :advertisements.indexOf(selectedobject)} selectObject={setSelectedObject}></ObjectsOverview>
+        )}
+        {selectedNavItem === "users" && (
+          <h1>Not implemented yet</h1>
+        )}
       </article>
       <article>
-        <ManageObject objectToManage={selectedobject} onCreateAdvertisement={handleCreateAdvertisement} onUpdateAdvertisement={handleUpdateAdvertisement}></ManageObject>
+        <ManageObject objectName={selectedNavItem.slice(0,selectedNavItem.length-1)} objectToManage={selectedobject || advertisements[0]} onCreateAdvertisement={handleCreateAdvertisement} onUpdateAdvertisement={handleUpdateAdvertisement}></ManageObject>
       </article>
     </section>
   )

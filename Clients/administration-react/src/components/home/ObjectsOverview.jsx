@@ -5,8 +5,8 @@ import { useEffect } from 'react';
 import styles from './ObjectsOverview.module.css'
 
 
-const ObjectsOverview = ({selectObject, advertisements,onFetchAdvertisements}) => {
-  const [selectedIndex, setSelectedIndex] = useState('')
+const ObjectsOverview = ({selectObject, advertisements,onFetchAdvertisements, selectedRowIndex}) => {
+  const [selectedIndex, setSelectedIndex] = useState(selectedRowIndex)
   const [searchAddress, setSearchAddress] = useState('')
 
   useEffect(() =>{
@@ -16,7 +16,6 @@ const ObjectsOverview = ({selectObject, advertisements,onFetchAdvertisements}) =
   const handleSearchAddressChanged = (e) => {
     setSearchAddress(e.target.value)
   }
-  console.log(searchAddress)
   const handleRowClicked = (rowObject, index) => {
     selectObject(rowObject)
     setSelectedIndex(index)

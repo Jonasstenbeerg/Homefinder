@@ -4,7 +4,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import styles from './ObjectsNav.module.css'
 import { useState } from 'react';
 
-const ObjectsNav = () => {
+const ObjectsNav = ({selctedNavITem, onSelectNavItem}) => {
   const [mobileObjectsNavVisible, setMobileObjectsNavVisible] = useState(false)
 
   const handleToggleObjectsNav = () => {
@@ -15,11 +15,11 @@ const ObjectsNav = () => {
     <section className={`home-sidebar-container ${mobileObjectsNavVisible ? "": styles["hidden"]}`} id={styles["left-sidebar"]}>
       <h1 className="home-sidebar-heading">Objects</h1>
       <ul className={styles["objects-nav-list"]}>
-        <li>
-          <ObjectsNavItem picture={faRectangleAd} name={'advertisements'}/>
+        <li onClick={() => {onSelectNavItem("advertisements")}}>
+          <ObjectsNavItem picture={faRectangleAd} name={'advertisements'} selected={selctedNavITem === "advertisements"}/>
         </li>
-        <li>
-          <ObjectsNavItem picture={faUsers} name={'users'}/>
+        <li onClick={() => {onSelectNavItem("users")}}>
+          <ObjectsNavItem picture={faUsers} name={"users"} selected={selctedNavITem === "users"}/>
         </li>
       </ul>
       <FontAwesomeIcon onClick={handleToggleObjectsNav} icon={mobileObjectsNavVisible ? faChevronLeft:faChevronRight} className={styles["left-sidebar-toggle-button"]}/>

@@ -11,8 +11,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace HomefinderAPI.Data.Migrations
 {
     [DbContext(typeof(HomefinderContext))]
-    [Migration("20230505153507_images_changed_relations")]
-    partial class images_changed_relations
+    [Migration("20230505153507_Images_Changed_Relations")]
+    partial class Images_Canged_Relations
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)

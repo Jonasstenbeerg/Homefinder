@@ -5,7 +5,7 @@
 namespace HomefinderAPI.Data.Migrations
 {
     /// <inheritdoc />
-    public partial class propertyObject_updated : Migration
+    public partial class PropertyObject_Updated : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)

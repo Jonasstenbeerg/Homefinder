@@ -7,10 +7,16 @@ import styles from './ObjectsOverview.module.css'
 
 const ObjectsOverview = ({selectObject, advertisements,onFetchAdvertisements}) => {
   const [selectedIndex, setSelectedIndex] = useState('')
+  const [searchAddress, setSearchAddress] = useState('')
+
   useEffect(() =>{
     onFetchAdvertisements()
   },[])
-  
+
+  const handleSearchAddressChanged = (e) => {
+    setSearchAddress(e.target.value)
+  }
+  console.log(searchAddress)
   const handleRowClicked = (rowObject, index) => {
     selectObject(rowObject)
     setSelectedIndex(index)
@@ -19,10 +25,10 @@ const ObjectsOverview = ({selectObject, advertisements,onFetchAdvertisements}) =
   return (
     <section className={styles["objects-overview-container"]}>
       <section className={styles["objects-overview-header-container"]}>
-        <h1 className={styles["objects-overview-heading"]} >Advertisements <span className={styles["add-counter"]}>{advertisements.length}</span></h1>
+        <h1 className={styles["objects-overview-heading"]} >Advertisements <span className={styles["add-counter"]}>{advertisements.filter(add => `${add.city} ${add.streetName} ${add.streetNumber}`.includes(searchAddress)).length}</span></h1>
         <div className={styles["search-container"]}>
           <FontAwesomeIcon icon={faMagnifyingGlass}/>
-          <input placeholder='search address' className={styles["search"]} type="text" />
+          <input placeholder='search address' value={searchAddress} onChange={handleSearchAddressChanged} className={styles["search"]} type="text" />
         </div>
       </section>
       <section className={styles["objects-overview-table-container"]}>
@@ -37,7 +43,7 @@ const ObjectsOverview = ({selectObject, advertisements,onFetchAdvertisements}) =
             </tr>
           </thead>
           <tbody>
-          {advertisements.map((add, index) => (
+          {advertisements.filter(add => `${add.city} ${add.streetName} ${add.streetNumber}`.includes(searchAddress)).map((add, index) => (
             <tr key={index} onClick={() =>{handleRowClicked(add, index)}} className={selectedIndex === index ? styles["selected"]:""}>
               <td>
                 <div className={styles["table-column"]}>{add.streetName} {add.streetNumber}</div>

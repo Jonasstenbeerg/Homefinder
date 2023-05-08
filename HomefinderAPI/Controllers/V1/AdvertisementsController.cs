@@ -4,10 +4,10 @@ using HomefinderAPI.ViewModels.Queries;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
-namespace HomefinderAPI.Controllers
+namespace HomefinderAPI.Controllers.V1
 {
   [ApiController]
-  [Route("api/advertisements")]
+  [Route("api/v1/advertisements")]
   public class AdvertisementsController : ControllerBase
   {
     private readonly IAdvertisementRepository _advertisementRepository;

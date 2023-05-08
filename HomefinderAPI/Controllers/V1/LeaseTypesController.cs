@@ -3,10 +3,10 @@ using HomefinderAPI.ViewModels.LeaseType;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
-namespace HomefinderAPI.Controllers
+namespace HomefinderAPI.Controllers.V1
 {
 	[ApiController]
-	[Route("api/leasetypes")]
+	[Route("api/v1/leasetypes")]
 	public class LeaseTypesController : ControllerBase
 	{
 		private readonly ILeaseTypeRepository _leaseTypeRepository;
@@ -26,17 +26,17 @@ namespace HomefinderAPI.Controllers
 		}
 
 		[HttpGet("{id}")]
-    public async Task<ActionResult<LeaseTypeViewModel>> Get(int id)
-    {
-      var respons = await _leaseTypeRepository.GetLeaseTypeByIdAsync(id);
+	public async Task<ActionResult<LeaseTypeViewModel>> Get(int id)
+	{
+	  var respons = await _leaseTypeRepository.GetLeaseTypeByIdAsync(id);
 
-      if (respons is null)
-      {
-        return NotFound($"Vi kunde inte hitta någon arrendetyp med id {id}");
-      }
+	  if (respons is null)
+	  {
+		return NotFound($"Vi kunde inte hitta någon arrendetyp med id {id}");
+	  }
 
-      return Ok(respons);
-    }
+	  return Ok(respons);
+	}
 
 		[Authorize]
 		[HttpPost]

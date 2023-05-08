@@ -4,7 +4,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import styles from './ManageObject.module.css'
 
 
-const ManageObject = ({objectToManage, onCreateAdvertisement, onUpdateAdvertisement}) => {
+const ManageObject = ({objectName, objectToManage, onCreateAdvertisement, onUpdateAdvertisement}) => {
   const [mobileManageObjectVisible, setMobileManageObjectVisible] = useState(false)
   const [activeButton, setActiveButton] = useState('Info')
   const [city, setCity] = useState("")
@@ -108,8 +108,10 @@ const ManageObject = ({objectToManage, onCreateAdvertisement, onUpdateAdvertisem
   //TODO: add custom validation to form
   return (
     <section className={`home-sidebar-container ${mobileManageObjectVisible ? "":styles["hidden"]}`} id={styles["right-sidebar"]}>
-      <h1 className="home-sidebar-heading">ManageObjects</h1>
-      <div className={styles["manage-objects-nav-button-container"]}>
+      <h1 className="home-sidebar-heading">Manage {objectName}</h1>
+      {objectName !== "user" && (
+        <>
+        <div className={styles["manage-objects-nav-button-container"]}>
         <button
           onClick={handleButtonClick}
           id="Info"
@@ -240,7 +242,9 @@ const ManageObject = ({objectToManage, onCreateAdvertisement, onUpdateAdvertisem
           </button>
         )}
       </form>
-    <FontAwesomeIcon onClick={handleToggleManageObject} icon={mobileManageObjectVisible ? faChevronRight:faChevronLeft} className={styles["right-sidebar-toggle-button"]}/>
+      <FontAwesomeIcon onClick={handleToggleManageObject} icon={mobileManageObjectVisible ? faChevronRight:faChevronLeft} className={styles["right-sidebar-toggle-button"]}/>
+      </>
+      )}
     </section>
   );
 }

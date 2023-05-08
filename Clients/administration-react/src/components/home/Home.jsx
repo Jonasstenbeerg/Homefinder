@@ -68,7 +68,7 @@ const Home = () => {
         )}
       </article>
       <article>
-        <ManageObject objectToManage={selectedobject} onCreateAdvertisement={handleCreateAdvertisement} onUpdateAdvertisement={handleUpdateAdvertisement}></ManageObject>
+        <ManageObject objectName={selectedNavItem.slice(0,selectedNavItem.length-1)} objectToManage={selectedobject} onCreateAdvertisement={handleCreateAdvertisement} onUpdateAdvertisement={handleUpdateAdvertisement}></ManageObject>
       </article>
     </section>
   )

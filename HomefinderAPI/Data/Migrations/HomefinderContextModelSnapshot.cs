@@ -82,7 +82,8 @@ namespace HomefinderAPI.Data.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("PropertyObjectId");
+                    b.HasIndex("PropertyObjectId")
+                        .IsUnique();
 
                     b.ToTable("Images");
                 });
@@ -360,8 +361,8 @@ namespace HomefinderAPI.Data.Migrations
             modelBuilder.Entity("HomefinderAPI.Models.Image", b =>
                 {
                     b.HasOne("HomefinderAPI.Models.PropertyObject", "PropertyObject")
-                        .WithMany("Images")
-                        .HasForeignKey("PropertyObjectId")
+                        .WithOne("Image")
+                        .HasForeignKey("HomefinderAPI.Models.Image", "PropertyObjectId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
@@ -460,7 +461,7 @@ namespace HomefinderAPI.Data.Migrations
                 {
                     b.Navigation("Advertisements");
 
-                    b.Navigation("Images");
+                    b.Navigation("Image");
                 });
 
             modelBuilder.Entity("HomefinderAPI.Models.PropertyType", b =>

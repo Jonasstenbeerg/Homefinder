@@ -11,8 +11,13 @@
   }
 }
 
-.navItem-container:hover {
+.navItem-container.selected {
   border: 2px solid #007CE8;
+}
+
+.navItem-container:hover {
+  background-color: #007CE8;
+  color: white;
 }
 
 .navItem-picture {

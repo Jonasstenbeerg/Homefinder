@@ -11,8 +11,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace HomefinderAPI.Data.Migrations
 {
     [DbContext(typeof(HomefinderContext))]
-    [Migration("20230504154236_PropertyObject_Updated")]
-    partial class PropertyObject_Updated
+    [Migration("20230505153507_Images_Changed_Relations")]
+    partial class Images_Canged_Relations
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -85,7 +85,8 @@ namespace HomefinderAPI.Data.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("PropertyObjectId");
+                    b.HasIndex("PropertyObjectId")
+                        .IsUnique();
 
                     b.ToTable("Images");
                 });
@@ -363,8 +364,8 @@ namespace HomefinderAPI.Data.Migrations
             modelBuilder.Entity("HomefinderAPI.Models.Image", b =>
                 {
                     b.HasOne("HomefinderAPI.Models.PropertyObject", "PropertyObject")
-                        .WithMany("Images")
-                        .HasForeignKey("PropertyObjectId")
+                        .WithOne("Image")
+                        .HasForeignKey("HomefinderAPI.Models.Image", "PropertyObjectId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
@@ -463,7 +464,7 @@ namespace HomefinderAPI.Data.Migrations
                 {
                     b.Navigation("Advertisements");
 
-                    b.Navigation("Images");
+                    b.Navigation("Image");
                 });
 
             modelBuilder.Entity("HomefinderAPI.Models.PropertyType", b =>

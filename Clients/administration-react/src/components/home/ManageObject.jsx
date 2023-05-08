@@ -4,13 +4,15 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import styles from './ManageObject.module.css'
 
 
-const ManageObject = ({objectToManage, onCreateAdvertisement}) => {
+const ManageObject = ({objectName, objectToManage, onCreateAdvertisement, onUpdateAdvertisement}) => {
   const [mobileManageObjectVisible, setMobileManageObjectVisible] = useState(false)
   const [activeButton, setActiveButton] = useState('Info')
   const [city, setCity] = useState("")
   const [postalCode, setPostalCode] = useState("")
   const [streetName, setStreetName] = useState("")
   const [streetNumber, setStreetNumber] = useState("")
+  const [listPrice, setListPrice] = useState("")
+  const [area, setArea] = useState("")
   const [propertyType, setPropertyType] = useState("")
   const [leaseType, setLeaseType] = useState("")
   const [image, setImage] = useState("")
@@ -23,9 +25,12 @@ const ManageObject = ({objectToManage, onCreateAdvertisement}) => {
       setPostalCode(objectToManage?.postalCode)
       setStreetName(objectToManage?.streetName)
       setStreetNumber(objectToManage?.streetNumber)
+      setListPrice(objectToManage?.listPrice)
+      setArea(objectToManage?.area)
       setPropertyType(objectToManage?.propertyType)
       setLeaseType(objectToManage?.leaseType)
       setDisplayImage(objectToManage?.imageBin)
+      setImage(objectToManage?.imageBin)
       setPreviewImage("")
     }
     else {
@@ -33,13 +38,14 @@ const ManageObject = ({objectToManage, onCreateAdvertisement}) => {
       setPostalCode("")
       setStreetName("")
       setStreetNumber("")
+      setListPrice("")
+      setArea("")
       setPropertyType("")
       setLeaseType("")
       setDisplayImage("")
       setPreviewImage("")
     }
   },[objectToManage,activeButton])
-  
   
   const toBase64 = (file) => 
     new Promise((resolve, reject) => {
@@ -51,20 +57,22 @@ const ManageObject = ({objectToManage, onCreateAdvertisement}) => {
   
   const handleSubmit = async (e) => {
     e.preventDefault()
-
-    let imageBin = await toBase64(image)
+    
+    let imageBin = typeof(image) === "string" ? image : await toBase64(image)
 
     const add = {
       city,
       postalCode,
       streetName,
       streetNumber,
+      listPrice,
+      area,
       propertyType,
       leaseType,
       imageBin
     }
-  
-    onCreateAdvertisement(add)
+   
+    activeButton ==="Create" ? onCreateAdvertisement(add) : onUpdateAdvertisement(add)
   }
 
   const handleToggleManageObject = () => {
@@ -91,6 +99,14 @@ const ManageObject = ({objectToManage, onCreateAdvertisement}) => {
     setStreetNumber(e.target.value)
   }
 
+  const handleListPriceChanged = (e) => {
+    setListPrice(e.target.value)
+  }
+
+  const handleAreaChanged = (e) => {
+    setArea(e.target.value)
+  }
+
   const handlePropertyTypeSelectChanged = (e) => {
     setPropertyType(e.target.value)
   }
@@ -107,8 +123,10 @@ const ManageObject = ({objectToManage, onCreateAdvertisement}) => {
   //TODO: add custom validation to form
   return (
     <section className={`home-sidebar-container ${mobileManageObjectVisible ? "":styles["hidden"]}`} id={styles["right-sidebar"]}>
-      <h1 className="home-sidebar-heading">ManageObjects</h1>
-      <div className={styles["manage-objects-nav-button-container"]}>
+      <h1 className="home-sidebar-heading">Manage {objectName}</h1>
+      {objectName !== "user" && (
+        <>
+        <div className={styles["manage-objects-nav-button-container"]}>
         <button
           onClick={handleButtonClick}
           id="Info"
@@ -138,7 +156,7 @@ const ManageObject = ({objectToManage, onCreateAdvertisement}) => {
           <input
             disabled={activeButton === "Info"}
             onChange={handleCityTextChanged}
-            value={city}
+            value={city || ''}
             type="text"
             className={styles["manage-objects-form-input"]}
             onInvalid={(e) => e.target.setCustomValidity("City is required")}
@@ -150,7 +168,7 @@ const ManageObject = ({objectToManage, onCreateAdvertisement}) => {
           <input
             disabled={activeButton === "Info"}
             onChange={handlePostalCodeTextChanged}
-            value={postalCode}
+            value={postalCode || ''}
             type="text"
             className={styles["manage-objects-form-input"]}
             required
@@ -162,7 +180,7 @@ const ManageObject = ({objectToManage, onCreateAdvertisement}) => {
           <input
             disabled={activeButton === "Info"}
             onChange={handleStreetNameTextChanged}
-            value={streetName}
+            value={streetName || ''}
             type="text"
             className={styles["manage-objects-form-input"]}
             required
@@ -174,11 +192,35 @@ const ManageObject = ({objectToManage, onCreateAdvertisement}) => {
           <input
             disabled={activeButton === "Info"}
             onChange={handleStreetNumberTextChanged}
-            value={streetNumber}
+            value={streetNumber || ''}
             type="text"
             className={styles["manage-objects-form-input"]}
             required
             onInvalid={(e) => e.target.setCustomValidity("Street number is required")}
+          />
+        </div>
+        <h1 className={styles["manage-objects-form-heading"]}>Price</h1>
+        <div className={styles["manage-objects-form-input-container"]}>
+        <input
+            disabled={activeButton === "Info"}
+            onChange={handleListPriceChanged}
+            value={listPrice || ''}
+            type="number"
+            className={styles["manage-objects-form-input"]}
+            required
+            onInvalid={(e) => e.target.setCustomValidity("Price is required")}
+          />
+        </div>
+        <h1 className={styles["manage-objects-form-heading"]}>Area</h1>
+        <div className={styles["manage-objects-form-input-container"]}>
+        <input
+            disabled={activeButton === "Info"}
+            onChange={handleAreaChanged}
+            value={area || ''}
+            type="number"
+            className={styles["manage-objects-form-input"]}
+            required
+            onInvalid={(e) => e.target.setCustomValidity("Area is required")}
           />
         </div>
         <h1 className={styles["manage-objects-form-heading"]}>Propertytype</h1>
@@ -186,7 +228,7 @@ const ManageObject = ({objectToManage, onCreateAdvertisement}) => {
           <select
             disabled={activeButton === "Info"}
             onChange={handlePropertyTypeSelectChanged}
-            value={propertyType}
+            value={propertyType || ''}
             className={styles["manage-objects-form-input"]}
             required
             onInvalid={(e) => e.target.setCustomValidity("Propertytype is required")}
@@ -195,7 +237,7 @@ const ManageObject = ({objectToManage, onCreateAdvertisement}) => {
               -- select an option --
             </option>
             <option value="Villa">Villa</option>
-            <option value="Radhus">Radhus</option>
+            <option value="Lägenhet">Lägenhet</option>
           </select>
         </div>
         <h1 className={styles["manage-objects-form-heading"]}>Leasetype</h1>
@@ -203,7 +245,7 @@ const ManageObject = ({objectToManage, onCreateAdvertisement}) => {
           <select
             disabled={activeButton === "Info"}
             onChange={handleLeaseTypeSelectChanged}
-            value={leaseType}
+            value={leaseType || ''}
             className={styles["manage-objects-form-input"]}
             required
             onInvalid={(e) => e.target.setCustomValidity("Leasetype is required")}
@@ -226,7 +268,7 @@ const ManageObject = ({objectToManage, onCreateAdvertisement}) => {
           {(activeButton !== "Create" && displayImage) && (
             <img src={displayImage} className={styles["form-image"]} height={mobileManageObjectVisible ? "140":"250"} width={mobileManageObjectVisible ? "140":"250"}/>
           )}
-          {(activeButton === "Create" && previewImage) && (
+          {((activeButton === "Create" || activeButton === "Customizie") && previewImage) && (
             <img src={previewImage} className={styles["form-image"]} height={mobileManageObjectVisible ? "140":"250"} width={mobileManageObjectVisible ? "140":"250"}/>
           )}
         </div>
@@ -239,7 +281,9 @@ const ManageObject = ({objectToManage, onCreateAdvertisement}) => {
           </button>
         )}
       </form>
-    <FontAwesomeIcon onClick={handleToggleManageObject} icon={mobileManageObjectVisible ? faChevronRight:faChevronLeft} className={styles["right-sidebar-toggle-button"]}/>
+      <FontAwesomeIcon onClick={handleToggleManageObject} icon={mobileManageObjectVisible ? faChevronRight:faChevronLeft} className={styles["right-sidebar-toggle-button"]}/>
+      </>
+      )}
     </section>
   );
 }

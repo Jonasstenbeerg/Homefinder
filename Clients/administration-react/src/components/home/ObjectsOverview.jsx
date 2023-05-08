@@ -16,7 +16,6 @@ const ObjectsOverview = ({selectObject, advertisements,onFetchAdvertisements}) =
   const handleSearchAddressChanged = (e) => {
     setSearchAddress(e.target.value)
   }
-  console.log(searchAddress)
   const handleRowClicked = (rowObject, index) => {
     selectObject(rowObject)
     setSelectedIndex(index)

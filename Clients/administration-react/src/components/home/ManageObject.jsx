@@ -41,7 +41,6 @@ const ManageObject = ({objectToManage, onCreateAdvertisement, onUpdateAdvertisem
     }
   },[objectToManage,activeButton])
   
-  console.log(objectToManage)
   const toBase64 = (file) => 
     new Promise((resolve, reject) => {
       const reader = new FileReader()
@@ -140,7 +139,7 @@ const ManageObject = ({objectToManage, onCreateAdvertisement, onUpdateAdvertisem
           <input
             disabled={activeButton === "Info"}
             onChange={handleCityTextChanged}
-            value={city}
+            value={city || ''}
             type="text"
             className={styles["manage-objects-form-input"]}
             onInvalid={(e) => e.target.setCustomValidity("City is required")}
@@ -152,7 +151,7 @@ const ManageObject = ({objectToManage, onCreateAdvertisement, onUpdateAdvertisem
           <input
             disabled={activeButton === "Info"}
             onChange={handlePostalCodeTextChanged}
-            value={postalCode}
+            value={postalCode || ''}
             type="text"
             className={styles["manage-objects-form-input"]}
             required
@@ -164,7 +163,7 @@ const ManageObject = ({objectToManage, onCreateAdvertisement, onUpdateAdvertisem
           <input
             disabled={activeButton === "Info"}
             onChange={handleStreetNameTextChanged}
-            value={streetName}
+            value={streetName || ''}
             type="text"
             className={styles["manage-objects-form-input"]}
             required
@@ -176,7 +175,7 @@ const ManageObject = ({objectToManage, onCreateAdvertisement, onUpdateAdvertisem
           <input
             disabled={activeButton === "Info"}
             onChange={handleStreetNumberTextChanged}
-            value={streetNumber}
+            value={streetNumber || ''}
             type="text"
             className={styles["manage-objects-form-input"]}
             required
@@ -188,7 +187,7 @@ const ManageObject = ({objectToManage, onCreateAdvertisement, onUpdateAdvertisem
           <select
             disabled={activeButton === "Info"}
             onChange={handlePropertyTypeSelectChanged}
-            value={propertyType}
+            value={propertyType || ''}
             className={styles["manage-objects-form-input"]}
             required
             onInvalid={(e) => e.target.setCustomValidity("Propertytype is required")}
@@ -205,7 +204,7 @@ const ManageObject = ({objectToManage, onCreateAdvertisement, onUpdateAdvertisem
           <select
             disabled={activeButton === "Info"}
             onChange={handleLeaseTypeSelectChanged}
-            value={leaseType}
+            value={leaseType || ''}
             className={styles["manage-objects-form-input"]}
             required
             onInvalid={(e) => e.target.setCustomValidity("Leasetype is required")}

@@ -5,7 +5,7 @@
                 <h2>Sökfilter</h2>
             </div>
             <hr>
-            <form class="form" asp-action="Find" method="post">
+            <form class="form" asp-action="Find" asp-controller="Advertisement" method="post" name="searchForm">
                 <div class="search__container-top">
                     <div class="search__container-adress-field search-text-box">
                         <i class="fa-solid fa-magnifying-glass"></i>
@@ -15,7 +15,7 @@
                     <div class="range_container">
                         
                         <div class="sliders_control">
-                            <input id="fromSlider" type="range" value="0" min="0" max="10000"/>
+                            <input id="fromSlider" type="range" value="1000" min="0" max="10000"/>
                             <input id="toSlider" type="range" value="10000" min="0" max="10000"/>
                         </div>
 
@@ -23,7 +23,7 @@
 
                             <div class="form_control_container">
                                 <div class="form_control_container__time min">Min</div>
-                                <input asp-for="MinPrice" class="form_control_container__time__input" type="number" id="fromInput" value="0" min="0" max="10000"/>
+                                <input asp-for="MinPrice" class="form_control_container__time__input" type="number" id="fromInput" value="1000" min="0" max="10000"/>
                             </div>
 
                             <div class="form_control_container">

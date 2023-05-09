@@ -29,22 +29,6 @@ namespace AdvertisementMVC.Models
             return advertisements ?? new List<AdvertisementViewModel>();
         }
 
-        // public async Task<List<AdvertisementFilterViewModel>> ListAllFilteredAdvertisementsAsync()
-        // {
-        //     var url = $"{_baseApiUrl}/list";
-
-        //     using var http = new HttpClient();
-        //     var response = await http.GetAsync(url);
-
-        //     if (!response.IsSuccessStatusCode)
-        //     {
-        //         throw new Exception("Det gick inte att hämta annonserna");
-        //     }
-
-        //     var advertisements = await response.Content.ReadFromJsonAsync<List<AdvertisementFilterViewModel>>();
-
-        //     return advertisements ?? new List<AdvertisementFilterViewModel>();
-        // }
         public async Task<List<AdvertisementViewModel>> ListAllFilteredAdvertisementsAsync(string address, int minPrice, int maxPrice)
         {
             var url = $"{_baseApiUrl}/list";

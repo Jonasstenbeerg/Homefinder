@@ -70,9 +70,10 @@ namespace HomefinderAPI.Repositories
     }
 
 
-    public async Task<List<AdvertisementViewModel>> ListAllAdvertisementsAsync(AdvertisementQuery? query = null)
+    public async Task<List<AdvertisementViewModel>> ListAllAvailableAdvertisementsAsync(AdvertisementQuery? query = null)
     {
       var advertisements = await _context.Advertisements
+        .Where(add => add.Deleted == false)
         .Include(a => a.Property.Address)
         .Include(a => a.Property.LeaseType)
         .Include(a => a.Property.PropertyType)
@@ -84,6 +85,17 @@ namespace HomefinderAPI.Repositories
       advertisements = FilterAdvertisements(addFilter, advertisements);
       
       return _mapper.Map<List<AdvertisementViewModel>>(advertisements);
+    }
+
+    public async Task<List<AdvertisementViewModel>> ListAllAdvertisementsAsync()
+    {
+        return await _context.Advertisements
+        .Include(a => a.Property.Address)
+        .Include(a => a.Property.LeaseType)
+        .Include(a => a.Property.PropertyType)
+        .Include(a => a.Property.Image)
+        .ProjectTo<AdvertisementViewModel>(_mapper.ConfigurationProvider)
+        .ToListAsync();
     }
 
     public async Task UpdateAdvertisementAsync(int id, PostAdvertisementViewModel model)

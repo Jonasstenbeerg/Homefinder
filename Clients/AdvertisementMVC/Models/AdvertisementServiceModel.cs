@@ -32,8 +32,7 @@ namespace AdvertisementMVC.Models
         public async Task<List<AdvertisementViewModel>> ListAllFilteredAdvertisementsAsync(string address, int minPrice, int maxPrice)
         {
             var url = $"{_baseApiUrl}/list";
-
-            // Add the search parameters to the URL query string
+            
             if (!string.IsNullOrEmpty(address))
             {
                 url += $"?Address={address}";

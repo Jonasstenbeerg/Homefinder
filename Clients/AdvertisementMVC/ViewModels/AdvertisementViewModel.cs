@@ -11,7 +11,7 @@ namespace AdvertisementMVC.ViewModels
     public string? City { get; set; }
     public string? StreetName { get; set; }
     public int StreetNumber { get; set; }
-    public string? ImageUrl {get;set;}
+    public string? ImageBin {get;set;}
     public bool Deleted { get; set; }
   }
 }

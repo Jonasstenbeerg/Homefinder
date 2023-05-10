@@ -22,11 +22,11 @@ namespace HomefinderAPI.Controllers.V1
     /// Returns all available advertisements in the system pointed by the filter
     /// </summary>
     [HttpGet("list")]
-    public async Task<ActionResult<List<AdvertisementViewModel>>> GetAllAvailable([FromQuery]AdvertisementQuery? query)
+    public async Task<ActionResult<List<AdvertisementViewModel>>> GetAllAvailable([FromQuery]PaginitationQuery? pageQuery, [FromQuery]AdvertisementQuery? addQuery)
     {
       try
       {
-        var respons = await _advertisementRepository.ListAllAvailableAdvertisementsAsync(query);
+        var respons = await _advertisementRepository.ListAllAvailableAdvertisementsAsync(pageQuery, addQuery);
 
         return Ok(new PagedResponse<AdvertisementViewModel>(respons));
       }

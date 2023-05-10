@@ -70,7 +70,7 @@ namespace HomefinderAPI.Repositories
     }
 
 
-    public async Task<List<AdvertisementViewModel>> ListAllAvailableAdvertisementsAsync(AdvertisementQuery? query = null)
+    public async Task<List<AdvertisementViewModel>> ListAllAvailableAdvertisementsAsync(PaginitationQuery? pageQuery = null, AdvertisementQuery? addQuery = null)
     {
       var advertisements = await _context.Advertisements
         .Where(add => add.Deleted == false)
@@ -79,8 +79,14 @@ namespace HomefinderAPI.Repositories
         .Include(a => a.Property.PropertyType)
         .Include(a => a.Property.Image)
         .ToListAsync();
+      
+      var pageFilter = _mapper.Map<PaginationFilter>(pageQuery);
 
-      var addFilter = _mapper.Map<AdvertisementSearchFilter>(query);
+      var skip = (pageFilter.PageNumber - 1) * pageFilter.PageSize;
+
+      advertisements = advertisements.Skip(skip).Take(pageFilter.PageSize).ToList();
+
+      var addFilter = _mapper.Map<AdvertisementSearchFilter>(addQuery);
 
       advertisements = FilterAdvertisements(addFilter, advertisements);
       

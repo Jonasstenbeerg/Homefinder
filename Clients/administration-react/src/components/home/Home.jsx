@@ -16,7 +16,11 @@ const Home = () => {
 
   
   const handleFetchAdvertisements = async () => {
-    var res = await axios.get(`${process.env.REACT_APP_API_BASEURL}advertisements/list`)
+    var res = await axios.get(`${process.env.REACT_APP_API_BASEURL}advertisements/list-all`,{
+      headers: {
+        authorization: authHeader()
+      }
+    })
     setAdvertisements(res.data)
   }
 

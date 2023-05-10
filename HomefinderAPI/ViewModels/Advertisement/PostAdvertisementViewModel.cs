@@ -22,5 +22,6 @@ namespace HomefinderAPI.ViewModels.Advertisement
 		public int StreetNumber { get; set; }
 		[Required(ErrorMessage = "Binär kod för bild är obligatoriskt")]
 		public string? ImageBin { get; set; }
+		public bool Deleted { get; set; }
 	}
 }

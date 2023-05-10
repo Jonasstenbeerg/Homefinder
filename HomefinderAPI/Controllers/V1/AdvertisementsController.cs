@@ -18,14 +18,14 @@ namespace HomefinderAPI.Controllers.V1
     }
     
     /// <summary>
-    /// Returns all advertisements in the system pointed by the filter
+    /// Returns all available advertisements in the system pointed by the filter
     /// </summary>
     [HttpGet("list")]
-    public async Task<ActionResult<List<AdvertisementViewModel>>> GetAll([FromQuery]AdvertisementQuery? query)
+    public async Task<ActionResult<List<AdvertisementViewModel>>> GetAllAvailable([FromQuery]AdvertisementQuery? query)
     {
       try
       {
-        var respons = await _advertisementRepository.ListAllAdvertisementsAsync(query);
+        var respons = await _advertisementRepository.ListAllAvailableAdvertisementsAsync(query);
 
         return Ok(respons);
       }
@@ -46,6 +46,25 @@ namespace HomefinderAPI.Controllers.V1
       }
 
       return Ok(respons);
+    }
+
+    /// <summary>
+    /// Returns all advertisements including deleted ones
+    /// </summary>
+    [Authorize]
+    [HttpGet("list-all")]
+    public async Task<ActionResult<List<AdvertisementViewModel>>> GetAll()
+    {
+      try
+      {
+        var respons = await _advertisementRepository.ListAllAdvertisementsAsync();
+
+        return Ok(respons);
+      }
+      catch (System.Exception ex)
+      {
+        return StatusCode(500, ex.Message);
+      }
     }
     
     [Authorize]

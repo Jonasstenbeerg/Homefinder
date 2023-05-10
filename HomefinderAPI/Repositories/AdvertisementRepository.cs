@@ -80,15 +80,16 @@ namespace HomefinderAPI.Repositories
         .Include(a => a.Property.Image)
         .ToListAsync();
       
-      var pageFilter = _mapper.Map<PaginationFilter>(pageQuery);
-
-      var skip = (pageFilter.PageNumber - 1) * pageFilter.PageSize;
-
-      advertisements = advertisements.Skip(skip).Take(pageFilter.PageSize).ToList();
 
       var addFilter = _mapper.Map<AdvertisementSearchFilter>(addQuery);
 
       advertisements = FilterAdvertisements(addFilter, advertisements);
+
+      var pageFilter = _mapper.Map<PaginationFilter>(pageQuery);
+      
+      var skip = (pageFilter.PageNumber - 1) * pageFilter.PageSize;
+
+      advertisements = advertisements.Skip(skip).Take(pageFilter.PageSize).ToList();
       
       return _mapper.Map<List<AdvertisementViewModel>>(advertisements);
     }

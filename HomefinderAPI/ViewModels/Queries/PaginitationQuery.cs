@@ -4,7 +4,7 @@ namespace HomefinderAPI.ViewModels.Queries
 	{
 		public PaginitationQuery()
 		{
-			PageSize = 1;
+			Pagenumber = 1;
 			PageSize = 5;
 		}
 

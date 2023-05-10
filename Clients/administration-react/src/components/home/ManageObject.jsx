@@ -18,6 +18,7 @@ const ManageObject = ({objectName, objectToManage, onCreateAdvertisement, onUpda
   const [image, setImage] = useState("")
   const [previewImage, setPreviewImage] = useState("")
   const [displayImage, setDisplayImage] = useState("")
+  const [deleted, setDeleted] = useState("")
   
   useEffect(() => {
     if (activeButton !== "Create") {
@@ -29,6 +30,7 @@ const ManageObject = ({objectName, objectToManage, onCreateAdvertisement, onUpda
       setArea(objectToManage?.area)
       setPropertyType(objectToManage?.propertyType)
       setLeaseType(objectToManage?.leaseType)
+      setDeleted(objectToManage?.deleted)
       setDisplayImage(objectToManage?.imageBin)
       setImage(objectToManage?.imageBin)
       setPreviewImage("")
@@ -42,6 +44,7 @@ const ManageObject = ({objectName, objectToManage, onCreateAdvertisement, onUpda
       setArea("")
       setPropertyType("")
       setLeaseType("")
+      setDeleted("")
       setDisplayImage("")
       setPreviewImage("")
     }
@@ -69,9 +72,10 @@ const ManageObject = ({objectName, objectToManage, onCreateAdvertisement, onUpda
       area,
       propertyType,
       leaseType,
-      imageBin
+      imageBin,
+      deleted
     }
-   
+    
     activeButton ==="Create" ? onCreateAdvertisement(add) : onUpdateAdvertisement(add)
   }
 
@@ -109,6 +113,10 @@ const ManageObject = ({objectName, objectToManage, onCreateAdvertisement, onUpda
 
   const handlePropertyTypeSelectChanged = (e) => {
     setPropertyType(e.target.value)
+  }
+
+  const handleDeletedSelectChanged = (e) => {
+    setDeleted(e.target.value === "true" ? true:false)
   }
 
   const handleLeaseTypeSelectChanged = (e) => {
@@ -257,6 +265,23 @@ const ManageObject = ({objectName, objectToManage, onCreateAdvertisement, onUpda
             <option value="Bostadsrätt">Bostadsrätt</option>
           </select>
         </div>
+        {activeButton === "Customizie" &&(
+          <>
+            <h1 className={styles["manage-objects-form-heading"]}>Deleted</h1>
+            <div className={styles["manage-objects-form-input-container"]}>
+              <select
+                disabled={activeButton === "Info"}
+                onChange={handleDeletedSelectChanged}
+                value={deleted}
+                className={styles["manage-objects-form-input"]}
+                required
+              >
+                <option value="true">True</option>
+                <option value="false">False</option>
+              </select>
+            </div>
+          </>
+        )}
         <div className={styles["manage-objects-form-input-container"]} id={styles["image-input-container"]}>
           <label htmlFor="manage-objects-form-input">image</label>
           <input

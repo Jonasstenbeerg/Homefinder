@@ -1,6 +1,7 @@
 using HomefinderAPI.Interfaces;
 using HomefinderAPI.ViewModels.Advertisement;
 using HomefinderAPI.ViewModels.Queries;
+using HomefinderAPI.ViewModels.Responses;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
@@ -27,7 +28,7 @@ namespace HomefinderAPI.Controllers.V1
       {
         var respons = await _advertisementRepository.ListAllAvailableAdvertisementsAsync(query);
 
-        return Ok(respons);
+        return Ok(new PagedResponse<AdvertisementViewModel>(respons));
       }
       catch (System.Exception ex)
       {

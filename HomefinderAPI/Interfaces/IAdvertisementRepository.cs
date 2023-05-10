@@ -5,7 +5,7 @@ namespace HomefinderAPI.Interfaces
 {
   public interface IAdvertisementRepository
   {
-    public Task<List<AdvertisementViewModel>> ListAllAvailableAdvertisementsAsync(PaginitationQuery? pageQuery = null, AdvertisementQuery? addQuery = null);
+    public Task<List<AdvertisementViewModel>> ListAllAvailableAdvertisementsAsync(PaginitationQuery pageQuery, AdvertisementQuery addQuery);
     public Task<List<AdvertisementViewModel>> ListAllAdvertisementsAsync();
     public Task<AdvertisementViewModel?> GetAdvertisementByIdAsync(int id);
     public Task AddAdvertisementAsync(PostAdvertisementViewModel model);

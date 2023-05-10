@@ -70,7 +70,7 @@ namespace HomefinderAPI.Repositories
     }
 
 
-    public async Task<List<AdvertisementViewModel>> ListAllAvailableAdvertisementsAsync(PaginitationQuery? pageQuery = null, AdvertisementQuery? addQuery = null)
+    public async Task<List<AdvertisementViewModel>> ListAllAvailableAdvertisementsAsync(PaginitationQuery pageQuery, AdvertisementQuery addQuery)
     {
       var advertisements = await _context.Advertisements
         .Where(add => add.Deleted == false)

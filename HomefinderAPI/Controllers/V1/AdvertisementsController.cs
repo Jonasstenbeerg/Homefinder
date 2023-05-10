@@ -1,3 +1,4 @@
+using HomefinderAPI.Helpers;
 using HomefinderAPI.Interfaces;
 using HomefinderAPI.ViewModels.Advertisement;
 using HomefinderAPI.ViewModels.Queries;
@@ -12,9 +13,11 @@ namespace HomefinderAPI.Controllers.V1
   public class AdvertisementsController : ControllerBase
   {
     private readonly IAdvertisementRepository _advertisementRepository;
+    private readonly IUriRepository _uriRepository;
     
-    public AdvertisementsController(IAdvertisementRepository advertisementRepository)
+    public AdvertisementsController(IAdvertisementRepository advertisementRepository, IUriRepository uriRepository)
     {
+      _uriRepository = uriRepository;
       _advertisementRepository = advertisementRepository;
     }
     
@@ -27,8 +30,14 @@ namespace HomefinderAPI.Controllers.V1
       try
       {
         var respons = await _advertisementRepository.ListAllAvailableAdvertisementsAsync(pageQuery, addQuery);
+        if (pageQuery is null || pageQuery.Pagenumber < 1 || pageQuery.PageSize < 1)
+        {
+          return Ok(new PagedResponse<AdvertisementViewModel>(respons));
+        }
 
-        return Ok(new PagedResponse<AdvertisementViewModel>(respons));
+        var paginationResponse = PaginationHelper.CreatePaginatedResponse(_uriRepository, pageQuery, respons);
+        
+        return Ok(paginationResponse);
       }
       catch (System.Exception ex)
       {

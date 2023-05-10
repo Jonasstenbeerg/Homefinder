@@ -64,6 +64,13 @@ builder.Services.AddAuthentication(options =>
 builder.Services.AddScoped<IAdvertisementRepository, AdvertisementRepository>();
 builder.Services.AddScoped<ILeaseTypeRepository, LeaseTypeRepository>();
 builder.Services.AddScoped<IPropertyTypeRepository, PropertyTypeRepository>();
+builder.Services.AddSingleton<IUriRepository>(provider =>
+{
+	var accessor = provider.GetRequiredService<IHttpContextAccessor>();
+	var request = accessor.HttpContext!.Request;
+	var absoluteUri = string.Concat(request.Scheme, "://", request.Host.ToUriComponent(), "/");
+	return new UriRepository(absoluteUri);
+});
 
 // AutoMapper
 builder.Services.AddAutoMapper(typeof(AutoMapperProfiles).Assembly);

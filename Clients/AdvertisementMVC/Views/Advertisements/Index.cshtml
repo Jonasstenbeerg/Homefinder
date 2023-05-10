@@ -4,14 +4,53 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
     ViewData["Title"] = "Advertisements";
     var filter = new AdvertisementMVC.ViewModels.AdvertisementFilterViewModel();
+    @* var textBoxFilterValues = new AdvertisementMVC.ViewModels.AdvertisementTextBoxFilterViewModel(); *@
 }
 
 <div class="advertisements">
         
-        @Html.Partial("_SearchFilterPartial", filter)
+        @* @Html.Partial("_SearchFilterPartial", filter) *@
+
+<div class="search__container">
+    <div class="search__container-title">
+        <h2>Sökfilter</h2>
+    </div>
+    <hr>
+        <form class="form" asp-controller="Advertisements" asp-action="Find" method="post" name="searchForm">
+        <div class="search__container-top">
+            <div class="search__container-adress-field search-text-box">
+                <i class="fa-solid fa-magnifying-glass"></i>
+                <input asp-for="@filter.Address" name="address" value="@filter.Address" class="search__container-address search-text-box" placeholder=" Skriv adress">
+            </div>
+
+            <div class="range_container">
+                <div class="sliders_control">
+                    <input id="fromSlider" type="range" value="0" min="0" max="50000000" step="100000"/>
+                    <input id="toSlider" type="range" value="60000000" min="0" max="60000000" step="100000"/>
+                </div>
+
+                <div class="form_control">
+                    <div class="form_control_container">
+                        <div class="form_control_container__time min">Min</div>
+                        <input asp-for="@filter.MinPrice" name="minPrice" class="form_control_container__time__input" type="number" id="fromInput" value="@filter.MinPrice" min="0" max="50000000" />
+                    </div>
+
+                    <div class="form_control_container">
+                        <div class="form_control_container__time max">Max</div>
+                        <input asp-for="@filter.MaxPrice" name="maxPrice" class="form_control_container__time__input" type="number" id="toInput" value="@filter.MaxPrice" min="0" max="60000000" />
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="search__container-bottom">
+            <input type="submit" class="search__container-btn-sort search-text-box" value="Filtrera efter bostad">
+        </div>
+    </form>
+</div>
 
         <hr>
-        <div class="advertisements__container">
+        <div class="advertisements__container">  
             @foreach (var ad in Model)
             {
                 <div class="advertisements__card">
@@ -25,8 +64,8 @@
                             <p class="advertisements__card-city">@ad.City</p>
                         </div>
         
-                    <p class="advertisements__card-property-type">
-                    @if (@ad.PropertyType == "Villa")
+                        <p class="advertisements__card-property-type">
+                        @if (@ad.PropertyType == "Villa")
                         {
                             <img src="../images/lease-type-house.png">
                         }
@@ -36,7 +75,8 @@
                         }
 
                         @ad.PropertyType
-                    </p>
+                        </p>
+
                         <p class="advertisements__card-lease-type">@ad.LeaseType</p>
 
                         <div class="advertisements__card-inner-container-bottom">

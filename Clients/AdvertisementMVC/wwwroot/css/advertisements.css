@@ -1,6 +1,7 @@
 .advertisements {
   display: block;
   max-width: 100%;
+  min-height: 45em;
   margin: 0 20%;
   padding: 1em 1em;
   background-color: rgba(36, 55, 120, 0.85);

@@ -3,6 +3,7 @@ using HomefinderAPI.ViewModels.Advertisement;
 using HomefinderAPI.ViewModels.Queries;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.OutputCaching;
 
 namespace HomefinderAPI.Controllers.V1
 {
@@ -11,15 +12,18 @@ namespace HomefinderAPI.Controllers.V1
   public class AdvertisementsController : ControllerBase
   {
     private readonly IAdvertisementRepository _advertisementRepository;
+    private readonly IOutputCacheStore _cacheStore;
     
-    public AdvertisementsController(IAdvertisementRepository advertisementRepository)
+    public AdvertisementsController(IAdvertisementRepository advertisementRepository, IOutputCacheStore cacheStore)
     {
+      _cacheStore = cacheStore;
       _advertisementRepository = advertisementRepository;
     }
     
     /// <summary>
     /// Returns all available advertisements in the system pointed by the filter
     /// </summary>
+    [OutputCache(PolicyName = "list-cache")]
     [HttpGet("list")]
     public async Task<ActionResult<List<AdvertisementViewModel>>> GetAllAvailable([FromQuery]AdvertisementQuery? query)
     {
@@ -69,7 +73,7 @@ namespace HomefinderAPI.Controllers.V1
     
     [Authorize]
     [HttpPost]
-    public async Task<ActionResult> Create(PostAdvertisementViewModel model)
+    public async Task<ActionResult> Create(PostAdvertisementViewModel model,CancellationToken ct)
     {
       try
       {
@@ -77,6 +81,7 @@ namespace HomefinderAPI.Controllers.V1
 
         if(await _advertisementRepository.SaveAllAsync())
         {
+          await _cacheStore.EvictByTagAsync("list",ct);
           return StatusCode(201);
         }
 
@@ -90,7 +95,7 @@ namespace HomefinderAPI.Controllers.V1
 
     [Authorize]
     [HttpPut("{id}")]
-    public async Task<ActionResult> Update(int id, PostAdvertisementViewModel model)
+    public async Task<ActionResult> Update(int id, PostAdvertisementViewModel model,CancellationToken ct)
     {
       try
       {
@@ -98,6 +103,7 @@ namespace HomefinderAPI.Controllers.V1
 
         if(await _advertisementRepository.SaveAllAsync())
         {
+          await _cacheStore.EvictByTagAsync("list",ct);
           return NoContent();
         }
 

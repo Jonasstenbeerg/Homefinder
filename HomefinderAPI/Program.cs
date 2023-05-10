@@ -68,6 +68,21 @@ builder.Services.AddScoped<IPropertyTypeRepository, PropertyTypeRepository>();
 // AutoMapper
 builder.Services.AddAutoMapper(typeof(AutoMapperProfiles).Assembly);
 
+//Response Caching
+builder.Services.AddOutputCache(options =>
+{
+	options.AddBasePolicy(bP =>
+	{
+		bP.Expire(TimeSpan.FromMinutes(10));
+		
+	});
+
+	options.AddPolicy("list-cache",p => 
+	{
+		p.Tag("list");
+	});
+});
+
 builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
@@ -128,6 +143,8 @@ if (app.Environment.IsDevelopment())
 		app.UseSwagger();
 		app.UseSwaggerUI();
 }
+
+app.UseOutputCache();
 
 app.UseHttpsRedirection();
 

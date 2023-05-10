@@ -150,7 +150,7 @@ namespace HomefinderAPI.Repositories
     {
       if (!string.IsNullOrEmpty(filter.Address))
       {
-        advertisements = advertisements.Where(add => add.Property.Address!.ToString()!.Contains(filter.Address));
+        advertisements = advertisements.Where(add => add.Property.Address!.ToString().ToLower()!.Contains(filter.Address.ToLower()));
       }
 
       if (filter.MinPrice > filter.MaxPrice)

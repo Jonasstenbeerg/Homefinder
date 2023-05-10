@@ -6,14 +6,14 @@ namespace HomefinderAPI.Helpers
 {
     public class PaginationHelper
 	{
-		public static PagedResponse<T> CreatePaginatedResponse<T>(IUriRepository uriRepository, PaginitationQuery pageQuery, List<T> respons)
+		public static PagedResponse<T> CreatePaginatedResponse<T>(IUriRepository uriRepository,List<T> respons, PaginitationQuery pageQuery, AdvertisementQuery addQuery)
 		{
 			var nextPage = pageQuery.Pagenumber >= 1
-			? uriRepository.GetAllAdvertisementsUri(new PaginitationQuery(pageQuery.Pagenumber + 1, pageQuery.PageSize)).ToString()
+			? uriRepository.GetAllAdvertisementsUri(addQuery,new PaginitationQuery(pageQuery.Pagenumber + 1, pageQuery.PageSize)).ToString()
 			: null;
 
 			var PreviousPage = pageQuery.Pagenumber - 1 >= 1
-				? uriRepository.GetAllAdvertisementsUri(new PaginitationQuery(pageQuery.Pagenumber - 1, pageQuery.PageSize)).ToString()
+				? uriRepository.GetAllAdvertisementsUri(addQuery,new PaginitationQuery(pageQuery.Pagenumber - 1, pageQuery.PageSize)).ToString()
 				: null;
 
 			return new PagedResponse<T>

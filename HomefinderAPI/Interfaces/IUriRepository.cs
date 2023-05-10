@@ -5,6 +5,6 @@ namespace HomefinderAPI.Interfaces
 	public interface IUriRepository
 	{
 		Uri GetAdvertisementUri (string advertisementId);
-		Uri GetAllAdvertisementsUri (PaginitationQuery? pageQuery = null);
+		Uri GetAllAdvertisementsUri (AdvertisementQuery addQuery ,PaginitationQuery pageQuery);
 	}
 }

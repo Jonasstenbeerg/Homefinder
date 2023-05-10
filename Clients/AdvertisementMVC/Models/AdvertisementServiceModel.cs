@@ -38,7 +38,7 @@ namespace AdvertisementMVC.Models
             {
                 url += $"?Address={address}";
             }
-            if (minPrice > 0 && maxPrice > 0 && minPrice <= maxPrice)
+            if (minPrice >= 0 && maxPrice > 0 && minPrice <= maxPrice)
             {
                 if (url.Contains("?"))
                 {

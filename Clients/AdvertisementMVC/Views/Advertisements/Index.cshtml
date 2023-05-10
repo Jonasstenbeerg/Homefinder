@@ -4,13 +4,9 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
     ViewData["Title"] = "Advertisements";
     var filter = new AdvertisementMVC.ViewModels.AdvertisementFilterViewModel();
-    @* var textBoxFilterValues = new AdvertisementMVC.ViewModels.AdvertisementTextBoxFilterViewModel(); *@
 }
 
 <div class="advertisements">
-        
-        @* @Html.Partial("_SearchFilterPartial", filter) *@
-
 <div class="search__container">
     <div class="search__container-title">
         <h2>Sökfilter</h2>
@@ -20,7 +16,7 @@
         <div class="search__container-top">
             <div class="search__container-adress-field search-text-box">
                 <i class="fa-solid fa-magnifying-glass"></i>
-                <input asp-for="@filter.Address" name="address" value="@filter.Address" class="search__container-address search-text-box" placeholder=" Skriv adress">
+                <input asp-for="@filter.Address" name="address" class="search__container-address search-text-box" placeholder=" Skriv adress">
             </div>
 
             <div class="range_container">
@@ -32,12 +28,12 @@
                 <div class="form_control">
                     <div class="form_control_container">
                         <div class="form_control_container__time min">Min</div>
-                        <input asp-for="@filter.MinPrice" name="minPrice" class="form_control_container__time__input" type="number" id="fromInput" value="@filter.MinPrice" min="0" max="50000000" />
+                        <input asp-for="@filter.MinPrice" name="minPrice" class="form_control_container__time__input" type="number" id="fromInput" min="0" max="50000000" />
                     </div>
 
                     <div class="form_control_container">
                         <div class="form_control_container__time max">Max</div>
-                        <input asp-for="@filter.MaxPrice" name="maxPrice" class="form_control_container__time__input" type="number" id="toInput" value="@filter.MaxPrice" min="0" max="60000000" />
+                        <input asp-for="@filter.MaxPrice" name="maxPrice" class="form_control_container__time__input" type="number" id="toInput" min="0" max="60000000" />
                     </div>
                 </div>
             </div>
@@ -50,7 +46,9 @@
 </div>
 
         <hr>
-        <div class="advertisements__container">  
+        <div class="advertisements__container">
+            @if (Model.Any())
+            {
             @foreach (var ad in Model)
             {
                 <div class="advertisements__card">
@@ -86,5 +84,12 @@
                     </div>
                 </div>
             }
+            }
+            else
+            {
+                <div class="advertisements__card empty-card">
+                    <p>No ads available</p>
+                </div>
+            }  
         </div>
 </div>

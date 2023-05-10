@@ -22,18 +22,18 @@
             <div class="range_container">
                 <div class="sliders_control">
                     <input id="fromSlider" type="range" value="1" min="1" max="50000000" step="100000"/>
-                    <input id="toSlider" type="range" value="60000000" min="1" max="60000000" step="100000"/>
+                    <input id="toSlider" type="range" value="600000000" min="1" max="600000000" step="100000"/>
                 </div>
 
                 <div class="form_control">
                     <div class="form_control_container">
                         <div class="form_control_container__time min">Min</div>
-                        <input asp-for="@filter.MinPrice" name="minPrice" class="form_control_container__time__input" type="number" id="fromInput" value="1" min="1" max="60000000" />
+                        <input asp-for="@filter.MinPrice" name="minPrice" class="form_control_container__time__input" type="number" id="fromInput" value="1" min="1" max="600000000" />
                     </div>
 
                     <div class="form_control_container">
                         <div class="form_control_container__time max">Max</div>
-                        <input asp-for="@filter.MaxPrice" name="maxPrice" class="form_control_container__time__input" type="number" id="toInput" value="60000000" min="1" max="60000000" />
+                        <input asp-for="@filter.MaxPrice" name="maxPrice" class="form_control_container__time__input" type="number" id="toInput" value="600000000" min="1" max="600000000" />
                     </div>
                 </div>
             </div>

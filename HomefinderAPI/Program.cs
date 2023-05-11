@@ -64,9 +64,31 @@ builder.Services.AddAuthentication(options =>
 builder.Services.AddScoped<IAdvertisementRepository, AdvertisementRepository>();
 builder.Services.AddScoped<ILeaseTypeRepository, LeaseTypeRepository>();
 builder.Services.AddScoped<IPropertyTypeRepository, PropertyTypeRepository>();
+builder.Services.AddSingleton<IUriRepository>(provider =>
+{
+	var accessor = provider.GetRequiredService<IHttpContextAccessor>();
+	var request = accessor.HttpContext!.Request;
+	var absoluteUri = string.Concat(request.Scheme, "://", request.Host.ToUriComponent(), "/");
+	return new UriRepository(absoluteUri);
+});
 
 // AutoMapper
 builder.Services.AddAutoMapper(typeof(AutoMapperProfiles).Assembly);
+
+//Response Caching
+builder.Services.AddOutputCache(options =>
+{
+	options.AddBasePolicy(bP =>
+	{
+		bP.Expire(TimeSpan.FromMinutes(10));
+		
+	});
+
+	options.AddPolicy("list-cache",p => 
+	{
+		p.Tag("list");
+	});
+});
 
 builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
@@ -128,6 +150,8 @@ if (app.Environment.IsDevelopment())
 		app.UseSwagger();
 		app.UseSwaggerUI();
 }
+
+app.UseOutputCache();
 
 app.UseHttpsRedirection();
 

@@ -15,7 +15,7 @@
 <body>
 	<div class="background-image">
 		<img src="../images/city.jpg" alt="City" />
-</div>
+	</div>
 
 	<nav id="navbar">
 				<img src="../images/icon-home-white.png" class="navbar__icon"></i>
@@ -27,13 +27,15 @@
 		</h1>
 	</nav>
 
-	<main role="main">
-		@RenderBody()
-	</main>
+<div class="wrapper">
+		<main role="main">
+			@RenderBody()
+		</main>
 
-	<footer>
-		<p>&#169; 2023 HomeFinder</p>
-	</footer>
+		<footer>
+			<p>&#169; 2023 HomeFinder</p>
+		</footer>
+	</div>
 
 	<script src="~/js/site.js" asp-append-version="true"></script>
 	<script src="~/js/price-slider.js" asp-append-version="true"></script>

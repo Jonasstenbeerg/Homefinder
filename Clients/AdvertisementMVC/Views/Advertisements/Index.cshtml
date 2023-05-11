@@ -3,27 +3,79 @@
 @{
     Layout = "~/Views/Shared/_Layout.cshtml";
     ViewData["Title"] = "Advertisements";
+    var filter = new AdvertisementMVC.ViewModels.AdvertisementFilterViewModel();
 }
 
 <div class="advertisements">
-        
-        @Html.Partial("_SearchFilterPartial")
+<div class="search__container">
+    <div class="search__container-title">
+        <h2>Sökfilter</h2>
+    </div>
+    <hr>
+        <form class="form" asp-controller="Advertisements" asp-action="Find" method="post" name="searchForm">
+        <div class="search__container-top">
+            <div class="search__container-adress-field search-text-box">
+                <i class="fa-solid fa-magnifying-glass"></i>
+                <input asp-for="@filter.Address" name="address" class="search__container-address search-text-box" placeholder=" Skriv adress">
+            </div>
+
+            <div class="range_container">
+                <div class="sliders_control">
+                    <input id="fromSlider" type="range" value="1" min="1" max="50000000" step="100000"/>
+                    <input id="toSlider" type="range" value="60000000" min="1" max="60000000" step="100000"/>
+                </div>
+
+                <div class="form_control">
+                    <div class="form_control_container">
+                        <div class="form_control_container__time min">Min</div>
+                        <input asp-for="@filter.MinPrice" name="minPrice" class="form_control_container__time__input" type="number" id="fromInput" value="1" min="1" max="60000000" />
+                    </div>
+
+                    <div class="form_control_container">
+                        <div class="form_control_container__time max">Max</div>
+                        <input asp-for="@filter.MaxPrice" name="maxPrice" class="form_control_container__time__input" type="number" id="toInput" value="60000000" min="1" max="60000000" />
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="search__container-bottom">
+            <input type="submit" class="search__container-btn-sort search-text-box" value="Filtrera efter bostad">
+        </div>
+    </form>
+</div>
 
         <hr>
         <div class="advertisements__container">
+            @if (Model.Any())
+            {
             @foreach (var ad in Model)
             {
                 <div class="advertisements__card">
                     <div class="advertisements__card-image-container">
-                        <img src=@ad.ImageUrl class="advertisements__card-image" alt="Ad">
+                        <img src=@ad.ImageBin class="advertisements__card-image" alt="Ad">
                     </div>
+
                     <div class="advertisements__card-text-container">
                         <div class="advertisements__card-inner-container-top">
                             <p class="advertisements__card-address">@ad.StreetName @ad.StreetNumber</p>
                             <p class="advertisements__card-city">@ad.City</p>
                         </div>
+        
+                        <p class="advertisements__card-property-type">
+                        @if (@ad.PropertyType == "Villa")
+                        {
+                            <img src="../images/lease-type-house.png">
+                        }
+                        else if (@ad.PropertyType == "Lägenhet")
+                        {
+                            <img src="../images/lease-type-apartment.png">
+                        }
 
-                        <p class="advertisements__card-lease-type"><img src="@ad.LeaseTypeIconUrl"> @ad.LeaseType</p>
+                        @ad.PropertyType
+                        </p>
+
+                        <p class="advertisements__card-lease-type">@ad.LeaseType</p>
 
                         <div class="advertisements__card-inner-container-bottom">
                             <p class="advertisements__card-price-and-area">@(ad.ListPrice.ToString("N0").Replace(",", " ")) kr <span>@ad.Area m²</span></p>
@@ -32,5 +84,12 @@
                     </div>
                 </div>
             }
+            }
+            else
+            {
+                <div class="advertisements__card empty-card">
+                    <p>No ads available</p>
+                </div>
+            }  
         </div>
 </div>

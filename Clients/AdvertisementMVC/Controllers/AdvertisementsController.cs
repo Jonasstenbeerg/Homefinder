@@ -39,6 +39,7 @@ namespace AdvertisementMVC.Controllers
       try
       {
         var advertisements = await _advertisementService.ListAllFilteredAdvertisementsAsync(filterModel.Address, filterModel.MinPrice, filterModel.MaxPrice);
+        ViewBag.Filter = filterModel;
         return View("~/Views/Advertisements/Index.cshtml", advertisements);
       }
       catch (System.Exception)

@@ -4,6 +4,7 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
     ViewData["Title"] = "Advertisements";
     var filter = new AdvertisementMVC.ViewModels.AdvertisementFilterViewModel();
+    var filterValues = ViewBag.Filter as AdvertisementMVC.ViewModels.AdvertisementFilterViewModel;
 }
 
 <div class="advertisements">
@@ -16,7 +17,7 @@
         <div class="search__container-top">
             <div class="search__container-adress-field search-text-box">
                 <i class="fa-solid fa-magnifying-glass"></i>
-                <input asp-for="@filter.Address" name="address" class="search__container-address search-text-box" placeholder=" Skriv adress">
+                <input asp-for="@filter.Address" name="address" class="search__container-address search-text-box" placeholder=" Skriv adress" value="">
             </div>
 
             <div class="range_container">
@@ -28,12 +29,12 @@
                 <div class="form_control">
                     <div class="form_control_container">
                         <div class="form_control_container__time min">Min</div>
-                        <input asp-for="@filter.MinPrice" name="minPrice" class="form_control_container__time__input" type="number" id="fromInput" value="1" min="1" max="600000000" />
+                        <input asp-for="@filter.MinPrice" name="minPrice" class="form_control_container__time__input" type="number" id="fromInput" value="0" min="1" max="600000000"/>
                     </div>
 
                     <div class="form_control_container">
                         <div class="form_control_container__time max">Max</div>
-                        <input asp-for="@filter.MaxPrice" name="maxPrice" class="form_control_container__time__input" type="number" id="toInput" value="600000000" min="1" max="600000000" />
+                        <input asp-for="@filter.MaxPrice" name="maxPrice" class="form_control_container__time__input" type="number" id="toInput" value="600000000" min="1" max="600000000"/>
                     </div>
                 </div>
             </div>

@@ -1,6 +1,8 @@
+using HomefinderAPI.Helpers;
 using HomefinderAPI.Interfaces;
 using HomefinderAPI.ViewModels.Advertisement;
 using HomefinderAPI.ViewModels.Queries;
+using HomefinderAPI.ViewModels.Responses;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.OutputCaching;
@@ -12,10 +14,12 @@ namespace HomefinderAPI.Controllers.V1
   public class AdvertisementsController : ControllerBase
   {
     private readonly IAdvertisementRepository _advertisementRepository;
+    private readonly IUriRepository _uriRepository;
     private readonly IOutputCacheStore _cacheStore;
     
-    public AdvertisementsController(IAdvertisementRepository advertisementRepository, IOutputCacheStore cacheStore)
+    public AdvertisementsController(IAdvertisementRepository advertisementRepository, IUriRepository uriRepository, IOutputCacheStore cacheStore)
     {
+      _uriRepository = uriRepository;
       _cacheStore = cacheStore;
       _advertisementRepository = advertisementRepository;
     }
@@ -25,13 +29,15 @@ namespace HomefinderAPI.Controllers.V1
     /// </summary>
     [OutputCache(PolicyName = "list-cache")]
     [HttpGet("list")]
-    public async Task<ActionResult<List<AdvertisementViewModel>>> GetAllAvailable([FromQuery]AdvertisementQuery? query)
+    public async Task<ActionResult<List<AdvertisementViewModel>>> GetAllAvailable([FromQuery]PaginitationQuery pageQuery, [FromQuery]AdvertisementQuery addQuery)
     {
       try
       {
-        var respons = await _advertisementRepository.ListAllAvailableAdvertisementsAsync(query);
-
-        return Ok(respons);
+        var respons = await _advertisementRepository.ListAllAvailableAdvertisementsAsync(pageQuery, addQuery);
+       
+        var paginationResponse = PaginationHelper.CreatePaginatedResponse(_uriRepository, respons, pageQuery, addQuery);
+        
+        return Ok(paginationResponse);
       }
       catch (System.Exception ex)
       {

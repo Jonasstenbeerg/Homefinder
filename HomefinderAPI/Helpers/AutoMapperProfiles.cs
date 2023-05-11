@@ -37,6 +37,7 @@ namespace HomefinderAPI.Helpers
       CreateMap<PostPropertyTypeViewModel, PropertyType>();
       CreateMap<PropertyType, PropertyTypeViewModel>();
       CreateMap<AdvertisementQuery, AdvertisementSearchFilter>();
+      CreateMap<PaginitationQuery, PaginationFilter>();
     }
   }
 }

@@ -12,7 +12,7 @@ namespace AdvertisementMVC.Models
             _baseApiUrl = $"{_config.GetValue<string>("baseApiUrl")}/v1/advertisements";
         }
 
-        public async Task<List<AdvertisementViewModel>> ListAllAdvertisementsAsync()
+        public async Task<PaginationViewModel> ListAllAdvertisementsAsync()
         {
             var url = $"{_baseApiUrl}/list";
 
@@ -24,12 +24,12 @@ namespace AdvertisementMVC.Models
                 throw new Exception("Det gick inte att hämta annonserna");
             }
 
-            var advertisements = await response.Content.ReadFromJsonAsync<List<AdvertisementViewModel>>();
+            var data = await response.Content.ReadFromJsonAsync<PaginationViewModel>();
 
-            return advertisements ?? new List<AdvertisementViewModel>();
+            return data ?? new PaginationViewModel();
         }
 
-        public async Task<List<AdvertisementViewModel>> ListAllFilteredAdvertisementsAsync(string address, int minPrice, int maxPrice)
+        public async Task<PaginationViewModel> ListAllFilteredAdvertisementsAsync(string address, int minPrice, int maxPrice)
         {
             var url = $"{_baseApiUrl}/list";
             
@@ -57,9 +57,9 @@ namespace AdvertisementMVC.Models
                 throw new Exception("Det gick inte att hämta annonserna");
             }
 
-            var advertisements = await response.Content.ReadFromJsonAsync<List<AdvertisementViewModel>>();
+            var advertisements = await response.Content.ReadFromJsonAsync<PaginationViewModel>();
 
-            return advertisements ?? new List<AdvertisementViewModel>();
+            return advertisements ?? new PaginationViewModel();
         }
     }
 }

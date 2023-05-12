@@ -41,6 +41,13 @@ namespace HomefinderAPI.IntegrationTests
 			return response.IsSuccessStatusCode;
 		}
 
+		protected async Task<bool> UpdateAdvertisementAsync(int id,PostAdvertisementViewModel model)
+		{
+			var response = await TestClient.PutAsJsonAsync($"api/v1/advertisements/{id}",model);
+
+			return response.IsSuccessStatusCode;
+		}
+
 		private async Task<string> GetJwtAsync()
 		{
 			var response = await TestClient.PostAsJsonAsync("api/v1/auth/login", new LoginUserViewModel{

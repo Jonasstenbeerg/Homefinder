@@ -115,14 +115,68 @@ namespace HomefinderAPI.IntegrationTests.Controllers
 		[TestMethod]
 		public async Task Update_WhenValidDataProvided_UpdatesAdvertisement()
 		{
-			//Uppdatera ett object
+			var testAdd1 = new PostAdvertisementViewModel(){
+				ListPrice = 200,
+				Area = 200,
+				City = "Gävle",
+				ImageBin = "test",
+				LeaseType = "Bostadsrätt",
+				PostalCode = 1337,
+				PropertyType = "Lägenhet",
+				StreetName = "Testgatan",
+				StreetNumber = 22
+			};
+			var expectedAdd = new PostAdvertisementViewModel(){
+				ListPrice = 999999,
+				Area = 23424234,
+				City = "TEst",
+				ImageBin = "testtest",
+				LeaseType = "Egenrätt",
+				PostalCode = 543653,
+				PropertyType = "Villa",
+				StreetName = "Testvägen",
+				StreetNumber = 1
+			};
+			await AuthenticateAsync();
+			await CreatAdvertisementAsync(testAdd1);
+
+			var response = await TestClient.GetAsync("api/v1/advertisements/list");
+			var pagedResponse = await response.Content.ReadFromJsonAsync<PagedResponse<AdvertisementViewModel>>();
+
+			var firstAddFromResponse = pagedResponse!.Data.First();
+
+			await UpdateAdvertisementAsync(firstAddFromResponse.Id,expectedAdd);
+
+			var updatedAdvertisementResponse = await TestClient.GetAsync($"api/v1/advertisements/{firstAddFromResponse.Id}");
+			var updatedAdvertisement = await updatedAdvertisementResponse.Content.ReadFromJsonAsync<AdvertisementViewModel>();
+
+			Assert.AreEqual(expectedAdd,updatedAdvertisement);
 			
 		}
 
 		[TestMethod]
 		public async Task Delete_WhenAdvertisementExists_SetsDeletedPropertyToTrue()
 		{
-			//skapa en annons och deletea den sen hämta den och kolla att deleted är true
+			var testAdd1 = new PostAdvertisementViewModel(){
+				ListPrice = 200,
+				Area = 200,
+				City = "Gävle",
+				ImageBin = "test",
+				LeaseType = "Bostadsrätt",
+				PostalCode = 1337,
+				PropertyType = "Lägenhet",
+				StreetName = "Testgatan",
+				StreetNumber = 22
+			};
+			await AuthenticateAsync();
+			await CreatAdvertisementAsync(testAdd1);
+			await TestClient.DeleteAsync("api/v1/advertisements/1");
+
+			var response = await TestClient.GetAsync("api/v1/advertisements/list-all");
+			var pagedResponse = await response.Content.ReadFromJsonAsync<List<AdvertisementViewModel>>();
+			
+			Assert.IsNotNull(pagedResponse);
+			Assert.IsTrue(pagedResponse.First().Deleted);
 			
 		}
 	}

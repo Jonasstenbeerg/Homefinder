@@ -83,12 +83,26 @@ namespace HomefinderAPI.IntegrationTests.Controllers
 		[TestMethod]
 		public async Task GetAll_WhenAdvertisementsExist_ReturnsAdvertisementsIncludingDeletedOnes()
 		{
+			var testAdd1 = new PostAdvertisementViewModel(){
+				ListPrice = 200,
+				Area = 200,
+				City = "Gävle",
+				ImageBin = "test",
+				LeaseType = "Bostadsrätt",
+				PostalCode = 1337,
+				PropertyType = "Lägenhet",
+				StreetName = "Testgatan",
+				StreetNumber = 22
+			};
 			await AuthenticateAsync();
+			await CreatAdvertisementAsync(testAdd1);
+			await TestClient.DeleteAsync("api/v1/advertisements/1");
 
 			var response = await TestClient.GetAsync("api/v1/advertisements/list-all");
+			var pagedResponse = await response.Content.ReadFromJsonAsync<List<AdvertisementViewModel>>();
 			
-			Assert.IsNotNull(response);
-			
+			Assert.IsNotNull(pagedResponse);
+			Assert.IsTrue(pagedResponse.First().Deleted);
 		}
 
 		[TestMethod]

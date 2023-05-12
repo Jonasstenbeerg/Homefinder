@@ -1,7 +1,7 @@
 .advertisement__container {
   display: block;
   max-width: 100%;
-  min-height: 35em;
+  /* min-height: 35em; */
   margin: 0 20%;
   padding: 1em 1em;
   background-color: rgba(36, 55, 120, 0.85);
@@ -21,7 +21,7 @@
   flex-direction: column;
   background-color: var(--secondary-color);
   height: auto;
-  max-width: 40em;
+  /* max-width: 40em; */
   margin: 1em 1em;
   border-radius: 4px;
   overflow: hidden;

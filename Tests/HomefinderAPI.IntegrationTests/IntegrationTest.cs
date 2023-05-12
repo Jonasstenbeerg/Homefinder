@@ -1,6 +1,7 @@
 using System.Net.Http.Headers;
 using System.Net.Http.Json;
 using HomefinderAPI.Data;
+using HomefinderAPI.ViewModels.Advertisement;
 using HomefinderAPI.ViewModels.Authorization;
 using Microsoft.AspNetCore.Mvc.Testing;
 using Microsoft.EntityFrameworkCore;
@@ -12,7 +13,7 @@ namespace HomefinderAPI.IntegrationTests
 {
     public class IntegrationTest
 	{
-		protected readonly HttpClient testClient;
+		protected readonly HttpClient TestClient;
 
 		protected IntegrationTest()
 		{
@@ -25,17 +26,24 @@ namespace HomefinderAPI.IntegrationTests
 						});
 					});
 				});
-			testClient = appFactory.CreateClient();
+			TestClient = appFactory.CreateClient();
 		}
 
 		protected async Task AuthenticateAsync()
 		{
-			testClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("bearer", await GetJwtAsync());
+			TestClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("bearer", await GetJwtAsync());
+		}
+
+		protected async Task<bool> CreatAdvertisementAsync(PostAdvertisementViewModel model)
+		{
+			var response = await TestClient.PostAsJsonAsync("api/v1/advertisements",model);
+
+			return response.IsSuccessStatusCode;
 		}
 
 		private async Task<string> GetJwtAsync()
 		{
-			var response = await testClient.PostAsJsonAsync("api/v1/auth/login", new LoginUserViewModel{
+			var response = await TestClient.PostAsJsonAsync("api/v1/auth/login", new LoginUserViewModel{
 				UserName = "test@test.com",
 				Password = "Jonas123456",
 			});

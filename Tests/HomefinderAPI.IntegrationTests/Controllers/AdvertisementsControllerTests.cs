@@ -4,9 +4,14 @@ namespace HomefinderAPI.IntegrationTests.Controllers
 	public class AdvertisementsControllerTests : IntegrationTest
 	{
 		[TestMethod]
-		public void TestMethod1()
+		public async Task TestMethod1()
 		{
-			Assert.IsTrue(true);
+			await AuthenticateAsync();
+
+			var response = await testClient.GetAsync("api/v1/advertisements/list");
+
+			Assert.IsNotNull(response);
+			
 		}
 	}
 }

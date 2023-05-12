@@ -55,8 +55,29 @@ namespace HomefinderAPI.IntegrationTests.Controllers
 		[TestMethod]
 		public async Task Get_WithValidId_ReturnsMatchingAdvertisement()
 		{
+			var testAdd1 = new PostAdvertisementViewModel(){
+				ListPrice = 200,
+				Area = 200,
+				City = "Gävle",
+				ImageBin = "test",
+				LeaseType = "Bostadsrätt",
+				PostalCode = 1337,
+				PropertyType = "Lägenhet",
+				StreetName = "Testgatan",
+				StreetNumber = 22
+			};
+			await AuthenticateAsync();
+			await CreatAdvertisementAsync(testAdd1);
+			var response = await TestClient.GetAsync("api/v1/advertisements/list");
+			var pagedResponse = await response.Content.ReadFromJsonAsync<PagedResponse<AdvertisementViewModel>>();
+
+			var firstAdd = pagedResponse!.Data.First();
+
+			var response2 = await TestClient.GetAsync($"api/v1/advertisements/{firstAdd.Id}");
+			var firstAddResponse = await response2.Content.ReadFromJsonAsync<AdvertisementViewModel>();
 			
-			//kolla att en nyligen tillagd annons kan hämtas
+			Assert.IsNotNull(firstAddResponse);
+			Assert.AreEqual(firstAdd.ToString(), firstAddResponse.ToString());
 		}
 
 		[TestMethod]

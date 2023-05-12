@@ -58,6 +58,7 @@
             {
             @foreach (var ad in Model.Data)
             {
+                <a href="@Url.Action("Details", new { id = ad.Id })">
                 <div class="advertisements__card">
                     <div class="advertisements__card-image-container">
                         <img src=@ad.ImageBin class="advertisements__card-image" alt="Ad">
@@ -90,6 +91,7 @@
                         </div>
                     </div>
                 </div>
+                </a>
             }
             }
             else

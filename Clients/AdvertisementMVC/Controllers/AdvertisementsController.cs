@@ -48,6 +48,21 @@ namespace AdvertisementMVC.Controllers
       }
     }
 
+    [HttpGet("{id}")]
+    public async Task<IActionResult> Details(int id)
+    {
+       try
+      {
+        var advertisement = await _advertisementService.GetAdvertisementAsync(id);
+
+        return View("~/Views/Advertisements/Advertisement.cshtml", advertisement);
+      }
+      catch (System.Exception)
+      {
+        throw;
+      }
+    }
+
     [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
     public IActionResult Error()
     {

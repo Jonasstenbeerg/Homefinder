@@ -12,6 +12,23 @@ namespace AdvertisementMVC.Models
             _baseApiUrl = $"{_config.GetValue<string>("baseApiUrl")}/v1/advertisements";
         }
 
+        public async Task<AdvertisementViewModel> GetAdvertisementAsync(int id)
+        {
+            var url = $"{_baseApiUrl}/{id}";
+
+            using var http = new HttpClient();
+            var response = await http.GetAsync(url);
+
+            if (!response.IsSuccessStatusCode)
+            {
+                throw new Exception("Det gick inte att hämta annonsen");
+            }
+
+            var advertisement = await response.Content.ReadFromJsonAsync<AdvertisementViewModel>();
+
+            return advertisement ?? new AdvertisementViewModel();
+        }
+
         public async Task<PaginationViewModel> ListAllAdvertisementsAsync()
         {
             var url = $"{_baseApiUrl}/list";

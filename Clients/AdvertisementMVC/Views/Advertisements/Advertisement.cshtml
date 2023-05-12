@@ -1,0 +1,72 @@
+@model AdvertisementMVC.ViewModels.AdvertisementViewModel
+
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    ViewData["Title"] = "Advertisement";
+}
+
+<div class="advertisement__container">
+    <div class="advertisement__card">
+        <div class="advertisement__card-image-container">
+            <img src="@Model.ImageBin" class="advertisement__card-image" alt="Ad">
+        </div>
+
+        <div class="advertisement__card-text-container">
+            <div class="advertisement__card-inner-container-top">
+                <p class="advertisement__card-address">@Model.StreetName @Model.StreetNumber</p>
+                <p class="advertisement__card-city">@Model.City</p>
+            </div>
+
+            <p class="advertisement__card-property-type">
+                @if (@Model.PropertyType == "Villa")
+                {
+                    <img src="../images/lease-type-house.png">
+                }
+                else if (@Model.PropertyType == "Lägenhet")
+                {
+                    <img src="../images/lease-type-apartment.png">
+                }
+
+                @Model.PropertyType
+            </p>
+
+            <p class="advertisement__card-lease-type">@Model.LeaseType</p>
+
+            <div class="advertisement__card-inner-container-bottom">
+                <p class="advertisement__card-price-and-area">@(Model.ListPrice.ToString("N0").Replace(",", " ")) kr <span>@Model.Area m²</span></p>
+            </div>
+        </div>
+    </div>
+</div>
+
+@* <div class="advertisements__card">
+    <div class="advertisements__card-image-container">
+        <img src="@Model.ImageBin" class="advertisements__card-image" alt="Ad">
+    </div>
+
+    <div class="advertisements__card-text-container">
+        <div class="advertisements__card-inner-container-top">
+            <p class="advertisements__card-address">@Model.StreetName @Model.StreetNumber</p>
+            <p class="advertisements__card-city">@Model.City</p>
+        </div>
+
+        <p class="advertisements__card-property-type">
+            @if (@Model.PropertyType == "Villa")
+            {
+                <img src="../images/lease-type-house.png">
+            }
+            else if (@Model.PropertyType == "Lägenhet")
+            {
+                <img src="../images/lease-type-apartment.png">
+            }
+
+            @Model.PropertyType
+        </p>
+
+        <p class="advertisements__card-lease-type">@Model.LeaseType</p>
+
+        <div class="advertisements__card-inner-container-bottom">
+            <p class="advertisements__card-price-and-area">@(Model.ListPrice.ToString("N0").Replace(",", " ")) kr <span>@Model.Area m²</span></p>
+        </div>
+    </div>
+</div> *@

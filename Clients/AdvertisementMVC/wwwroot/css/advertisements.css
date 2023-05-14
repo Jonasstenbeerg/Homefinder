@@ -1,3 +1,8 @@
+a {
+  text-decoration: none;
+  color: black;
+}
+
 .advertisements {
   display: block;
   max-width: 100%;
@@ -16,12 +21,15 @@
   }
 }
 
+.advertisements__container-pagination{
+
+}
+
 .advertisements__card {
   display: flex;
   background-color: var(--secondary-color);
   height: 12em;
   margin: 1em 2em;
-  /* border: 1px solid var(--secondary-text-color); */
   border-radius: 4px;
   overflow: hidden;
   box-sizing: border-box;

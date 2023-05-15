@@ -18,12 +18,26 @@ namespace AdvertisementMVC.Controllers
       _advertisementService = new AdvertisementServiceModel(_config);
     }
 
-    [HttpGet()]
-    public async Task<IActionResult> Index()
+[HttpGet("~/")]
+public async Task<IActionResult> Index()
+{
+    try
+    {
+        var advertisements = await _advertisementService.ListAllAdvertisementsAsync();
+        return View(advertisements);
+    }
+    catch (Exception)
+    {
+        throw;
+    }
+}
+
+    [HttpGet("~/advertisements")]
+    public async Task<IActionResult> Index(int pageNumber = 1, int pageSize = 5)
     {
       try
       {
-        var advertisements = await _advertisementService.ListAllAdvertisementsAsync();
+        var advertisements = await _advertisementService.ListAllAdvertisementsAsync(pageNumber, pageSize);
 
         return View(advertisements);
       }
@@ -39,7 +53,23 @@ namespace AdvertisementMVC.Controllers
       try
       {
         var advertisements = await _advertisementService.ListAllFilteredAdvertisementsAsync(filterModel.Address, filterModel.MinPrice, filterModel.MaxPrice);
+        ViewBag.Filter = filterModel;
         return View("~/Views/Advertisements/Index.cshtml", advertisements);
+      }
+      catch (System.Exception)
+      {
+        throw;
+      }
+    }
+
+    [HttpGet("{id}")]
+    public async Task<IActionResult> Details(int id)
+    {
+       try
+      {
+        var advertisement = await _advertisementService.GetAdvertisementAsync(id);
+
+        return View("~/Views/Advertisements/Advertisement.cshtml", advertisement);
       }
       catch (System.Exception)
       {

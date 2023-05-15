@@ -1,0 +1,125 @@
+.advertisement__container {
+  display: block;
+  max-width: 100%;
+  margin: 0 20%;
+  padding: 1em 1em;
+  background-color: rgba(36, 55, 120, 0.85);
+  border-radius: 25px;
+
+  @media only screen and (max-width: 1024px) {
+    margin: 1.5em;
+  }
+
+  @media only screen and (max-width: 768px) {
+    margin: 0.5em;
+  }
+}
+
+.advertisement__card {
+  display: flex;
+  flex-direction: column;
+  background-color: var(--secondary-color);
+  height: auto;
+  margin: 1em 1em;
+  border-radius: 4px;
+  overflow: hidden;
+  box-sizing: border-box;
+  border: 1px solid #e9e9e9;
+}
+
+
+.advertisement__card-image-container {
+  width:100%;
+  height: 20em;
+  overflow: hidden;
+
+  @media only screen and (max-width: 768px) {
+    height: 15em;
+  }
+}
+
+.advertisement__card-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  overflow: hidden;
+  border-right: 1px solid var(--secondary-text-color);
+  object-position: center;
+
+  @media only screen and (max-width: 768px) {
+    border-right: none;
+  }
+}
+
+.advertisement__card-text-container {
+  width: 100%;
+  padding: 1rem;
+}
+
+.advertisement__card-inner-container-top {
+  display: flex;
+  justify-content: space-between;
+}
+
+.advertisement__card-inner-container-bottom {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 2.5em;
+}
+
+.advertisement__card-inner-container-bottom img {
+  width: 2em;
+}
+
+.advertisement__card-address {
+  font-size: 24px;
+  font-weight: 600;
+  margin: 0;
+}
+
+.advertisement__card-price-and-area {
+  align-self: center;
+  font-weight: 600;
+  margin: 0;
+}
+
+.advertisement__card-city {
+  font-weight: 600;
+  color: var(--secondary-color);
+  margin-top: 0;
+  padding: 0.222em 0.889em;
+  width: max-content;
+  border-radius: 100px;
+  background: var(--primary-color);
+  text-align: center;
+  max-height: 1.667em;
+}
+
+.advertisement__card-property-type,
+.advertisement__card-lease-type {
+  margin-top: 1em;
+  text-align: start;
+}
+
+.advertisement__card-property-type img {
+  vertical-align: sub;
+  height: auto;
+  width: 1.5em;
+}
+
+.advertisement__card span {
+  margin-left: 3em;
+}
+
+.btn-return{
+  background: none;
+  border: none;
+  cursor: pointer;
+}
+
+.btn-return img{
+  height: 2em;
+  width: auto;
+}
+
+

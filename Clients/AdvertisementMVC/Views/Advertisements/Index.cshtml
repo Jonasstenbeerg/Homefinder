@@ -1,95 +1,134 @@
-@model IEnumerable<AdvertisementMVC.ViewModels.AdvertisementViewModel>
+@model AdvertisementMVC.ViewModels.PaginationViewModel
 
 @{
-    Layout = "~/Views/Shared/_Layout.cshtml";
-    ViewData["Title"] = "Advertisements";
-    var filter = new AdvertisementMVC.ViewModels.AdvertisementFilterViewModel();
+	Layout = "~/Views/Shared/_Layout.cshtml";
+	ViewData["Title"] = "Advertisements";
+	var filter = new AdvertisementMVC.ViewModels.AdvertisementFilterViewModel();
+	var filterValues = ViewBag.Filter as AdvertisementMVC.ViewModels.AdvertisementFilterViewModel ?? new AdvertisementMVC.ViewModels.AdvertisementFilterViewModel();
+	var address = filterValues.Address ?? "";
+	var minPrice = filterValues.MinPrice;
+	var maxPrice = filterValues.MaxPrice;
+
+	var defaultMinPrice = 1;
+	var defaultMaxPrice = 600000000;
 }
 
 <div class="advertisements">
-<div class="search__container">
-    <div class="search__container-title">
-        <h2>Sökfilter</h2>
-    </div>
-    <hr>
-        <form class="form" asp-controller="Advertisements" asp-action="Find" method="post" name="searchForm">
-        <div class="search__container-top">
-            <div class="search__container-adress-field search-text-box">
-                <i class="fa-solid fa-magnifying-glass"></i>
-                <input asp-for="@filter.Address" name="address" class="search__container-address search-text-box" placeholder=" Skriv adress">
-            </div>
+	<div class="search__container-title">
+		<h2>Sökfilter <img src="../images/arrow-down.png" id="filter-arrow" class="search__container-arrow"></h2>
+	</div>
+	<div class="search__container">
+		<hr>
+		<form class="form" asp-controller="Advertisements" asp-action="Find" method="post" name="searchForm">
+			<div class="search__container-top">
+				<div class="search__container-adress-field search-text-box">
+					<i class="fa-solid fa-magnifying-glass"></i>
+					<input asp-for="@filter.Address" name="address" class="search__container-address search-text-box" placeholder=" Skriv adress" value=@address>
+				</div>
 
-            <div class="range_container">
-                <div class="sliders_control">
-                    <input id="fromSlider" type="range" value="1" min="1" max="50000000" step="100000"/>
-                    <input id="toSlider" type="range" value="60000000" min="1" max="60000000" step="100000"/>
-                </div>
+				<div class="range_container">
+					<div class="sliders_control">
+						<input id="fromSlider" type="range" value="@((minPrice != 0) ? minPrice : defaultMinPrice)" min="1" max="50000000" step="100000" />
+						<input id="toSlider" type="range" value="@((maxPrice != 0) ? maxPrice : defaultMaxPrice)" min="1" max="600000000" step="100000" />
+					</div>
 
-                <div class="form_control">
-                    <div class="form_control_container">
-                        <div class="form_control_container__time min">Min</div>
-                        <input asp-for="@filter.MinPrice" name="minPrice" class="form_control_container__time__input" type="number" id="fromInput" value="1" min="1" max="60000000" />
-                    </div>
+					<div class="form_control">
+						<div class="form_control_container">
+							<div class="form_control_container__time min">Min</div>
+							<input asp-for="@filter.MinPrice" name="minPrice" class="form_control_container__time__input" type="number" id="fromInput" value="@((minPrice != 0) ? minPrice.ToString() : defaultMinPrice.ToString())" min="1" max="600000000" />
+						</div>
 
-                    <div class="form_control_container">
-                        <div class="form_control_container__time max">Max</div>
-                        <input asp-for="@filter.MaxPrice" name="maxPrice" class="form_control_container__time__input" type="number" id="toInput" value="60000000" min="1" max="60000000" />
-                    </div>
-                </div>
-            </div>
-        </div>
+						<div class="form_control_container">
+							<div class="form_control_container__time max">Max</div>
+							<input asp-for="@filter.MaxPrice" name="maxPrice" class="form_control_container__time__input" type="number" id="toInput" value="@((maxPrice != 0) ? maxPrice.ToString() : defaultMaxPrice.ToString())" min="1" max="600000000" />
+						</div>
+					</div>
+				</div>
+			</div>
 
-        <div class="search__container-bottom">
-            <input type="submit" class="search__container-btn-sort search-text-box" value="Filtrera efter bostad">
-        </div>
-    </form>
-</div>
+			<div class="search__container-bottom">
+				<button type="button" id="clearButton" class="btn-clear-filter"><img src="../images/clear-search.png"></button>
+				<input type="submit" class="search__container-btn btn-sort search-text-box" value="Filtrera efter bostad">
+			</div>
+		</form>
+	</div>
 
-        <hr>
-        <div class="advertisements__container">
-            @if (Model.Any())
-            {
-            @foreach (var ad in Model)
-            {
-                <div class="advertisements__card">
-                    <div class="advertisements__card-image-container">
-                        <img src=@ad.ImageBin class="advertisements__card-image" alt="Ad">
-                    </div>
+	<hr>
+	<div class="advertisements__container">
+		@if (Model.Data.Any())
+		{
+			@foreach (var ad in Model.Data)
+			{
+				<a href="@Url.Action("Details", new { id = ad.Id })">
+					<div class="advertisements__card">
+						<div class="advertisements__card-image-container">
+							<img src=@ad.ImageBin class="advertisements__card-image" alt="Ad">
+						</div>
 
-                    <div class="advertisements__card-text-container">
-                        <div class="advertisements__card-inner-container-top">
-                            <p class="advertisements__card-address">@ad.StreetName @ad.StreetNumber</p>
-                            <p class="advertisements__card-city">@ad.City</p>
-                        </div>
-        
-                        <p class="advertisements__card-property-type">
-                        @if (@ad.PropertyType == "Villa")
-                        {
-                            <img src="../images/lease-type-house.png">
-                        }
-                        else if (@ad.PropertyType == "Lägenhet")
-                        {
-                            <img src="../images/lease-type-apartment.png">
-                        }
+						<div class="advertisements__card-text-container">
+							<div class="advertisements__card-inner-container-top">
+								<p class="advertisements__card-address">@ad.StreetName @ad.StreetNumber</p>
+								<p class="advertisements__card-city">@ad.City</p>
+							</div>
 
-                        @ad.PropertyType
-                        </p>
+							<p class="advertisements__card-property-type">
+								@if (@ad.PropertyType == "Villa")
+								{
+									<img src="../images/lease-type-house.png">
+								}
+								else if (@ad.PropertyType == "Lägenhet")
+								{
+									<img src="../images/lease-type-apartment.png">
+								}
 
-                        <p class="advertisements__card-lease-type">@ad.LeaseType</p>
+								@ad.PropertyType
+							</p>
 
-                        <div class="advertisements__card-inner-container-bottom">
-                            <p class="advertisements__card-price-and-area">@(ad.ListPrice.ToString("N0").Replace(",", " ")) kr <span>@ad.Area m²</span></p>
-                            <img src="../images/arrow-right.png">
-                        </div>
-                    </div>
-                </div>
-            }
-            }
-            else
-            {
-                <div class="advertisements__card empty-card">
-                    <p>No ads available</p>
-                </div>
-            }  
-        </div>
+							<p class="advertisements__card-lease-type">@ad.LeaseType</p>
+
+							<div class="advertisements__card-inner-container-bottom">
+								<p class="advertisements__card-price-and-area">@(ad.ListPrice.ToString("N0").Replace(",", " ")) kr <span>@ad.Area m²</span></p>
+								<img src="../images/arrow-right.png">
+							</div>
+						</div>
+					</div>
+				</a>
+			}
+		}
+		else
+		{
+			<div class="advertisements__card empty-card">
+				<p>No ads available</p>
+			</div>
+		}
+	</div>
+	<div class="advertisements__container-pagination">
+ 	@* @if (!string.IsNullOrEmpty(Model.PreviousPage))
+    {
+        <a href="@Url.Action("Index", "Advertisements", new { pageNumber = Model.PageNumber - 1, pageSize = Model.PageSize })" class="btn-pagination left-arrow"><img src="../images/arrow-left.png"></a>
+    }
+
+    @if (!string.IsNullOrEmpty(Model.NextPage))
+    {
+        <a href="@Url.Action("Index", "Advertisements", new { pageNumber = Model.PageNumber + 1, pageSize = Model.PageSize })" class="btn-pagination right-arrow"><img src="../images/arrow-left.png"></a>
+    } *@
+
+	@if (!string.IsNullOrEmpty(Model.PreviousPage))
+    {
+        <a href="@Url.Action("Index", "Advertisements", new { pageNumber = Model.PageNumber - 1, pageSize = Model.PageSize })" class="btn-pagination left-arrow"><img src="../images/arrow-left.png"><p class="pagination-text">Previous Page</p></a>
+    }
+    else
+    {
+        <a class="btn-pagination left-arrow opacity-reduced cursor-default"><img src="../images/arrow-left.png"></a>
+    }
+
+    @if (!string.IsNullOrEmpty(Model.NextPage))
+    {
+        <a href="@Url.Action("Index", "Advertisements", new { pageNumber = Model.PageNumber + 1, pageSize = Model.PageSize })" class="btn-pagination right-arrow"><img src="../images/arrow-left.png"><p class="pagination-text">Next Page</p></a>
+    }
+	else
+    {
+        <a class="btn-pagination right-arrow opacity-reduced cursor-default"><img src="../images/arrow-left.png"></a>
+    }
+	</div>
 </div>

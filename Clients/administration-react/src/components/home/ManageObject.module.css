@@ -2,7 +2,7 @@
   border-radius: 50px 0 0 0;
   @media only screen and (max-width: 425px) {
     padding: 1.5rem;
-    transform: translateX(-12.5rem);
+    transform: translateX(-11.8rem);
     border-left: 1px solid black;
     border-top: 1px solid black;
   }
@@ -57,7 +57,7 @@ section#right-sidebar.hidden img {
   position: relative;
   padding-bottom: 0.1rem;
   @media only screen and (max-width: 425px) {
-    font-size: 0.8rem;
+    font-size: 0.75rem;
   }
 }
 
@@ -75,7 +75,7 @@ section#right-sidebar.hidden img {
 
 .manage-objects-nav-button-container button:hover::after,
 .manage-objects-nav-button-container button.selected::after{
-  transform: scale(1,1);
+  transform: scale(1,0.7);
 }
 
 .manage-objects-nav-button-container  button.selected {
@@ -83,8 +83,8 @@ section#right-sidebar.hidden img {
 }
 
 .manage-objects-form {
-  height: 82vh;
-  height: 82svh;
+  height: 79vh;
+  height: 79svh;
   overflow: auto;
 }
 

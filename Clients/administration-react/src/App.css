@@ -37,4 +37,5 @@ main {
   font-size: 1.3rem;
   text-align: center;
   border-bottom: 1px solid black;
+  overflow: hidden;
 }

@@ -103,7 +103,7 @@
 		}
 	</div>
 	<div class="advertisements__container-pagination">
- @if (!string.IsNullOrEmpty(Model.PreviousPage))
+ 	@* @if (!string.IsNullOrEmpty(Model.PreviousPage))
     {
         <a href="@Url.Action("Index", "Advertisements", new { pageNumber = Model.PageNumber - 1, pageSize = Model.PageSize })" class="btn-pagination left-arrow"><img src="../images/arrow-left.png"></a>
     }
@@ -111,6 +111,24 @@
     @if (!string.IsNullOrEmpty(Model.NextPage))
     {
         <a href="@Url.Action("Index", "Advertisements", new { pageNumber = Model.PageNumber + 1, pageSize = Model.PageSize })" class="btn-pagination right-arrow"><img src="../images/arrow-left.png"></a>
+    } *@
+
+	@if (!string.IsNullOrEmpty(Model.PreviousPage))
+    {
+        <a href="@Url.Action("Index", "Advertisements", new { pageNumber = Model.PageNumber - 1, pageSize = Model.PageSize })" class="btn-pagination left-arrow"><img src="../images/arrow-left.png"><p class="pagination-text">Previous Page</p></a>
+    }
+    else
+    {
+        <a class="btn-pagination left-arrow opacity-reduced cursor-default"><img src="../images/arrow-left.png"></a>
+    }
+
+    @if (!string.IsNullOrEmpty(Model.NextPage))
+    {
+        <a href="@Url.Action("Index", "Advertisements", new { pageNumber = Model.PageNumber + 1, pageSize = Model.PageSize })" class="btn-pagination right-arrow"><img src="../images/arrow-left.png"><p class="pagination-text">Next Page</p></a>
+    }
+	else
+    {
+        <a class="btn-pagination right-arrow opacity-reduced cursor-default"><img src="../images/arrow-left.png"></a>
     }
 	</div>
 </div>

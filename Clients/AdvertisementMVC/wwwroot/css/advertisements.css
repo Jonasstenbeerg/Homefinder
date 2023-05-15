@@ -210,8 +210,20 @@ a {
   width: auto;
 }
 
+.pagination-text{
+  color: #fff;
+}
+
 .right-arrow img{
   transform: rotate(180deg);
+}
+
+.opacity-reduced {
+  opacity: 0.2;
+}
+
+.cursor-default{
+  cursor: default;
 }
 
 .search__container p {

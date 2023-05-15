@@ -11,7 +11,9 @@ namespace HomefinderAPI.IntegrationTests.Controllers
 		[TestMethod]
 		public async Task GetAllAvailable_WhenAdvertisementsExist_ReturnsAdvertisementsWithDeletedEqualsToFalse()
 		{
-			var testAdd1 = new PostAdvertisementViewModel(){
+			// Arrange
+			var testAdd1 = new PostAdvertisementViewModel()
+			{
 				ListPrice = 200,
 				Area = 200,
 				City = "Gävle",
@@ -22,7 +24,8 @@ namespace HomefinderAPI.IntegrationTests.Controllers
 				StreetName = "Testgatan",
 				StreetNumber = 22
 			};
-			var testAdd2 = new PostAdvertisementViewModel(){
+			var testAdd2 = new PostAdvertisementViewModel()
+			{
 				ListPrice = 400,
 				Area = 120,
 				City = "Stockholm",
@@ -35,21 +38,19 @@ namespace HomefinderAPI.IntegrationTests.Controllers
 				Deleted = true
 			};
 
-			//TODO: skapa leasetypes och property types för annonserna innan dom annonserna skapas
 			await AuthenticateAsync();
+
 			await CreatAdvertisementAsync(testAdd1);
 			await CreatAdvertisementAsync(testAdd2);
-			
+
+			// Act
 			var response = await TestClient.GetAsync("api/v1/advertisements/list");
 			var pagedResponse = await response.Content.ReadFromJsonAsync<PagedResponse<AdvertisementViewModel>>();
-			
-			
-			foreach (AdvertisementViewModel Add in pagedResponse!.Data)
+
+			// Assert
+			foreach (AdvertisementViewModel advertisement in pagedResponse!.Data)
 			{
-				if (Add.Deleted)
-				{
-					Assert.Fail("Response included deleted advertisement");
-				}
+				Assert.IsFalse(advertisement.Deleted, "Response included deleted advertisement");
 			}
 		}
 

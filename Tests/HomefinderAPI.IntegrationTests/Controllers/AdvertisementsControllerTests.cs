@@ -166,7 +166,15 @@ namespace HomefinderAPI.IntegrationTests.Controllers
 			var updatedAdvertisementResponse = await TestClient.GetAsync($"api/v1/advertisements/{firstAddFromResponse.Id}");
 			var updatedAdvertisement = await updatedAdvertisementResponse.Content.ReadFromJsonAsync<AdvertisementViewModel>();
 
-			Assert.AreEqual(expectedAdd,updatedAdvertisement);
+			Assert.AreEqual(expectedAdd.City,updatedAdvertisement!.City);
+			Assert.AreEqual(expectedAdd.ImageBin,updatedAdvertisement.ImageBin);
+			Assert.AreEqual(expectedAdd.LeaseType,updatedAdvertisement.LeaseType);
+			Assert.AreEqual(expectedAdd.ListPrice,updatedAdvertisement.ListPrice);
+			Assert.AreEqual(expectedAdd.PostalCode,int.Parse(updatedAdvertisement.PostalCode!));
+			Assert.AreEqual(expectedAdd.Area,updatedAdvertisement.Area);
+			Assert.AreEqual(expectedAdd.PropertyType,updatedAdvertisement.PropertyType);
+			Assert.AreEqual(expectedAdd.StreetName,updatedAdvertisement.StreetName);
+			Assert.AreEqual(expectedAdd.StreetNumber,updatedAdvertisement.StreetNumber);
 			
 		}
 

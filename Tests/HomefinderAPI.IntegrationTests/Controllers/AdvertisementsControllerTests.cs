@@ -57,7 +57,9 @@ namespace HomefinderAPI.IntegrationTests.Controllers
 		[TestMethod]
 		public async Task Get_WithValidId_ReturnsMatchingAdvertisement()
 		{
-			var testAdd1 = new PostAdvertisementViewModel(){
+			// Arrange
+			var testAdd1 = new PostAdvertisementViewModel()
+			{
 				ListPrice = 200,
 				Area = 200,
 				City = "Gävle",
@@ -68,18 +70,21 @@ namespace HomefinderAPI.IntegrationTests.Controllers
 				StreetName = "Testgatan",
 				StreetNumber = 22
 			};
+
 			await AuthenticateAsync();
 			await CreatAdvertisementAsync(testAdd1);
+
+			// Act
 			var response = await TestClient.GetAsync("api/v1/advertisements/list");
-			var pagedResponse = await response.Content.ReadFromJsonAsync<PagedResponse<AdvertisementViewModel>>();
+			var responseAsPage = await response.Content.ReadFromJsonAsync<PagedResponse<AdvertisementViewModel>>();
+			var firstAdvertisement = responseAsPage!.Data.First();
 
-			var firstAdd = pagedResponse!.Data.First();
+			var getByIdResponse = await TestClient.GetAsync($"api/v1/advertisements/{firstAdvertisement.Id}");
+			var getByIdAdvertisement = await getByIdResponse.Content.ReadFromJsonAsync<AdvertisementViewModel>();
 
-			var response2 = await TestClient.GetAsync($"api/v1/advertisements/{firstAdd.Id}");
-			var firstAddResponse = await response2.Content.ReadFromJsonAsync<AdvertisementViewModel>();
-			
-			Assert.IsNotNull(firstAddResponse);
-			Assert.AreEqual(firstAdd.ToString(), firstAddResponse.ToString());
+			// Assert
+			Assert.IsNotNull(getByIdAdvertisement);
+			Assert.AreEqual(firstAdvertisement.ToString(), getByIdAdvertisement.ToString());
 		}
 
 		[TestMethod]

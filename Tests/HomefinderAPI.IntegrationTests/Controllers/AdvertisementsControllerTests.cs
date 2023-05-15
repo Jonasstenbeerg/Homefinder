@@ -120,7 +120,9 @@ namespace HomefinderAPI.IntegrationTests.Controllers
 		[TestMethod]
 		public async Task Create_WhenValidDataProvided_CreatesAdvertisement()
 		{
-			var testAdd1 = new PostAdvertisementViewModel(){
+			// Arrange
+			var testAdd1 = new PostAdvertisementViewModel()
+			{
 				ListPrice = 200,
 				Area = 200,
 				City = "Gävle",
@@ -131,12 +133,17 @@ namespace HomefinderAPI.IntegrationTests.Controllers
 				StreetName = "Testgatan",
 				StreetNumber = 22
 			};
+
 			await AuthenticateAsync();
+
+			// Act
 			await CreatAdvertisementAsync(testAdd1);
 
-			var response2 = await TestClient.GetAsync($"api/v1/advertisements/1");
-			var firstAddResponse = await response2.Content.ReadFromJsonAsync<AdvertisementViewModel>();
-			Assert.IsNotNull(firstAddResponse);
+			var getByIdResponse = await TestClient.GetAsync("api/v1/advertisements/1");
+			var getByIdAdvertisement = await getByIdResponse.Content.ReadFromJsonAsync<AdvertisementViewModel>();
+
+			// Assert
+			Assert.IsNotNull(getByIdAdvertisement);
 		}
 
 		[TestMethod]

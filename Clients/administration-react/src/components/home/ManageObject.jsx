@@ -44,7 +44,7 @@ const ManageObject = ({objectName, objectToManage, onCreateAdvertisement, onUpda
       setArea("")
       setPropertyType("")
       setLeaseType("")
-      setDeleted("")
+      setDeleted(false)
       setDisplayImage("")
       setPreviewImage("")
     }

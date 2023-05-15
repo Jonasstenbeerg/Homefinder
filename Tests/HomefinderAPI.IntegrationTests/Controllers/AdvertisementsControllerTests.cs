@@ -149,7 +149,9 @@ namespace HomefinderAPI.IntegrationTests.Controllers
 		[TestMethod]
 		public async Task Update_WhenValidDataProvided_UpdatesAdvertisement()
 		{
-			var testAdd1 = new PostAdvertisementViewModel(){
+			// Arrange
+			var testAdd1 = new PostAdvertisementViewModel()
+			{
 				ListPrice = 200,
 				Area = 200,
 				City = "Gävle",
@@ -160,7 +162,8 @@ namespace HomefinderAPI.IntegrationTests.Controllers
 				StreetName = "Testgatan",
 				StreetNumber = 22
 			};
-			var expectedAdd = new PostAdvertisementViewModel(){
+			var expectedAdd = new PostAdvertisementViewModel()
+			{
 				ListPrice = 999999,
 				Area = 23424234,
 				City = "TEst",
@@ -171,29 +174,30 @@ namespace HomefinderAPI.IntegrationTests.Controllers
 				StreetName = "Testvägen",
 				StreetNumber = 1
 			};
+
 			await AuthenticateAsync();
 			await CreatAdvertisementAsync(testAdd1);
 
 			var response = await TestClient.GetAsync("api/v1/advertisements/list");
-			var pagedResponse = await response.Content.ReadFromJsonAsync<PagedResponse<AdvertisementViewModel>>();
+			var responseAsPage = await response.Content.ReadFromJsonAsync<PagedResponse<AdvertisementViewModel>>();
+			var firstAdvertisement = responseAsPage!.Data.First();
 
-			var firstAddFromResponse = pagedResponse!.Data.First();
+			// Act
+			await UpdateAdvertisementAsync(firstAdvertisement.Id, expectedAdd);
 
-			await UpdateAdvertisementAsync(firstAddFromResponse.Id,expectedAdd);
-
-			var updatedAdvertisementResponse = await TestClient.GetAsync($"api/v1/advertisements/{firstAddFromResponse.Id}");
+			var updatedAdvertisementResponse = await TestClient.GetAsync($"api/v1/advertisements/{firstAdvertisement.Id}");
 			var updatedAdvertisement = await updatedAdvertisementResponse.Content.ReadFromJsonAsync<AdvertisementViewModel>();
 
-			Assert.AreEqual(expectedAdd.City,updatedAdvertisement!.City);
-			Assert.AreEqual(expectedAdd.ImageBin,updatedAdvertisement.ImageBin);
-			Assert.AreEqual(expectedAdd.LeaseType,updatedAdvertisement.LeaseType);
-			Assert.AreEqual(expectedAdd.ListPrice,updatedAdvertisement.ListPrice);
-			Assert.AreEqual(expectedAdd.PostalCode,int.Parse(updatedAdvertisement.PostalCode!));
-			Assert.AreEqual(expectedAdd.Area,updatedAdvertisement.Area);
-			Assert.AreEqual(expectedAdd.PropertyType,updatedAdvertisement.PropertyType);
-			Assert.AreEqual(expectedAdd.StreetName,updatedAdvertisement.StreetName);
-			Assert.AreEqual(expectedAdd.StreetNumber,updatedAdvertisement.StreetNumber);
-			
+			// Assert
+			Assert.AreEqual(expectedAdd.City, updatedAdvertisement!.City);
+			Assert.AreEqual(expectedAdd.ImageBin, updatedAdvertisement.ImageBin);
+			Assert.AreEqual(expectedAdd.LeaseType, updatedAdvertisement.LeaseType);
+			Assert.AreEqual(expectedAdd.ListPrice, updatedAdvertisement.ListPrice);
+			Assert.AreEqual(expectedAdd.PostalCode, int.Parse(updatedAdvertisement.PostalCode!));
+			Assert.AreEqual(expectedAdd.Area, updatedAdvertisement.Area);
+			Assert.AreEqual(expectedAdd.PropertyType, updatedAdvertisement.PropertyType);
+			Assert.AreEqual(expectedAdd.StreetName, updatedAdvertisement.StreetName);
+			Assert.AreEqual(expectedAdd.StreetNumber, updatedAdvertisement.StreetNumber);
 		}
 
 		[TestMethod]

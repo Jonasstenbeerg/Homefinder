@@ -208,10 +208,13 @@ a {
 .btn-pagination img{
   height: 2em;
   width: auto;
+  vertical-align: middle;
 }
 
 .pagination-text{
+  display: inline;
   color: #fff;
+  align-self: center;
 }
 
 .right-arrow img{

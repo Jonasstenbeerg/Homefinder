@@ -29,9 +29,11 @@ namespace AdvertisementMVC.Models
             return advertisement ?? new AdvertisementViewModel();
         }
 
-        public async Task<PaginationViewModel> ListAllAdvertisementsAsync()
+        public async Task<PaginationViewModel> ListAllAdvertisementsAsync(int pageNumber = 1, int pageSize = 5)
         {
-            var url = $"{_baseApiUrl}/list";
+            var url = $"{_baseApiUrl}/list?pageNumber={pageNumber}&pageSize={pageSize}";
+
+            // Url.Action("Index", "Advertisements", new { pageNumber, pageSize });
 
             using var http = new HttpClient();
             var response = await http.GetAsync(url);

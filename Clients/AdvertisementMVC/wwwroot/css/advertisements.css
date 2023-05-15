@@ -193,6 +193,27 @@ a {
   margin-bottom: 1.3em;
 }
 
+.advertisements__container-pagination{
+  display: flex;
+  justify-content: space-between;
+  margin: 0 2em;
+}
+
+.btn-pagination{
+  background: none;
+  border: none;
+  cursor: pointer;
+}
+
+.btn-pagination img{
+  height: 2em;
+  width: auto;
+}
+
+.right-arrow img{
+  transform: rotate(180deg);
+}
+
 .search__container p {
   color: var(--secondary-color);
 }

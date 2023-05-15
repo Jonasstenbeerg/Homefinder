@@ -7,6 +7,7 @@ namespace HomefinderAPI.IntegrationTests.Controllers
   [TestClass]
 	public class AdvertisementsControllerTests : IntegrationTest
 	{
+		//TODO: Leasetypes och propertytypes behövs skapas för testerna, just nu är testerna beroende av våran seedDb....
 		[TestMethod]
 		public async Task GetAllAvailable_WhenAdvertisementsExist_ReturnsAdvertisementsWithDeletedEqualsToFalse()
 		{
@@ -108,8 +109,23 @@ namespace HomefinderAPI.IntegrationTests.Controllers
 		[TestMethod]
 		public async Task Create_WhenValidDataProvided_CreatesAdvertisement()
 		{
-			//Testa att skapa en och kolla därefter om den finns i db
-			
+			var testAdd1 = new PostAdvertisementViewModel(){
+				ListPrice = 200,
+				Area = 200,
+				City = "Gävle",
+				ImageBin = "test",
+				LeaseType = "Bostadsrätt",
+				PostalCode = 1337,
+				PropertyType = "Lägenhet",
+				StreetName = "Testgatan",
+				StreetNumber = 22
+			};
+			await AuthenticateAsync();
+			await CreatAdvertisementAsync(testAdd1);
+
+			var response2 = await TestClient.GetAsync($"api/v1/advertisements/1");
+			var firstAddResponse = await response2.Content.ReadFromJsonAsync<AdvertisementViewModel>();
+			Assert.IsNotNull(firstAddResponse);
 		}
 
 		[TestMethod]

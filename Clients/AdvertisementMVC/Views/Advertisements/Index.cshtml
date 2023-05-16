@@ -2,7 +2,7 @@
 
 @{
 	Layout = "~/Views/Shared/_Layout.cshtml";
-	ViewData["Title"] = "Advertisements";
+	ViewData["Title"] = "Home";
 	var filter = new AdvertisementMVC.ViewModels.AdvertisementFilterViewModel();
 	var filterValues = ViewBag.Filter as AdvertisementMVC.ViewModels.AdvertisementFilterViewModel ?? new AdvertisementMVC.ViewModels.AdvertisementFilterViewModel();
 	var address = filterValues.Address ?? "";
@@ -10,7 +10,7 @@
 	var maxPrice = filterValues.MaxPrice;
 
 	var defaultMinPrice = 1;
-	var defaultMaxPrice = 600000000;
+	var defaultMaxPrice = 60000000;
 }
 
 <div class="advertisements">
@@ -29,18 +29,18 @@
 				<div class="range_container">
 					<div class="sliders_control">
 						<input id="fromSlider" type="range" value="@((minPrice != 0) ? minPrice : defaultMinPrice)" min="1" max="50000000" step="100000" />
-						<input id="toSlider" type="range" value="@((maxPrice != 0) ? maxPrice : defaultMaxPrice)" min="1" max="600000000" step="100000" />
+						<input id="toSlider" type="range" value="@((maxPrice != 0) ? maxPrice : defaultMaxPrice)" min="1" max="60000000" step="100000" />
 					</div>
 
 					<div class="form_control">
 						<div class="form_control_container">
 							<div class="form_control_container__time min">Min</div>
-							<input asp-for="@filter.MinPrice" name="minPrice" class="form_control_container__time__input" type="number" id="fromInput" value="@((minPrice != 0) ? minPrice.ToString() : defaultMinPrice.ToString())" min="1" max="600000000" />
+							<input asp-for="@filter.MinPrice" name="minPrice" class="form_control_container__time__input" type="number" id="fromInput" value="@((minPrice != 0) ? minPrice.ToString() : defaultMinPrice.ToString())" min="1" max="60000000" />
 						</div>
 
 						<div class="form_control_container">
 							<div class="form_control_container__time max">Max</div>
-							<input asp-for="@filter.MaxPrice" name="maxPrice" class="form_control_container__time__input" type="number" id="toInput" value="@((maxPrice != 0) ? maxPrice.ToString() : defaultMaxPrice.ToString())" min="1" max="600000000" />
+							<input asp-for="@filter.MaxPrice" name="maxPrice" class="form_control_container__time__input" type="number" id="toInput" value="@((maxPrice != 0) ? maxPrice.ToString() : defaultMaxPrice.ToString())" min="1" max="60000000" />
 						</div>
 					</div>
 				</div>

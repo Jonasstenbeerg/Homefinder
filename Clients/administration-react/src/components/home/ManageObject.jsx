@@ -140,7 +140,7 @@ const ManageObject = ({objectName, objectToManage, onCreateAdvertisement, onUpda
           id="Info"
           className={activeButton === "Info" ? styles["selected"] : ""}
         >
-          info
+          Info
         </button>
         <button
           onClick={handleButtonClick}

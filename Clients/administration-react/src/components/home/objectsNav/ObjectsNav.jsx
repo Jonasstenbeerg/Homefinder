@@ -16,10 +16,10 @@ const ObjectsNav = ({selctedNavITem, onSelectNavItem}) => {
       <h1 className="home-sidebar-heading">Objects</h1>
       <ul className={styles["objects-nav-list"]}>
         <li onClick={() => {onSelectNavItem("advertisements")}}>
-          <ObjectsNavItem picture={faRectangleAd} name={'advertisements'} selected={selctedNavITem === "advertisements"}/>
+          <ObjectsNavItem picture={faRectangleAd} name={'Advertisements'} selected={selctedNavITem === "advertisements"}/>
         </li>
         <li onClick={() => {onSelectNavItem("users")}}>
-          <ObjectsNavItem picture={faUsers} name={"users"} selected={selctedNavITem === "users"}/>
+          <ObjectsNavItem picture={faUsers} name={"Users"} selected={selctedNavITem === "users"}/>
         </li>
       </ul>
       <FontAwesomeIcon onClick={handleToggleObjectsNav} icon={mobileObjectsNavVisible ? faChevronLeft:faChevronRight} className={styles["left-sidebar-toggle-button"]}/>

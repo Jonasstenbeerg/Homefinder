@@ -5,5 +5,6 @@ namespace AdvertisementMVC.ViewModels
     public string? Address { get; set; }
 		public int MinPrice { get; set; }
 		public int MaxPrice { get; set; }
+    public int PageNumber { get; set; } = 1;
   }
 }

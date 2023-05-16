@@ -15,7 +15,7 @@
 
 <div class="advertisements">
 	<div class="search__container-title">
-		<h2>Sökfilter <img src="../images/arrow-down.png" id="filter-arrow" class="search__container-arrow"></h2>
+		<h2>Search filter <img src="../images/arrow-down.png" id="filter-arrow" class="search__container-arrow"></h2>
 	</div>
 	<div class="search__container">
 		<hr>
@@ -23,7 +23,7 @@
 			<div class="search__container-top">
 				<div class="search__container-adress-field search-text-box">
 					<i class="fa-solid fa-magnifying-glass"></i>
-					<input asp-for="@filter.Address" name="address" class="search__container-address search-text-box" placeholder=" Skriv adress" value=@address>
+					<input asp-for="@filter.Address" name="address" class="search__container-address search-text-box" placeholder=" Enter address" value=@address>
 				</div>
 
 				<div class="range_container">
@@ -48,7 +48,7 @@
 
 			<div class="search__container-bottom">
 				<button type="button" id="clearButton" class="btn-clear-filter"><img src="../images/clear-search.png"></button>
-				<input type="submit" class="search__container-btn btn-sort search-text-box" value="Filtrera efter bostad">
+				<input type="submit" class="search__container-btn btn-sort search-text-box" value="Filter by residence">
 			</div>
 		</form>
 	</div>

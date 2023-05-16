@@ -83,7 +83,8 @@ footer {
   background: var(--primary-color);
   opacity: 0.85;
   line-height: 80px;
-  top: 0;
+  bottom: 0;
+  right: auto;
   left: 0;
 }
 

@@ -2,8 +2,9 @@
     height: 7rem;
     padding: 1.5rem;
     @media only screen and (max-width: 425px) {
-        height: 25rem;
+        height: 15rem;
         width: 5rem;
+        justify-content: flex-end !important;
     }
 }
 

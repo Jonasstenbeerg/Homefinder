@@ -5,7 +5,7 @@ import App from './App';
 import { BrowserRouter } from "react-router-dom";
 import reportWebVitals from './reportWebVitals';
 import { AuthProvider } from "react-auth-kit";
-import CookieConsentBanner from './components/cookie/CookieConsentBanner';
+
 
 
 
@@ -22,7 +22,6 @@ root.render(
         <App />
       </BrowserRouter>
     </AuthProvider>
-    <CookieConsentBanner/>
   </React.StrictMode>
 );
 

@@ -10,9 +10,11 @@ const CookieConsentBanner = () => {
       buttonStyle={{
         height: "3rem",
         borderRadius: "10px",
-        background: "green",
+        fontFamily: "Montserrat",
+        background: "#0a85e9",
         color: "white",
         fontWeight: "bolder",
+        textAlign: "right",
       }}
       overlay
     >

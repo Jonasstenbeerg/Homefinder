@@ -5,6 +5,7 @@ import ForgotPassword from './components/authentication/ForgotPassword';
 import Login from "./components/authentication/Login";
 import {Routes, Route, Navigate } from "react-router-dom";
 import { RequireAuth } from 'react-auth-kit';
+import CookieConsentBanner from './components/cookie/CookieConsentBanner';
 
 const loginPath = '/login'
 const homePath = '/home'
@@ -22,7 +23,7 @@ function App() {
           <Route path='/forgot-password' element={<ForgotPassword />}/>
           <Route path="*" element={<Navigate replace to={homePath} />} />
         </Routes>
-        
+        <CookieConsentBanner/>
       </main>
     </>
   );

@@ -22,6 +22,11 @@ builder.Services.AddDbContext<HomefinderContext>(options =>
 	options.UseSqlite(builder.Configuration.GetConnectionString("SQLite"));
 });
 
+// //Context that uses SQL
+//  builder.Services.AddDbContext<HomefinderContext>(options => {
+//  options.UseSqlServer(builder.Configuration.GetConnectionString("SQLAzure"));
+//  });
+
 //Configure Microsoft Identity for users
 builder.Services.AddIdentity<IdentityUser, IdentityRole>(options =>
 {

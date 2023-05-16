@@ -1,0 +1,13 @@
+.cookies__container {
+    height: 7rem;
+    padding: 1.5rem;
+    @media only screen and (max-width: 425px) {
+        height: 15rem;
+        width: 5rem;
+        justify-content: flex-end !important;
+    }
+}
+
+.cookies__text {
+    font-size: 1.5rem;
+}

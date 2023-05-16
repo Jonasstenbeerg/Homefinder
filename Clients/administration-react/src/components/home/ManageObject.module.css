@@ -1,8 +1,7 @@
 #right-sidebar {
   border-radius: 50px 0 0 0;
   @media only screen and (max-width: 425px) {
-    padding: 1.5rem;
-    transform: translateX(-12.5rem);
+    transform: translateX(-11.83rem);
     border-left: 1px solid black;
     border-top: 1px solid black;
   }
@@ -57,7 +56,7 @@ section#right-sidebar.hidden img {
   position: relative;
   padding-bottom: 0.1rem;
   @media only screen and (max-width: 425px) {
-    font-size: 0.8rem;
+    font-size: 0.75rem;
   }
 }
 
@@ -75,7 +74,7 @@ section#right-sidebar.hidden img {
 
 .manage-objects-nav-button-container button:hover::after,
 .manage-objects-nav-button-container button.selected::after{
-  transform: scale(1,1);
+  transform: scale(1,0.7);
 }
 
 .manage-objects-nav-button-container  button.selected {
@@ -83,18 +82,26 @@ section#right-sidebar.hidden img {
 }
 
 .manage-objects-form {
-  height: 82vh;
-  height: 82svh;
+  height: 81.8vh;
+  height: 81.8svh;
   overflow: auto;
+  @media only screen and (max-width: 425px) {
+    height: 79vh;
+    height: 79svh;
+  }
 }
 
 .manage-objects-form-heading {
-  font-size: 1.4rem;
-  margin-top: 4rem;
-  margin-bottom: 2rem;
+  font-size: 1.2rem;
+  margin-top: 1.5rem;
+  margin-bottom: 0rem;
   @media only screen and (max-width: 425px) {
     margin-top: 2rem;
   }
+}
+
+.mange-objects-form-single-input {
+  margin-top: 0.5rem !important;
 }
 
 .manage-objects-form-input {
@@ -110,7 +117,7 @@ section#right-sidebar.hidden img {
   border: 1px solid black;
   height: 3rem;
   border-radius: 4px;
-  margin-top: 2.5rem;
+  margin-top: 1.2rem;
 }
 
 .manage-objects-form-input-container label {
@@ -160,4 +167,7 @@ section#right-sidebar.hidden img {
   @media only screen and (max-width: 425px) {
     left:0.3rem;
   } 
+}
+.image-input-hide {
+  display: none;
 }

@@ -44,7 +44,7 @@ const ManageObject = ({objectName, objectToManage, onCreateAdvertisement, onUpda
       setArea("")
       setPropertyType("")
       setLeaseType("")
-      setDeleted("")
+      setDeleted(false)
       setDisplayImage("")
       setPreviewImage("")
     }
@@ -140,7 +140,7 @@ const ManageObject = ({objectName, objectToManage, onCreateAdvertisement, onUpda
           id="Info"
           className={activeButton === "Info" ? styles["selected"] : ""}
         >
-          info
+          Info
         </button>
         <button
           onClick={handleButtonClick}
@@ -160,7 +160,7 @@ const ManageObject = ({objectName, objectToManage, onCreateAdvertisement, onUpda
       <form action="" onSubmit={handleSubmit} className={styles["manage-objects-form"]}>
         <h1 className={styles["manage-objects-form-heading"]}>Address</h1>
         <div className={styles["manage-objects-form-input-container"]}>
-          <label htmlFor="manage-objects-form-input">city</label>
+          <label htmlFor="manage-objects-form-input">City</label>
           <input
             disabled={activeButton === "Info"}
             onChange={handleCityTextChanged}
@@ -172,7 +172,7 @@ const ManageObject = ({objectName, objectToManage, onCreateAdvertisement, onUpda
           />
         </div>
         <div className={styles["manage-objects-form-input-container"]}>
-          <label htmlFor="manage-objects-form-input">postal code</label>
+          <label htmlFor="manage-objects-form-input">Postal code</label>
           <input
             disabled={activeButton === "Info"}
             onChange={handlePostalCodeTextChanged}
@@ -208,7 +208,7 @@ const ManageObject = ({objectName, objectToManage, onCreateAdvertisement, onUpda
           />
         </div>
         <h1 className={styles["manage-objects-form-heading"]}>Price</h1>
-        <div className={styles["manage-objects-form-input-container"]}>
+        <div className={`${styles["manage-objects-form-input-container"]} ${styles["mange-objects-form-single-input"]}`}>
         <input
             disabled={activeButton === "Info"}
             onChange={handleListPriceChanged}
@@ -220,7 +220,7 @@ const ManageObject = ({objectName, objectToManage, onCreateAdvertisement, onUpda
           />
         </div>
         <h1 className={styles["manage-objects-form-heading"]}>Area</h1>
-        <div className={styles["manage-objects-form-input-container"]}>
+        <div className={`${styles["manage-objects-form-input-container"]} ${styles["mange-objects-form-single-input"]}`}>
         <input
             disabled={activeButton === "Info"}
             onChange={handleAreaChanged}
@@ -232,7 +232,7 @@ const ManageObject = ({objectName, objectToManage, onCreateAdvertisement, onUpda
           />
         </div>
         <h1 className={styles["manage-objects-form-heading"]}>Propertytype</h1>
-        <div className={styles["manage-objects-form-input-container"]}>
+        <div className={`${styles["manage-objects-form-input-container"]} ${styles["mange-objects-form-single-input"]}`}>
           <select
             disabled={activeButton === "Info"}
             onChange={handlePropertyTypeSelectChanged}
@@ -249,7 +249,7 @@ const ManageObject = ({objectName, objectToManage, onCreateAdvertisement, onUpda
           </select>
         </div>
         <h1 className={styles["manage-objects-form-heading"]}>Leasetype</h1>
-        <div className={styles["manage-objects-form-input-container"]}>
+        <div className={`${styles["manage-objects-form-input-container"]} ${styles["mange-objects-form-single-input"]}`}>
           <select
             disabled={activeButton === "Info"}
             onChange={handleLeaseTypeSelectChanged}
@@ -283,18 +283,18 @@ const ManageObject = ({objectName, objectToManage, onCreateAdvertisement, onUpda
           </>
         )}
         <div className={styles["manage-objects-form-input-container"]} id={styles["image-input-container"]}>
-          <label htmlFor="manage-objects-form-input">image</label>
+          <label htmlFor="manage-objects-form-input">Image</label>
           <input
             disabled={activeButton === "Info"}
             onChange={handleSelectedImageChanged}
             type="file"
-            className={styles["manage-objects-form-input"]}
+            className={`${styles["manage-objects-form-input"]} ${activeButton === "Info" ? styles["image-input-hide"]:""}`}
           />
           {(activeButton !== "Create" && displayImage) && (
-            <img src={displayImage} className={styles["form-image"]} height={mobileManageObjectVisible ? "140":"250"} width={mobileManageObjectVisible ? "140":"250"}/>
+            <img src={displayImage} className={styles["form-image"]} height={mobileManageObjectVisible ? "140":"250"} width={mobileManageObjectVisible ? "130":"250"}/>
           )}
           {((activeButton === "Create" || activeButton === "Customizie") && previewImage) && (
-            <img src={previewImage} className={styles["form-image"]} height={mobileManageObjectVisible ? "140":"250"} width={mobileManageObjectVisible ? "140":"250"}/>
+            <img src={previewImage} className={styles["form-image"]} height={mobileManageObjectVisible ? "140":"250"} width={mobileManageObjectVisible ? "130":"250"}/>
           )}
         </div>
         {activeButton === "Info" || (

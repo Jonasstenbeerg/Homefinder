@@ -83,9 +83,13 @@ section#right-sidebar.hidden img {
 }
 
 .manage-objects-form {
-  height: 79vh;
-  height: 79svh;
+  height: 81.8vh;
+  height: 81.8svh;
   overflow: auto;
+  @media only screen and (max-width: 425px) {
+    height: 79vh;
+    height: 79svh;
+  }
 }
 
 .manage-objects-form-heading {

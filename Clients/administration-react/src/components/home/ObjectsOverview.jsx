@@ -11,8 +11,9 @@ const ObjectsOverview = ({selectObject, advertisements,onFetchAdvertisements, se
 
   useEffect(() =>{
     onFetchAdvertisements()
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   },[])
-
+  console.log('RUN')
   const handleSearchAddressChanged = (e) => {
     setSearchAddress(e.target.value)
   }

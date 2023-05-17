@@ -291,10 +291,10 @@ const ManageObject = ({objectName, objectToManage, onCreateAdvertisement, onUpda
             className={`${styles["manage-objects-form-input"]} ${activeButton === "Info" ? styles["image-input-hide"]:""}`}
           />
           {(activeButton !== "Create" && displayImage) && (
-            <img src={displayImage} className={styles["form-image"]} height={mobileManageObjectVisible ? "140":"250"} width={mobileManageObjectVisible ? "130":"250"}/>
+            <img src={displayImage} alt="objectImage" className={styles["form-image"]} height={mobileManageObjectVisible ? "140":"250"} width={mobileManageObjectVisible ? "130":"250"}/>
           )}
           {((activeButton === "Create" || activeButton === "Customizie") && previewImage) && (
-            <img src={previewImage} className={styles["form-image"]} height={mobileManageObjectVisible ? "140":"250"} width={mobileManageObjectVisible ? "130":"250"}/>
+            <img src={previewImage} alt="objectImage" className={styles["form-image"]} height={mobileManageObjectVisible ? "140":"250"} width={mobileManageObjectVisible ? "130":"250"}/>
           )}
         </div>
         {activeButton === "Info" || (

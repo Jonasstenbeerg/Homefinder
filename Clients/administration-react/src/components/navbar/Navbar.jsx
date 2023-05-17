@@ -18,6 +18,7 @@ const Navbar = () => {
   //TODO: Generates warning in console
   useEffect(() => {
     updateMenuContent()
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   },[isAuthenticated()])
   
   const updateMenuContent = () => {

@@ -13,7 +13,7 @@
 }
 
 .left-sidebar-toggle-button {
-  display: none;
+  display: none !important;
 }
 
 .left-sidebar-toggle-button {

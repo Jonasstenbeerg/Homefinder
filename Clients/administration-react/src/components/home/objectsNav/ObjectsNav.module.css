@@ -13,12 +13,12 @@
 }
 
 .left-sidebar-toggle-button {
-  display: none !important;
+  visibility: hidden;
 }
 
 .left-sidebar-toggle-button {
   @media only screen and (max-width: 425px) {
-    display: unset;
+    visibility: visible;
     position: absolute;
     right:-1.9rem;
     top: 25rem;

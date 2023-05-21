@@ -1,6 +1,6 @@
 const ForgotPassword = () => {
   return (
-    <h1>Forgot password</h1>
+    <h1>Not implemented yet</h1>
   )
 }
 export default ForgotPassword;

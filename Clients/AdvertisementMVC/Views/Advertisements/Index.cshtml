@@ -2,7 +2,7 @@
 
 @{
 	Layout = "~/Views/Shared/_Layout.cshtml";
-	ViewData["Title"] = "Advertisements";
+	ViewData["Title"] = "Home";
 	var filter = new AdvertisementMVC.ViewModels.AdvertisementFilterViewModel();
 	var filterValues = ViewBag.Filter as AdvertisementMVC.ViewModels.AdvertisementFilterViewModel ?? new AdvertisementMVC.ViewModels.AdvertisementFilterViewModel();
 	var address = filterValues.Address ?? "";
@@ -10,12 +10,12 @@
 	var maxPrice = filterValues.MaxPrice;
 
 	var defaultMinPrice = 1;
-	var defaultMaxPrice = 600000000;
+	var defaultMaxPrice = 60000000;
 }
 
 <div class="advertisements">
 	<div class="search__container-title">
-		<h2>Sökfilter <img src="../images/arrow-down.png" id="filter-arrow" class="search__container-arrow"></h2>
+		<h2>Search filter <img src="../images/arrow-down.png" id="filter-arrow" class="search__container-arrow"></h2>
 	</div>
 	<div class="search__container">
 		<hr>
@@ -23,24 +23,24 @@
 			<div class="search__container-top">
 				<div class="search__container-adress-field search-text-box">
 					<i class="fa-solid fa-magnifying-glass"></i>
-					<input asp-for="@filter.Address" name="address" class="search__container-address search-text-box" placeholder=" Skriv adress" value=@address>
+					<input asp-for="@filter.Address" name="address" class="search__container-address search-text-box" placeholder=" Enter address" value=@address>
 				</div>
 
 				<div class="range_container">
 					<div class="sliders_control">
 						<input id="fromSlider" type="range" value="@((minPrice != 0) ? minPrice : defaultMinPrice)" min="1" max="50000000" step="100000" />
-						<input id="toSlider" type="range" value="@((maxPrice != 0) ? maxPrice : defaultMaxPrice)" min="1" max="600000000" step="100000" />
+						<input id="toSlider" type="range" value="@((maxPrice != 0) ? maxPrice : defaultMaxPrice)" min="1" max="60000000" step="100000" />
 					</div>
 
 					<div class="form_control">
 						<div class="form_control_container">
 							<div class="form_control_container__time min">Min</div>
-							<input asp-for="@filter.MinPrice" name="minPrice" class="form_control_container__time__input" type="number" id="fromInput" value="@((minPrice != 0) ? minPrice.ToString() : defaultMinPrice.ToString())" min="1" max="600000000" />
+							<input asp-for="@filter.MinPrice" name="minPrice" class="form_control_container__time__input" type="number" id="fromInput" value="@((minPrice != 0) ? minPrice.ToString() : defaultMinPrice.ToString())" min="1" max="60000000" />
 						</div>
 
 						<div class="form_control_container">
 							<div class="form_control_container__time max">Max</div>
-							<input asp-for="@filter.MaxPrice" name="maxPrice" class="form_control_container__time__input" type="number" id="toInput" value="@((maxPrice != 0) ? maxPrice.ToString() : defaultMaxPrice.ToString())" min="1" max="600000000" />
+							<input asp-for="@filter.MaxPrice" name="maxPrice" class="form_control_container__time__input" type="number" id="toInput" value="@((maxPrice != 0) ? maxPrice.ToString() : defaultMaxPrice.ToString())" min="1" max="60000000" />
 						</div>
 					</div>
 				</div>
@@ -48,7 +48,7 @@
 
 			<div class="search__container-bottom">
 				<button type="button" id="clearButton" class="btn-clear-filter"><img src="../images/clear-search.png"></button>
-				<input type="submit" class="search__container-btn btn-sort search-text-box" value="Filtrera efter bostad">
+				<input type="submit" class="search__container-btn btn-sort search-text-box" value="Filter by residence">
 			</div>
 		</form>
 	</div>

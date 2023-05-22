@@ -2,7 +2,7 @@
 
 @{
     Layout = "~/Views/Shared/_Layout.cshtml";
-    ViewData["Title"] = "Advertisement";
+    ViewData["Title"] = @Model.StreetName + " " + @Model.StreetNumber + ", " + @Model.City;
 }
 
 <div class="advertisement__container">
@@ -46,5 +46,5 @@
             Detta är en sällsynt chans att förvärva en fastighet av högsta kvalitet i en av stadens mest eftertraktade områden. Kontakta oss för att boka en visning och se själv vad detta hem har att erbjuda!</p>
         </div>
     </div>
-    <button type="button" class="btn-return" onclick="window.history.back();"><img src="../images/arrow-left.png"></button>
+    <button type="button" class="btn-return" onclick="goBack();"><img src="../images/arrow-left.png"></button>
 </div>

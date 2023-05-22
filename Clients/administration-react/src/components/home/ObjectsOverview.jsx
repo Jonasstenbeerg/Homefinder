@@ -31,18 +31,18 @@ const ObjectsOverview = ({selectObject, advertisements,onFetchAdvertisements, se
         <h1 className={styles["objects-overview-heading"]} >Advertisements <span className={styles["add-counter"]}>{advertisements.filter(add => getAddFullAddress(add)?.includes(searchAddress?.toLowerCase())).length}</span></h1>
         <div className={styles["search-container"]}>
           <FontAwesomeIcon icon={faMagnifyingGlass}/>
-          <input placeholder='search address' value={searchAddress} onChange={handleSearchAddressChanged} className={styles["search"]} type="text" />
+          <input placeholder='Search address' value={searchAddress} onChange={handleSearchAddressChanged} className={styles["search"]} type="text" />
         </div>
       </section>
       <section className={styles["objects-overview-table-container"]}>
         <table className={styles["objects-overview-table"]}>
           <thead>
             <tr className={styles["objects-overview-table-top"]}>
-              <th>Address</th>
-              <th>Type</th>
-              <th>Size</th>
-              <th>price</th>
-              <th>deleted</th>
+              <th id={`${styles["table-top-column-address"]}`}>Address</th>
+              <th id={`${styles["table-top-column-type"]}`}>Type</th>
+              <th id={`${styles["table-top-column-size"]}`}>Size</th>
+              <th id={`${styles["table-top-column-price"]}`}>Price</th>
+              <th>Deleted</th>
             </tr>
           </thead>
           <tbody>
@@ -57,9 +57,9 @@ const ObjectsOverview = ({selectObject, advertisements,onFetchAdvertisements, se
                 <div className={`${styles["table-column-subrow"]} ${styles["table-column"]}`}>{add.leaseType}</div>
               </td>
               <td>
-                <div className={styles["table-column"]}>{add.area}m2</div>
+                <div className={styles["table-column"]}>{add.area} m2</div>
               </td>
-              <td className={styles["table-column"]}>{add.listPrice}</td>
+              <td className={styles["table-column"]}>{add.listPrice} kr</td>
               <td className={styles["table-column"]}>{add.deleted.toString()}</td>
             </tr>
           ))}

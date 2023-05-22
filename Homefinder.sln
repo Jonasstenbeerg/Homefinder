@@ -5,13 +5,13 @@ VisualStudioVersion = 17.0.31903.59
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HomefinderAPI", "HomefinderAPI\HomefinderAPI.csproj", "{9128256E-E8DA-4A04-A4CC-7AA25577E1CC}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{CC2F9584-3C4C-4487-B914-6D79033E8706}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HomefinderAPI.Tests", "Tests\HomefinderAPI.Tests\HomefinderAPI.Tests.csproj", "{EF72ABFC-EEC8-4B4D-8288-1766F034FC99}"
-EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Clients", "Clients", "{02AC4297-9769-41A6-904B-07F37BC46670}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AdvertisementMVC", "Clients\AdvertisementMVC\AdvertisementMVC.csproj", "{E29E5E25-06ED-45D8-A980-8AAD6AD27331}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{87159359-D050-4483-B988-A4C05145E5EF}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HomefinderAPI.IntegrationTests", "Tests\HomefinderAPI.IntegrationTests\HomefinderAPI.IntegrationTests.csproj", "{5BCB203A-77FE-4F96-BA88-3378B353CB23}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -26,17 +26,17 @@ Global
 		{9128256E-E8DA-4A04-A4CC-7AA25577E1CC}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{9128256E-E8DA-4A04-A4CC-7AA25577E1CC}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{9128256E-E8DA-4A04-A4CC-7AA25577E1CC}.Release|Any CPU.Build.0 = Release|Any CPU
-		{EF72ABFC-EEC8-4B4D-8288-1766F034FC99}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{EF72ABFC-EEC8-4B4D-8288-1766F034FC99}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{EF72ABFC-EEC8-4B4D-8288-1766F034FC99}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{EF72ABFC-EEC8-4B4D-8288-1766F034FC99}.Release|Any CPU.Build.0 = Release|Any CPU
 		{E29E5E25-06ED-45D8-A980-8AAD6AD27331}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{E29E5E25-06ED-45D8-A980-8AAD6AD27331}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{E29E5E25-06ED-45D8-A980-8AAD6AD27331}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{E29E5E25-06ED-45D8-A980-8AAD6AD27331}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5BCB203A-77FE-4F96-BA88-3378B353CB23}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5BCB203A-77FE-4F96-BA88-3378B353CB23}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5BCB203A-77FE-4F96-BA88-3378B353CB23}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5BCB203A-77FE-4F96-BA88-3378B353CB23}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
-		{EF72ABFC-EEC8-4B4D-8288-1766F034FC99} = {CC2F9584-3C4C-4487-B914-6D79033E8706}
 		{E29E5E25-06ED-45D8-A980-8AAD6AD27331} = {02AC4297-9769-41A6-904B-07F37BC46670}
+		{5BCB203A-77FE-4F96-BA88-3378B353CB23} = {87159359-D050-4483-B988-A4C05145E5EF}
 	EndGlobalSection
 EndGlobal

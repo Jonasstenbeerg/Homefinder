@@ -119,7 +119,27 @@ namespace HomefinderAPI.Repositories
         throw new Exception($"Vi kunde inte hitta någon annons med id {id}");
       }
 
+      var leaseType = await _context.LeaseTypes
+      .Where(l => l.Name!.ToLower() == model.LeaseType!.ToLower())
+      .SingleOrDefaultAsync();
+
+      var propertyType = await _context.PropertyTypes
+      .Where(p => p.Name!.ToLower() == model.PropertyType!.ToLower())
+      .SingleOrDefaultAsync();
+
+      if (leaseType is null)
+      {
+          throw new Exception($"Tyvärr vi har inte arrendetypen {model.LeaseType}");
+      }
+      else if (propertyType is null)
+      {
+          throw new Exception($"Tyvärr vi har inte objektstypen {model.PropertyType}");
+      }
+
       _mapper.Map<PostAdvertisementViewModel, Advertisement>(model, advertisement);
+      
+      advertisement.Property.PropertyType = propertyType;
+      advertisement.Property.LeaseType = leaseType;
 
       _context.Advertisements.Update(advertisement);
     }
